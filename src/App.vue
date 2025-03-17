@@ -1,7 +1,7 @@
 <template>
     <div class="app">
       <Navbar />
-      <MobileWarningOverlay />f
+      <MobileWarningOverlay />
       <div class="content">
         <router-view />
       </div>
