@@ -4,7 +4,7 @@ This repository contains the source code for my personal portfolio, built using 
 
 ## Overview
 
-This portfolio is designed to provide a comprehensive view of my skills and experiences. It is integrated with AWS Amplify to leverage cloud services for authentication, API, and database capabilities.
+This portfolio is designed to provide a comprehensive view of my skills and experiences. It is integrated with AWS Amplify to leverage cloud services.
 
 ## Features
 - **About**: 
