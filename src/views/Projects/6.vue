@@ -4,11 +4,15 @@
         <div class = "content-container">
         <h1>DJ Leamen's Personal Portfolio</h1>
         <p>
-            My personal portfolio, built using Vue.js and AWS Amplify. The portfolio showcases my projects, experience, links to my social media, information about the classes I've taken, what I'm currently learning, and more.
+            My personal portfolio, built using Vue.js from AWS Amplify template. Deployed on Azure. The portfolio 
+            showcases my projects, experience, links to my social media, information about the classes I've taken, what I'm currently learning, and more.
         </p>
         <h2>Overview</h2>
         <p>
-            This portfolio is designed to provide a comprehensive view of my skills and experiences. It is integrated with AWS Amplify to leverage cloud services for authentication, API, and database capabilities.
+            This portfolio is designed to provide a comprehensive view of my skills and experiences. It is integrated with 
+            Azure to leverage cloud services for hosting and deployment. The portfolio includes detailed information 
+            about my projects, technical skills, and professional experience. It also serves as a platform to 
+            showcase my work and connect with other professionals in the industry.
         </p>
         <h2>Features</h2>
         <ul>
@@ -29,7 +33,8 @@
         <h2>Technologies Used</h2>
         <ul>
             <li><strong>Vue.js</strong>: Frontend framework for building the user interface.</li>
-            <li><strong>AWS Amplify</strong>: Cloud services for authentication, API, and database.</li>
+            <li><strong>AWS Amplify</strong>: Template used for the initial setup and deployment.</li>
+            <li><strong>Azure</strong>: Cloud platform used for hosting and deployment.</li>
             <li><strong>HTML/CSS</strong>: Markup and styling for the portfolio.</li>
             <li><strong>JavaScript</strong>: Programming language for dynamic content.</li>
         </ul>
@@ -50,7 +55,7 @@ export default {
   },
   data() {
     return {
-      skills: ["Vue.js", "AWS", "JavaScript", "HTML", "CSS", "Shell",
+      skills: ["Vue.js", "Microsoft Azure", "AWS", "JavaScript", "HTML", "CSS", "Shell",
                "Git", "Cloud Computing", "Web Development", "Software Development",
               "Software Engineering", "Problem Solving", "Creativity", "Time Management", 
                 "Writing", "Professional Development", "Communication"]

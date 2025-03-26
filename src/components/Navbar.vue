@@ -73,4 +73,5 @@
   opacity: 0.8; /* Smoothly change opacity on hover */
 }
 
+
 </style>

@@ -1,5 +1,5 @@
 export const projects = [
-  { id: '1', title: "SUSTAIN", description: "A GPT-3.5 wrapper optimizing token usage, reducing API costs and energy consumption through NLP-driven input compression", 
+  { id: '1', title: "SUSTAIN", description: "A GPT wrapper optimizing token usage, reducing API costs and energy consumption through NLP-driven input compression", 
                               link: "https://sustainai.ca", 
                               tags: ["Python", "Shell", "JavaScript", "Git", "APIs", 
                                 "Generative AI (LLMs)", "CSS", "HTML", "React.js", 
@@ -44,7 +44,7 @@ export const projects = [
                                             "Creativity", "Writing", "Problem Solving", "Research"] },
   { id: '6', title: "My Portfolio", description: "My portfolio website showcasing my projects and experience.", 
                                     link: "https://djleamen.ca", 
-                                    tags: ["Vue.js", "AWS", "JavaScript", "HTML", "CSS", "Shell",
+                                    tags: ["Vue.js", "AWS", "Microsoft Azure", "JavaScript", "HTML", "CSS", "Shell",
                                       "Git", "Cloud Computing", "Web Development", "Software Development",
                                       "Software Engineering", "Problem Solving", "Creativity", "Time Management", 
                                       "Writing", "Professional Development", "Communication", "Visual Studio Code"] },
@@ -76,7 +76,11 @@ export const projects = [
                                     tags: ["Unity", "C#", "Game Development", "Software Development",
                                       "Software Engineering", "Problem Solving", "Critical Thinking",
                                       "Creativity", "Adaptability", "Time Management", "Leadership",
-                                      "Teamwork", "Communication", "Innovation", "Resilience"] }
+                                      "Teamwork", "Communication", "Innovation", "Resilience"] },
+  { id: '14', title: "File Sharing System", description: "Assignment for Software Systems Development and Integration: client-server application for file sharing.",
+                                    tags: ["Java", "Swing", "Network Programming", "Git", "Visual Studio Code", 
+                                          "Software Development", "Defensive Programming", "Teamwork", "Multi-threading",
+                                          "Problem Solving", "Time Management", "Communication", "Collaboration"] }
 ];
 
 /* Full Skill list:
@@ -93,9 +97,9 @@ export const projects = [
   "WordPress", "Mailchimp", "Google Analytics", "SEO", "UX/UI",
   "Data Structures & Algorithms", "Software Development", "Software Engineering",
   "Computer Architecture", "Computer Science", "Web Development", "Mobile Development",
-  "Database Management", "Data Analysis", "Data Visualization", "Memory Management",
+  "Database Management", "Data Analysis", "Data Visualization", "Memory Management", "Multi-threading",
   "Cybersecurity", "AI Ethics", "Quantum Computing", "Network Programming", "Defensive Programming",
-  "Science", "Physics", "Mathematics",
+  "Science", "Physics", "Mathematics", 
   "Communication", "Management", "Professional Development", "Entrepreneurship", "Teamwork", "Leadership",
   "Problem Solving", "Critical Thinking", "Creativity", "Adaptability",
   "Time Management", "Decision Making", "Conflict Resolution", "Networking",

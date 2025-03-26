@@ -1,3 +1,6 @@
+.github/workflows
+node_modules
+
 # Logs
 logs
 *.log
@@ -28,8 +31,3 @@ coverage
 *.sw?
 
 *.tsbuildinfo
-
-# amplify
-.amplify
-amplifyconfiguration*
-amplify_outputs.json

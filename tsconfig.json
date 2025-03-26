@@ -1,17 +1,16 @@
 {
-    "files": [],
-    "references": [
-      {
-        "path": "./tsconfig.node.json"
-      },
-      {
-        "path": "./tsconfig.app.json"
-      }
-    ],
-    "compilerOptions": {
-      // other options
-      "resolveJsonModule": true,
-      "esModuleInterop": true
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
     }
+  ],
+  "compilerOptions": {
+    // other options
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   }
-  
+}

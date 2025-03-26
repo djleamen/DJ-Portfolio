@@ -1,6 +1,6 @@
 ## DJ Leamen's Personal Portfolio
 
-This repository contains the source code for my personal portfolio, built using Vue.js and AWS Amplify. The portfolio showcases my projects, experience, links to my social media, information about the classes I've taken, what I'm currently learning, and more.
+This repository contains the source code for my personal portfolio, built using Vue.js and AWS Amplify, and deployed on Azure. The portfolio showcases my projects, experience, links to my social media, information about the classes I've taken, what I'm currently learning, and more.
 
 ## Overview
 
@@ -19,7 +19,8 @@ This portfolio is designed to provide a comprehensive view of my skills and expe
 ## Technologies Used
 
 - **Vue.js**: Frontend framework for building the user interface.
-- **AWS Amplify**: Cloud services for authentication, API, and database.
+- **AWS Amplify**: Vue app template.
+- **Microsoft Azure**: Deployment and resources.
 - **HTML/CSS**: Markup and styling for the portfolio.
 - **JavaScript**: Programming language for dynamic content.
 

@@ -12,7 +12,7 @@ export const skills = [
   "WordPress", "Mailchimp", "Google Analytics", "SEO", "UX/UI",
   "Data Structures & Algorithms", "Software Development", "Software Engineering",
   "Computer Architecture", "Computer Science", "Web Development", "Mobile Development",
-  "Database Management", "Data Analysis", "Data Visualization", "Memory Management",
+  "Database Management", "Data Analysis", "Data Visualization", "Memory Management", "Multi-threading",
   "Cybersecurity", "AI Ethics", "Quantum Computing", "Network Programming", "Defensive Programming",
   "Science", "Physics", "Mathematics",
   "Communication", "Management", "Professional Development", "Entrepreneurship", "Teamwork", "Leadership",
@@ -33,7 +33,7 @@ export const devTools = ["Node.js", "Angular", "Express.js", "Gradle", "Maven", 
 export const methodologies = ["Agile", "Scrum", "Kanban", "Waterfall"];
 export const coreConcepts = ["Data Structures & Algorithms", "Software Development", "Software Engineering", "UX/UI",
       "Computer Architecture", "Web Development", "Mobile Development", "Database Management",
-      "Data Analysis", "Data Visualization", "Memory Management", "Cybersecurity", "AI Ethics",
+      "Data Analysis", "Data Visualization", "Memory Management", "Cybersecurity", "AI Ethics", "Multi-threading",
       "Quantum Computing", "Network Programming", "Defensive Programming", "Science", "Physics", "Mathematics"];
 export const soft = [
     "Communication", "Management", "Professional Development", "Entrepreneurship", "Teamwork", 

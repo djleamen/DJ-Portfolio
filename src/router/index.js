@@ -17,6 +17,7 @@ import Project10 from '../views/Projects/10.vue';
 import Project11 from '../views/Projects/11.vue';
 import Project12 from '../views/Projects/12.vue';
 import Project13 from '../views/Projects/13.vue';
+import Project14 from '../views/Projects/14.vue';
 
 const routes = [
   {
@@ -108,7 +109,13 @@ const routes = [
     path: '/views/Projects/13',
     name: 'Project13',
     component: Project13
+  },
+  {
+    path: '/views/Projects/14',
+    name: 'Project14',
+    component: Project14
   }
+
 ];
 
 const router = createRouter({
