@@ -126,9 +126,9 @@ function filterSkills() {
   text-align: center;
   padding: 50px;
   color: white;
-  background-color: #1a1a2e; /* Ensure strong contrast */
+  background-color: #1a1a2e;
   max-width: 1000px;
-  margin: 0 auto; /* Center horizontally */
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -169,7 +169,6 @@ h1 {
   margin: 0 auto;
 }
 
-/* New container to ensure skill bubbles wrap properly */
 .skills-container {
   display: flex;
   flex-wrap: wrap;
@@ -181,7 +180,6 @@ h1 {
   padding-bottom: 20px;
 }
 
-/* Skill bubbles now properly sized */
 .skill-bubble {
   background-color: #2a3d66;
   color: white;
@@ -231,8 +229,24 @@ h1 {
 }
 
 .filter-container select {
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid #2a3d66;
+  background-color: #1a1a2e;
+  color: white;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.filter-container select:hover {
+  background-color: #2a3d66;
+  color: #ffffff;
+}
+
+.filter-container select:focus {
+  border-color: #4fa3d1;
+  box-shadow: 0 0 5px #4fa3d1;
 }
 </style>

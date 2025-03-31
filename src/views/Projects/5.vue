@@ -1,6 +1,6 @@
 <template>
     <div class = "project-container">
-      <button class="back-btn" @click="goBack">Back to Projects</button>
+      <button @click="goBack" class="back-btn">⬅</button>
         <div class = "content-container">
         <h1>🌟 DJ Codes it Simple</h1>
         <p>Your beginner-friendly guide to mastering Shell Scripting, SQL, and beyond!</p>
@@ -42,7 +42,7 @@ export default {
   data() {
     return {
       skills: ["Shell", "Linux", "SQL", "Git", "Python",
-                "Creativity", "Writing", "Problem Solving", "Research"
+                "Creativity", "Writing", "Problem Solving", "Research", "Communication"
               ]
     };
   }
@@ -138,6 +138,8 @@ a:hover {
 }
 
 .back-btn {
+  margin-top: 70px;
+  font-size: 1.5rem;
   background-color: transparent;
   color: #61dafb;
   padding: 10px 20px;
@@ -175,5 +177,18 @@ a:hover {
   align-items: center;
   border: none;
   text-decoration: none; /* Ensure the text is not underlined */
+}
+
+.screenshots-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.screenshot {
+  margin-bottom: 50px;
+  max-width: 700px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 </style>

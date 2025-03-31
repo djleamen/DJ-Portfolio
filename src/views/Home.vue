@@ -60,16 +60,16 @@ const projects = ref(allProjects.slice(0, 3));
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #1a1a2e; /* Ensure strong contrast */
-  color: white; /* Ensure strong contrast */
+  background-color: #1a1a2e;
+  color: white;
 }
 
 .home-container {
   max-width: 850px;
   text-align: center;
   color: white;
-  margin-bottom: 100px; /* Add margin to ensure footer is at the bottom */
-  margin: 0 auto; /* Center the container */
+  margin-bottom: 100px;
+  margin: 0 auto;
   flex: 1;
 }
 
@@ -84,7 +84,10 @@ const projects = ref(allProjects.slice(0, 3));
 }
 
 .highlight {
-  color: #61dafb;
+  background: linear-gradient(to right, #4fa3d1, #2575fc);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .typing-animation {
@@ -93,8 +96,8 @@ const projects = ref(allProjects.slice(0, 3));
   font-family: monospace;
   white-space: nowrap;
   overflow: hidden;
-  width: 0; /* Start with width 0 */
-  margin: 0 auto; /* Center the text */
+  width: 0;
+  margin: 0 auto;
   animation: typing 3s steps(30, end) forwards, pause 5s forwards 3s;
 }
 
@@ -109,7 +112,6 @@ const projects = ref(allProjects.slice(0, 3));
 }
 
 .btn {
-  /* Create space around button */
   display: inline-block;
   background-color: #61dafb;
   color: black;
@@ -119,7 +121,7 @@ const projects = ref(allProjects.slice(0, 3));
   transition: 0.3s ease-in-out;
   margin-bottom: 30px;
   margin-top: 20px;
-  font-weight: 500; /* Medium weight for buttons */
+  font-weight: 500;
 }
 
 .btn:hover {
@@ -138,31 +140,31 @@ const projects = ref(allProjects.slice(0, 3));
   padding: 20px;
   border-radius: 10px;
   width: 300px;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Add transition for shadow */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   flex: 1 1 calc(33.333% - 40px); /* 3 projects per line */
   box-sizing: border-box;
   margin-bottom: 30px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .project-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 h2 {
   font-size: 1.5rem;
   margin-bottom: 20px;
   margin-top: 50px;
-  font-weight: bold; /* Bold for headings */
+  font-weight: bold;
 }
 
 .recent-activities {
   text-align: center;
-  margin: 0 auto; /* Center the container */
+  margin: 0 auto;
   margin-top: 20px;
   max-width: 1000px;
-  font-weight: bold; /* Bold for section label */
+  font-weight: bold;
 }
 
 .recent-activities p {
@@ -180,19 +182,18 @@ h2 {
 .taggbox-widget {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
-  background-color: #ffffff;
+  margin-top: -60px;
+  background-color: transparent;
   border-radius: 15px;
 }
 
-/* Style the photo to crop in a circle */
 .photo {
   display: flex;
   justify-content: center;
   margin-bottom: 40px;
   width: 250px;
   height: 250px;
-  border-radius: 50%; /* Change to 50% to make it a circle */
+  border-radius: 50%;
   overflow: hidden;
   margin: 0 auto;
 }
@@ -200,22 +201,23 @@ h2 {
 .photo img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensure the image covers the container */
+  object-fit: cover;
 }
 
 .about-photo-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 60px; /* Increase spacing between sections */
-  font-size: 1.2rem; /* Increase font size for readability */
+  margin-bottom: 60px;
+  font-size: 1.2rem;
+  
 }
 
 .about-preview {
   flex: 1;
   text-align: left;
   margin-right: 20px;
-  font-weight: 400; /* Regular weight for body text */
+  font-weight: 400;
 }
 
 .photo {

@@ -2,13 +2,13 @@
   <div class="projects-container">
     <button v-if="selectedSkill" @click="goBack" class="back-btn">⬅</button>
     <h1>{{ headerTitle }}</h1>
+    <p1>(Click on a project card to view details)</p1>
     <div class="project-list">
       <div v-for="(project, index) in filteredProjects" :key="index" class="project-card" @click="goToProjectDetail(project)">
         <h3>{{ project.title }}</h3>
         <p>{{ project.description }}</p>
         <a :href="project.link" target="_blank" class="btn">View</a>
       </div>
-      <!-- Add empty divs to ensure 3 projects per line -->
       <div v-for="n in emptySlots" :key="'empty-' + n" class="project-card empty"></div>
       <div v-if="filteredProjects.length === 0" class="coming-soon">Coming soon...</div>
     </div>
@@ -94,7 +94,7 @@ export default {
   text-align: center;
   padding: 50px;
   color: white;
-  background-color: #1a1a2e; /* Ensure strong contrast */
+  background-color: #1a1a2e;
   position: relative;
 }
 
@@ -117,6 +117,7 @@ export default {
 }
 
 .project-list {
+  margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -129,7 +130,7 @@ export default {
   border-radius: 10px;
   width: 300px;
   transition: transform 0.3s ease-in-out;
-  flex: 1 1 calc(33.333% - 40px); /* 3 projects per line */
+  flex: 1 1 calc(33.333% - 40px);
   box-sizing: border-box;
 }
 
@@ -139,6 +140,8 @@ export default {
 
 .project-card:hover {
   transform: translateY(-5px);
+  cursor: pointer;
+  border: 2px solid white;
 }
 
 .btn {
@@ -182,8 +185,15 @@ li {
   background-color: #252542;
 }
 
+p1 {
+  color:rgb(177, 177, 178);
+  font-style: italic;
+  text-align: center;
+  margin: 20px;
+}
+
 .skill-bubble {
-  background-color: #0d1b2a; /* Darker blue */
+  background-color: #0d1b2a;
   color: white;
   padding: 8px 12px;
   border-radius: 20px;
@@ -193,7 +203,7 @@ li {
   align-items: center;
   cursor: pointer;
   border: none;
-  text-decoration: none; /* Ensure the text is not underlined */
+  text-decoration: none;
 }
 
 .coming-soon {

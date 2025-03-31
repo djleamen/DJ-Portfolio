@@ -2,7 +2,7 @@
   <nav class="navbar">
     <div class="nav-container">
       <router-link to="/" class="logo-link">
-        <img src="../assets/banner.png" alt="Logo" class="logo" /> <!-- Logo image as a button -->
+        <img src="../assets/banner.png" alt="Logo" class="logo" />
       </router-link>
       <div class="nav-links">
         <router-link to="/about" class="nav-item">About</router-link>
@@ -18,16 +18,16 @@
 <style scoped>
 .navbar {
   display: flex;
-  justify-content: flex-start; /* Align items to the start (left) */
+  justify-content: flex-start;
   align-items: center;
   padding: 20px;
   background: #1e1e2e;
-  width: 100%; /* Ensure the navbar spans the full width */
+  width: 100%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: fixed; /* Fix the navbar at the top */
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000; /* Ensure the navbar is above other content */
+  z-index: 1000;
 }
 
 .nav-container {
@@ -38,7 +38,7 @@
 .nav-links {
   display: flex;
   gap: 20px;
-  margin-left: 20px; /* Add some space between the logo and the links */
+  margin-left: 20px;
 }
 
 .nav-item {
@@ -55,7 +55,7 @@
 .logo {
   height: 40px;
   margin: 0;
-  user-select: none; /* Disable user selection on the image */
+  user-select: none;
 }
 
 .logo-link {
@@ -64,13 +64,13 @@
   position: relative;
   z-index: 1;
   cursor: pointer;
-  user-select: none; /* Explicitly disable user selection on the link wrapper */
-  transition: opacity 0.3s ease-in-out; /* Ensure smooth opacity transition */
+  user-select: none;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .logo-link:hover {
   transition: opacity 0.3s ease-in-out;
-  opacity: 0.8; /* Smoothly change opacity on hover */
+  opacity: 0.8;
 }
 
 

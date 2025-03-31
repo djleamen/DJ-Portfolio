@@ -41,7 +41,7 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #1a1a2e; /* Ensure strong contrast */
+  background-color: #1a1a2e;
   color: white;
   font-family: 'Inter', sans-serif;
 }
@@ -52,7 +52,7 @@ body {
 }
 
 .app {
-  background-color: #1a1a2e; /* Ensure strong contrast */
+  background-color: #1a1a2e;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -60,7 +60,7 @@ body {
 
 .content {
   flex: 1;
-  padding-top: 50px; /* Adjust based on navbar height */
+  padding-top: 50px;
 }
 
 .footer {
@@ -68,8 +68,8 @@ body {
   padding: 0.5rem;
   background: #1e1e2e;
   color: white;
-  width: 100vw; /* Ensure the footer spans the full width */
-  margin-top: 40px; /* Add margin to separate from content */
+  width: 100vw;
+  margin-top: 40px;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
@@ -84,9 +84,9 @@ body {
 }
 
 .social-icon {
-  background-color: white; /* White circle background */
-  border-radius: 50%; /* Make it a circle */
-  padding: 10px; /* Add padding to create space around the icon */
+  background-color: white;
+  border-radius: 50%;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;

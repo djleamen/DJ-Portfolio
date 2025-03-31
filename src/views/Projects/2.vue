@@ -1,6 +1,6 @@
 <template>
-  <button class="back-btn" @click="goBack">Back to Projects</button>
   <div class="project-container">
+    <button @click="goBack" class="back-btn">⬅</button>
     <div class="content-container">
       <h1>Scrozam!</h1>
       <div class="description-container">
@@ -85,7 +85,7 @@ export default {
         "React.js", "Express.js", "Python", "Shell", "JavaScript", 
         "HTML", "Git", "APIs", "CSS", "Node.js", "npm", "pip",
         "Software Development", "Software Engineering", "Web Development",
-        "Problem Solving", "Creativity", "Innovation", "Adaptability",
+        "Problem Solving", "Creativity", "Innovation", "Adaptability", "Resilience"
       ]
     };
   }
@@ -128,6 +128,26 @@ export default {
 .small-logo {
   max-width: 350px;
   max-height: 350px;
+}
+
+.back-btn {
+  margin-top: 70px;
+  font-size: 1.5rem;
+  background-color: transparent;
+  color: #61dafb;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  transition: 0.3s ease-in-out;
+}
+
+.back-btn:hover {
+  background-color: #4fa3d1;
+  color: white;
 }
 
 h1, h2, h3 {
@@ -185,24 +205,6 @@ a {
 
 a:hover {
   text-decoration: underline;
-}
-
-.back-btn {
-  background-color: transparent;
-  color: #61dafb;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  transition: 0.3s ease-in-out;
-}
-
-.back-btn:hover {
-  background-color: #4fa3d1;
-  color: white;
 }
 
 .skills-container {

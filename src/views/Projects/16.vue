@@ -2,26 +2,43 @@
     <div class = "project-container">
       <button @click="goBack" class="back-btn">⬅</button>
         <div class = "content-container">
-            <h1>Wolves and Sheep</h1>
+            <h1>Chess Bot Challenge</h1>
             <p>
-                Wolves & Sheep was my Grade 12 Computer Science final Java project, a simulation of a farm of wolves and sheep. 
-                The project demonstrates proficiency in Java programming, object-oriented design, and algorithmic thinking.
-            </p>
-            <h2>Simulation</h2>
-            <p>
-                The simulation consists of a farm with a set number of wolves and sheep. The sheep move at random and eat grass to gain energy and 
-                reproduce, while the wolves move towards the nearest sheep. If a wolf catches a sheep, the sheep is eaten, and the wolf reproduces. 
-                If a wolf cannot catch a sheep in time, it dies. The simulation continues until all the sheep are eaten or the wolves die.
-            </p>
-            <p>
-                The goal of this project was to attempt to balance the population of wolves and sheep to prevent either from going extinct.
-                We used principles of object-oriented design to create classes for the farm, wolves, and sheep, and implemented algorithms to
-                simulate the movement and interactions of the animals.
+                Back in high school, to wrap up the end of my Computer Science class, we were 
+                given a challenge to create a chess bot that could play against a human
+                or another bot. The goal was to create a bot that could play chess at a
+                reasonable level, and to do so I had to brainstorm a lot of different
+                strategies and algorithms to implement. I ended up creating the best
+                chess bot in the class, and I was very proud of it!
             </p>
             <h2>Skills Developed</h2>
             <div class="skills-container">
                 <div class = "skill-bubble" v-for="skill in skills" :key="skill">{{ skill }}</div>
             </div>
+            <h2>Features</h2>
+            <ul>
+                <li>Chess Board Display:</li>
+                <ul>
+                    <li>Displays the chess board and pieces using Java Swing.</li>
+                </ul>
+                <li>Chess Bot:</li>
+                <ul>
+                    <li>Implements a basic chess bot that can play against a human or another bot.</li>
+                    <li>Uses a Minimax algorithm to determine the best move.</li>
+                </ul>
+                <li>Human vs. Bot Mode:</li>
+                <ul>
+                    <li>Allows a human player to play against the bot.</li>
+                </ul>
+                <li>Bot vs. Bot Mode:</li>
+                <ul>
+                    <li>Allows two bots to play against each other.</li>
+                </ul>
+                <li>Move Validation:</li>
+                <ul>
+                    <li>Validates moves to ensure they are legal according to chess rules.</li>
+                </ul>
+            </ul>
         </div>
     </div>
 </template>
@@ -39,8 +56,7 @@ export default {
   },
   data() {
     return {
-      skills: ["Java", "Swing", "Software Development", "NetBeans", "Eclipse", "Software Engineering", "Problem Solving",
-                "Critical Thinking", "Creativity", "Adaptability", "Time Management", "Teamwork", "Communication", "Innovation", "Resilience"]
+      skills: ["Java", "Swing", "Software Development", "Software Engineering", "Algorithms", "Data Structures", "Problem Solving", "Eclipse"],
     };
   }
 };
@@ -69,8 +85,14 @@ export default {
 }
 
 .large-logo {
-  max-width: 800px; /* Increase size */
-  margin-left: -60px; /* Remove gap between logos */
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .small-logo {
@@ -117,12 +139,6 @@ code {
   background-color: #f4f4f4;
   padding: 2px 5px;
   border-radius: 5px;
-}
-
-img {
-  display: block;
-  margin: 0 auto;
-  border-radius: 10px;
 }
 
 a {
@@ -188,4 +204,5 @@ a:hover {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 </style>

@@ -1,6 +1,6 @@
 <template>
-    <button class="back-btn" @click="goBack">Back to Projects</button>
     <div class = "project-container">
+      <button @click="goBack" class="back-btn">⬅</button>
         <div class = "content-container">
         <h1>DJ Leamen's Personal Portfolio</h1>
         <p>
@@ -24,7 +24,9 @@
                 </ul>
             </li>
             <li><strong>Projects</strong>: A showcase of my software development projects with descriptions and links.</li>
+            <li><strong>Services</strong>: A comprehensive list of the various services I provide.</li>
             <li><strong>Contact</strong>: Links to my GitHub and LinkedIn profiles.</li>
+            <li><strong>Blog</strong>: External link to my Medium page.</li>
         </ul>
         <h2>Skills Developed</h2>
         <div class="skills-container">
@@ -153,6 +155,8 @@ a:hover {
 }
 
 .back-btn {
+  margin-top: 70px;
+  font-size: 1.5rem;
   background-color: transparent;
   color: #61dafb;
   padding: 10px 20px;
@@ -190,6 +194,19 @@ a:hover {
   align-items: center;
   border: none;
   text-decoration: none; /* Ensure the text is not underlined */
+}
+
+.screenshots-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.screenshot {
+  margin-bottom: 50px;
+  max-width: 700px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 </style>

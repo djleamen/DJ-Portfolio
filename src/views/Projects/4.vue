@@ -1,6 +1,6 @@
 <template>
     <div class = "project-container">
-      <button class="back-btn" @click="goBack">Back to Projects</button>
+      <button @click="goBack" class="back-btn">⬅</button>
         <div class = "content-container">
         <h1>NanoNest</h1>
         <p>Furniture Catalog Management System</p>
@@ -19,6 +19,7 @@
             </ul>
             <li>Front-End Interface:</li>
             <ul>
+                <li>Use Java Swing to create a user-friendly interface.</li>
                 <li>Display a list of catalog items.</li>
                 <li>Allow users to view, add, and edit items.</li>
             </ul>
@@ -55,9 +56,9 @@ export default {
   },
   data() {
     return {
-      skills: ["Java", "Swing","JavaScript", "HTML", "CSS", "Python", "React.js", 
+      skills: ["Java", "Swing","JavaScript", "Python", "React.js", 
                 "FastAPI", "Git", "Microsoft 365", "Shell", "Agile", 
-                "Waterfall", "Kanban", "Visual Studio Code", "pip", "npm",
+                "Waterfall", "Kanban", "Visual Studio Code", "npm",
                 "Software Development", "Software Engineering", "Web Development",
                 "Database Management", "Data Analysis", "Data Visualization",
                 "Problem Solving", "Adaptability", "Time Management",
@@ -159,6 +160,8 @@ a:hover {
 }
 
 .back-btn {
+  margin-top: 70px;
+  font-size: 1.5rem;
   background-color: transparent;
   color: #61dafb;
   padding: 10px 20px;
@@ -196,5 +199,18 @@ a:hover {
   align-items: center;
   border: none;
   text-decoration: none; /* Ensure the text is not underlined */
+}
+
+.screenshots-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.screenshot {
+  margin-bottom: 50px;
+  max-width: 700px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 </style>

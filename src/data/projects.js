@@ -80,28 +80,10 @@ export const projects = [
   { id: '14', title: "File Sharing System", description: "Assignment for Software Systems Development and Integration: client-server application for file sharing.",
                                     tags: ["Java", "Swing", "Network Programming", "Git", "Visual Studio Code", 
                                           "Software Development", "Defensive Programming", "Teamwork", "Multi-threading",
-                                          "Problem Solving", "Time Management", "Communication", "Collaboration"] }
+                                          "Problem Solving", "Time Management", "Communication", "Collaboration"] },
+  { id: '15', title: "Daily Journal", description: "Java-based daily journal application.",
+                                        link: "https://github.com/djleamen/daily-journal",
+                                        tags: ["Java", "Swing", "Software Development", "Software Engineering", "Git", "Visual Studio Code", "Shell"] },
+  { id: '16', title: "Chess Bot Challenge", description: "Java-based chess AI bot for High School class competition.",
+                                      tags: ["Java", "Swing", "Software Development", "Software Engineering", "Algorithms", "Data Structures", "Problem Solving"] }
 ];
-
-/* Full Skill list:
-  "Python", "Java", "C++", "C#", "Shell", "JavaScript", "HTML", "CSS", "SQL", "Q#", "Assembly",
-    "React.js", "Django", "Swing", "Express.js", "Vue.js", "FastAPI",
-  "scikit-learn", "PyTorch","NumPy", "Pandas", "Matplotlib", 
-  "Generative AI (LLMs)", "NLP", 
-  "Microsoft Azure", "AWS", "Google Cloud Platform (GCP)", "Cloud Computing",
-  "IBM Db2", "MySQL", "NoSQL", "Microsoft SQL Server",
-  "Microsoft 365", "Git", "PowerBI", "MATLAB", "APIs", "SAP ERP",
-  "Visual Studio Code", "Jupyter Notebook", "Linux", "NetBeans", "Eclipse", "Intellij IDEA", "Unity",
-  "Node.js", "Angular", "Express.js", "Gradle", "Maven", "npm", "pip", "Docker",
-  "Agile", "Scrum", "Kanban", "Waterfall", 
-  "WordPress", "Mailchimp", "Google Analytics", "SEO", "UX/UI",
-  "Data Structures & Algorithms", "Software Development", "Software Engineering",
-  "Computer Architecture", "Computer Science", "Web Development", "Mobile Development",
-  "Database Management", "Data Analysis", "Data Visualization", "Memory Management", "Multi-threading",
-  "Cybersecurity", "AI Ethics", "Quantum Computing", "Network Programming", "Defensive Programming",
-  "Science", "Physics", "Mathematics", 
-  "Communication", "Management", "Professional Development", "Entrepreneurship", "Teamwork", "Leadership",
-  "Problem Solving", "Critical Thinking", "Creativity", "Adaptability",
-  "Time Management", "Decision Making", "Conflict Resolution", "Networking",
-  "Public Speaking", "Presentation", "Writing", "Research", "Collaboration", "Innovation", "Resilience", "Advocacy"
-*/

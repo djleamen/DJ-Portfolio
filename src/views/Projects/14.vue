@@ -1,6 +1,6 @@
 <template>
-    <button class="back-btn" @click="goBack">Back to Projects</button>
     <div class = "project-container">
+      <button @click="goBack" class="back-btn">⬅</button>
         <div class = "content-container">
             <h1>File Sharing System</h1>
             <p>
@@ -48,7 +48,9 @@
                 <div class = "skill-bubble" v-for="skill in skills" :key="skill">{{ skill }}</div>
             </div>
             <h3>Screenshot</h3>
-            <img src="@/assets/file-sharing-system.png" alt="File Sharing System Screenshot" class="large-logo">
+            <div class="screenshots-container">
+              <img src="@/assets/file-sharing-system.png" alt="File Sharing System Screenshot" class="screenshot">
+            </div>
         </div>
     </div>
 </template>
@@ -163,6 +165,8 @@ a:hover {
 }
 
 .back-btn {
+  margin-top: 70px;
+  font-size: 1.5rem;
   background-color: transparent;
   color: #61dafb;
   padding: 10px 20px;
@@ -202,5 +206,17 @@ a:hover {
   text-decoration: none; /* Ensure the text is not underlined */
 }
 
+.screenshots-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.screenshot {
+  margin-bottom: 50px;
+  max-width: 700px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
 </style>

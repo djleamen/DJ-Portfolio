@@ -1,6 +1,6 @@
 <template>
-  <button class="back-btn" @click="goBack">Back to Projects</button>
   <div class="project-container">
+    <button @click="goBack" class="back-btn">⬅</button>
     <div class="content-container">
       <h1>🌱 SUSTAIN: The Environmentally-Friendly AI 🌱</h1>
       <div class="logo-container">
@@ -225,6 +225,8 @@ a:hover {
 }
 
 .back-btn {
+  margin-top: 70px;
+  font-size: 1.5rem;
   background-color: transparent;
   color: #61dafb;
   padding: 10px 20px;

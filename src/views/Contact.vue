@@ -22,8 +22,10 @@
           <span class="social-text">Bluesky:</span> <img src="@/assets/bluesky-icon.png" alt="Bluesky" />
         </a>
       </div>
+    <div class="socials-bottom">
       <p>Or, find everything on my Linktree:</p>
       <a href="https://linktr.ee/djleamen" class="btn">Linktree</a>
+      </div>
     </div>
 </template>
 
@@ -34,9 +36,9 @@
   text-align: center;
   padding: 50px;
   color: white;
-  background-color: #1a1a2e; /* Ensure strong contrast */
+  background-color: #1a1a2e;
   max-width: 600px;
-  border-radius: 15px; /* Rounded corners */
+  border-radius: 15px;
 }
 
 a {
@@ -62,29 +64,34 @@ p {
   font-size: 1.2rem;
 }
 
+p1 {
+  margin: 20px;
+  font-size: 1.2rem;
+}
+
 .socials {
   background-color: white;
   display: flex;
-  flex-wrap: wrap; /* Allow wrapping */
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 20px; /* Increased gap */
-  padding: 20px; /* Padding around the social icons */
-  border-radius: 15px; /* Rounded corners */
+  gap: 20px;
+  padding: 20px;
+  border-radius: 15px;
 }
 
 .social-icon {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
   display: flex;
-  align-items: center; /* Align items vertically */
-  justify-content: center; /* Center items horizontally */
-  flex: 1 1 calc(33.333% - 40px); /* 3 items per row with gap */
-  max-width: calc(33.333% - 40px); /* Ensure max width */
-  text-align: center; /* Center text */
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 calc(33.333% - 40px);
+  max-width: calc(33.333% - 40px);
+  text-align: center;
 }
 
 .social-text {
-  margin-right: 8px; /* Space between text and icon */
+  margin-right: 8px;
   margin-left: 20px;
 }
 
@@ -107,6 +114,21 @@ p {
   border-radius: 5px;
   transition: 0.3s ease-in-out;
   margin-top: 20px;
-  font-weight: 500; /* Medium weight for buttons */
+  font-weight: 500;
 }
+
+.socials-bottom {
+  margin-top: 0px;
+  text-align: center;
+  padding: 20px;
+  background-color: #1a1a2e;
+  margin: 0 auto;
+  color: white;
+}
+
+.socials-bottom p {
+  margin-bottom: 30px;
+  font-size: 1.2rem;
+}
+
 </style>
