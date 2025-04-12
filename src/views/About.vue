@@ -126,9 +126,9 @@ function filterSkills() {
   text-align: center;
   padding: 50px;
   color: white;
-  background-color: #1a1a2e;
+  background-color: #1a1a2e; /* Ensure strong contrast */
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 0 auto; /* Center horizontally */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -169,6 +169,7 @@ h1 {
   margin: 0 auto;
 }
 
+/* New container to ensure skill bubbles wrap properly */
 .skills-container {
   display: flex;
   flex-wrap: wrap;
@@ -180,6 +181,7 @@ h1 {
   padding-bottom: 20px;
 }
 
+/* Skill bubbles now properly sized */
 .skill-bubble {
   background-color: #2a3d66;
   color: white;

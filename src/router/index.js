@@ -20,6 +20,7 @@ import Project13 from '../views/Projects/13.vue';
 import Project14 from '../views/Projects/14.vue';
 import Project15 from '../views/Projects/15.vue';
 import Project16 from '../views/Projects/16.vue';
+import Project17 from '../views/Projects/17.vue';
 
 const routes = [
   {
@@ -126,6 +127,11 @@ const routes = [
     path: '/views/Projects/16',
     name: 'Project16',
     component: Project16
+  },
+  {
+    path: '/views/Projects/17',
+    name: 'Project17',
+    component: Project17
   }
 
 ];

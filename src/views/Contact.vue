@@ -36,9 +36,9 @@
   text-align: center;
   padding: 50px;
   color: white;
-  background-color: #1a1a2e;
+  background-color: #1a1a2e; /* Ensure strong contrast */
   max-width: 600px;
-  border-radius: 15px;
+  border-radius: 15px; /* Rounded corners */
 }
 
 a {
@@ -72,26 +72,26 @@ p1 {
 .socials {
   background-color: white;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Allow wrapping */
   justify-content: center;
-  gap: 20px;
-  padding: 20px;
-  border-radius: 15px;
+  gap: 20px; /* Increased gap */
+  padding: 20px; /* Padding around the social icons */
+  border-radius: 15px; /* Rounded corners */
 }
 
 .social-icon {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1 1 calc(33.333% - 40px);
-  max-width: calc(33.333% - 40px);
-  text-align: center;
+  align-items: center; /* Align items vertically */
+  justify-content: center; /* Center items horizontally */
+  flex: 1 1 calc(33.333% - 40px); /* 3 items per row with gap */
+  max-width: calc(33.333% - 40px); /* Ensure max width */
+  text-align: center; /* Center text */
 }
 
 .social-text {
-  margin-right: 8px;
+  margin-right: 8px; /* Space between text and icon */
   margin-left: 20px;
 }
 
@@ -114,15 +114,15 @@ p1 {
   border-radius: 5px;
   transition: 0.3s ease-in-out;
   margin-top: 20px;
-  font-weight: 500;
+  font-weight: 500; /* Medium weight for buttons */
 }
 
 .socials-bottom {
   margin-top: 0px;
   text-align: center;
   padding: 20px;
-  background-color: #1a1a2e;
-  margin: 0 auto;
+  background-color: #1a1a2e; /* Ensure strong contrast */
+  margin: 0 auto; /* Center the container */
   color: white;
 }
 

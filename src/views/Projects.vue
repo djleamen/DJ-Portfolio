@@ -9,6 +9,7 @@
         <p>{{ project.description }}</p>
         <a :href="project.link" target="_blank" class="btn">View</a>
       </div>
+      <!-- Add empty divs to ensure 3 projects per line -->
       <div v-for="n in emptySlots" :key="'empty-' + n" class="project-card empty"></div>
       <div v-if="filteredProjects.length === 0" class="coming-soon">Coming soon...</div>
     </div>
@@ -94,7 +95,7 @@ export default {
   text-align: center;
   padding: 50px;
   color: white;
-  background-color: #1a1a2e;
+  background-color: #1a1a2e; /* Ensure strong contrast */
   position: relative;
 }
 
@@ -130,7 +131,7 @@ export default {
   border-radius: 10px;
   width: 300px;
   transition: transform 0.3s ease-in-out;
-  flex: 1 1 calc(33.333% - 40px);
+  flex: 1 1 calc(33.333% - 40px); /* 3 projects per line */
   box-sizing: border-box;
 }
 
@@ -193,7 +194,7 @@ p1 {
 }
 
 .skill-bubble {
-  background-color: #0d1b2a;
+  background-color: #0d1b2a; /* Darker blue */
   color: white;
   padding: 8px 12px;
   border-radius: 20px;
@@ -203,7 +204,7 @@ p1 {
   align-items: center;
   cursor: pointer;
   border: none;
-  text-decoration: none;
+  text-decoration: none; /* Ensure the text is not underlined */
 }
 
 .coming-soon {

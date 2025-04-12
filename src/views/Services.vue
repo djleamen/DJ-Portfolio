@@ -97,8 +97,8 @@ export default {
   .services-list {
     list-style: none;
     padding-left: 0;
-    background-color: transparent;
-    border-color: transparent;
+    background-color: transparent; /* explicitly remove background */
+    border-color: transparent; /* explicitly remove border */
 }
 
   .services-container h1 {
@@ -135,24 +135,24 @@ export default {
 
   .services-container ul {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Increased min-width */
+    gap: 20px; /* Adjusted gap for better spacing */
     padding: 0;
   }
 
   .services-container ul li {
     color: #2a2a72;
-    font-size: 1.2rem;
+    font-size: 1.2rem; /* Increased font size */
     display: flex;
     align-items: center;
     background-color: #ffffff;
-    padding: 20px 25px;
+    padding: 20px 25px; /* Adjusted padding for better appearance */
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    min-width: 500px;
-    margin-bottom: 0px;
-    margin-top: 10px;
+    min-width: 500px; /* Set a minimum width for the bubbles */
+    margin-bottom: 0px; /* Removed margin-bottom to reduce spacing */
+    margin-top: 10px; /* Added margin-top for spacing */
     cursor: pointer;
   }
 
@@ -167,7 +167,10 @@ export default {
     font-size: 1.2rem;
   }
 
+/*style contact button*/
+
 .btn {
+  /* Create space around button */
   cursor: pointer;
   display: inline-block;
   background-color: #61dafb;
@@ -178,7 +181,7 @@ export default {
   transition: 0.3s ease-in-out;
   margin-bottom: 20px;
   margin-top: 5px;
-  font-weight: 500;
+  font-weight: 500; /* Medium weight for buttons */
 }
 
 .btn:hover {
@@ -199,7 +202,7 @@ export default {
 }
 
 .popup-content {
-  position: relative;
+  position: relative; /* Added for positioning the close button */
   background: white;
   padding: 30px;
   border-radius: 10px;
