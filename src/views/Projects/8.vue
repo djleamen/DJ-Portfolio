@@ -3,11 +3,18 @@
       <button @click="goBack" class="back-btn">⬅</button>
         <div class = "content-container">
             <h1>Pure Canuck</h1>
+            <div class="logo-container">
+                <img src="@/assets/purecanuck.png" alt="Pure Canuck Logo" class="logo">
+            </div>
             <p>
                 Pure Canuck is a Shopify site built for a small local Canadian business that sells customized clothing
                 and drinkware. The website features the complete products listing, a straightforward payment gateway, 
                 and contact information.  
             </p>
+            <h2>Skills Developed</h2>
+            <div class="skills-container">
+          <div class = "skill-bubble" v-for="skill in skills" :key="skill">{{ skill }}</div>
+          </div>
             <h2>Features</h2>
             <ul>
                 <li>Home page with features products</li>
@@ -19,18 +26,7 @@
                 <li>Search functionality</li>
                 <li>Complete documentation for setup and maintenance</li>
             </ul>
-            <h2>Technologies Used</h2>
-            <ul>
-                <li>Shopify</li>
-                <li>Liquid</li>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>JavaScript</li>
-            </ul>
-            <h2>Skills Developed</h2>
-            <div class="skills-container">
-          <div class = "skill-bubble" v-for="skill in skills" :key="skill">{{ skill }}</div>
-          </div>
+            <h2>View the Website</h2>
             <p>
                 <a href="https://purecanuck.ca" target="_blank">Visit Pure Canuck</a>
             </p>
@@ -52,8 +48,8 @@ export default {
   data() {
     return {
       skills: ["Liquid", "HTML", "CSS", "JavaScript", "Web Development", "Software Development", "Shopify",
-              "Problem Solving", "Creativity", "Adaptability", "Time Management", "Requirement Gathering",
-              "Networking", "Communication", "Collaboration", "Graphic Design", "SEO", "Attention to Detail"]
+              "Problem Solving", "Creativity", "Adaptability", "Requirement Gathering",
+             "Communication", "Collaboration", "Graphic Design", "SEO", "Attention to Detail"]
     };
   }
 };
@@ -177,7 +173,7 @@ a:hover {
 
 .skill-bubble {
   cursor: default;
-  background-color: #0d1b2a; 
+  background-color: darkred; 
   color: white;
   padding: 8px 12px;
   border-radius: 20px;
