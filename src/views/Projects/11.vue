@@ -2,21 +2,25 @@
     <div class = "project-container">
       <button @click="goBack" class="back-btn">⬅</button>
         <div class = "content-container">
-            <h1>Bunnies</h1>
+            <h1>Spam Detector</h1>
             <p>
-                Bunnies was my Programming Workshop II final C++ project, a simulation of a farm of bunnies.
-                The project demonstrates proficiency in C++ programming, object-oriented design, and algorithmic thinking.
+                First assignment for Software Systems Development & Integration course, to create a spam detector using Naive Bayes spam detection system.
+                Creates a model of the probability of each word occurring in a spam or non-spam email, then classifies each email as spam or non-spam.
+                Shows the data in a Swing GUI.
             </p>
-            <h2>Simulation</h2>
+            <h3>Functionality</h3>
             <p>
-                The simulation consists of a farm with a set number of bunnies and radioactive mutant vampire bunnies. 
-                The bunnies move at random and require empty ajacent spaces to reproduce, while the radioactive mutant vampire bunnies move towards the nearest bunny.
-                If a radioactive mutant vampire bunny catches a bunny, the bunny is turned into a radioactive mutant vampire bunny.
+                The spam detector reads in a set of training data and uses it to build a model of the probability of each word occurring in a spam or non-spam email.
+                It then reads in a set of test data and uses the model to classify each email as spam or non-spam.
             </p>
             <h2>Skills Developed</h2>
             <div class="skills-container">
                 <div class = "skill-bubble" v-for="skill in skills" :key="skill">{{ skill }}</div>
             </div>
+            <h3>Accuracy</h3>
+            <p>
+                The spam detector achieves an accuracy of <strong>81.24%</strong> on the test data, with a precision of <strong>99.89%</strong>.
+            </p>
             </div>
     </div>
 </template>
@@ -34,7 +38,8 @@ export default {
   },
   data() {
     return {
-      skills: ["C++", "Data Structures & Algorithms", "Memory Management", "Jupyter Notebook"]
+      skills: ["Java", "Data Analysis", "Data Visualization", "Software Development", "Software Engineering", "Problem Solving",
+                "Critical Thinking", "Creativity", "Swing", "Maven", "Mathematics"]
     };
   }
 };
@@ -182,4 +187,5 @@ a:hover {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 </style>

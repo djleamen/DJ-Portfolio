@@ -2,26 +2,35 @@
     <div class = "project-container">
       <button @click="goBack" class="back-btn">⬅</button>
         <div class = "content-container">
-            <h1>Spam Detector</h1>
+            <h1>Screecher</h1>
             <p>
-                First assignment for Software Systems Development & Integration course, to create a spam detector using Naive Bayes spam detection system.
-                Creates a model of the probability of each word occurring in a spam or non-spam email, then classifies each email as spam or non-spam.
-                Shows the data in a Swing GUI.
+                Screecher was a third-person survival horror game inspired by 
+                Slenderman, developed in Unity as the capstone project for a C# 
+                Game Development summer camp. 
             </p>
-            <h3>Functionality</h3>
+            <h2>Gameplay</h2>
             <p>
-                The spam detector reads in a set of training data and uses it to build a model of the probability of each word occurring in a spam or non-spam email.
-                It then reads in a set of test data and uses the model to classify each email as spam or non-spam.
+                The player must navigate a dark, eerie forest, to
+                collect 10 pages scattered throughout the 
+                map while avoiding the Screecher, a monster that will chase the 
+                player if they get too close. The player can run, but the 
+                Screecher will catch up if they don't find a page quickly.
+                This project howcases proficiency in Unity’s physics engine and procedural 
+                level design, emphasizing atmospheric tension and immersive gameplay.
             </p>
+            <h2>Features</h2>
+            <ul>
+                <li>Third-person camera</li>
+                <li>Player movement</li>
+                <li>Enemy AI</li>
+                <li>Collectibles</li>
+                <li>Win/Lose conditions</li>
+            </ul>
             <h2>Skills Developed</h2>
             <div class="skills-container">
                 <div class = "skill-bubble" v-for="skill in skills" :key="skill">{{ skill }}</div>
             </div>
-            <h3>Accuracy</h3>
-            <p>
-                The spam detector achieves an accuracy of <strong>81.24%</strong> on the test data, with a precision of <strong>99.89%</strong>.
-            </p>
-            </div>
+        </div>
     </div>
 </template>
 
@@ -38,8 +47,10 @@ export default {
   },
   data() {
     return {
-      skills: ["Java", "Data Analysis", "Data Visualization", "Software Development", "Software Engineering", "Problem Solving",
-                "Critical Thinking", "Creativity", "Swing", "Maven", "Mathematics"]
+      skills: ["Unity", "C#", "Game Development", "Software Development",
+              "Software Engineering", "Problem Solving", "Critical Thinking",
+                 "Creativity", "Adaptability", "Time Management", "Leadership",
+                    "Teamwork", "Communication", "Innovation", "Resilience"]
     };
   }
 };

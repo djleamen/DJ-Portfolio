@@ -29,20 +29,10 @@
         <router-link to="/projects" class="btn">View All Projects</router-link>
       </section>
       </div>
-      
-      <section class="recent-activities">
-        <h2>See what I've been up to lately!</h2>
-      </section>
-    <section class="recent-activities">
-        <div class="taggbox-widget">
-          <iframe src="https://widget.tagembed.com/2157398" style="width:1000px;height:2650px;border:none;"></iframe>
-        </div>
-      </section>
       <div class="home-container">
       <section class="contact-preview">
         <h2>Get in Touch</h2>
         <p>Interested in collaborating or have a question? Feel free to reach out!</p>
-        <router-link to="/contact" class="btn">Contact Me</router-link>
       </section>
     </div>
     </div>

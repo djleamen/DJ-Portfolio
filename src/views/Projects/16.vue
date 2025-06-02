@@ -2,14 +2,17 @@
     <div class = "project-container">
       <button @click="goBack" class="back-btn">⬅</button>
         <div class = "content-container">
-            <h1>Chess Bot Challenge</h1>
-            <p>
-                Back in high school, to wrap up the end of my Computer Science class, we were 
-                given a challenge to create a chess bot that could play against a human
-                or another bot. The goal was to create a bot that could play chess at a
-                reasonable level, and to do so I had to brainstorm a lot of different
-                strategies and algorithms to implement. I ended up creating the best
-                chess bot in the class, and I was very proud of it!
+            <h1>Chill Chat</h1>
+            <div class="logo-container">
+                <img src="@/assets/chillchatlogo.png" alt="Chill Chat Logo" class="logo">
+                <img src="@/assets/chillchatlogo2.png" alt="Chill Chat Logo 2" class="logo">
+            </div>
+            <p>Chill Chat is a social messaging application that allows you to chill and chat with your friends in a relaxed and 
+                interactive environment. In Chill Chat there is Chill Vibes, Deep Convos and Great Times, where good vibes meet 
+                great conversations. The app supports multi-client functionality by utilizing multi-threading and socket programming 
+                within a client/server architecture, allowing multiple users to interact in real-time without interruptions. 
+                The server handles multiple client connections simultaneously, ensuring smooth message exchanges between users. 
+                Allowing users to join the chat, send and receive messages in real-time, and interact with each other seamlessly. 
             </p>
             <h2>Skills Developed</h2>
             <div class="skills-container">
@@ -17,29 +20,26 @@
             </div>
             <h2>Features</h2>
             <ul>
-                <li>Chess Board Display:</li>
-                <ul>
-                    <li>Displays the chess board and pieces using Java Swing.</li>
-                </ul>
-                <li>Chess Bot:</li>
-                <ul>
-                    <li>Implements a basic chess bot that can play against a human or another bot.</li>
-                    <li>Uses a Minimax algorithm to determine the best move.</li>
-                </ul>
-                <li>Human vs. Bot Mode:</li>
-                <ul>
-                    <li>Allows a human player to play against the bot.</li>
-                </ul>
-                <li>Bot vs. Bot Mode:</li>
-                <ul>
-                    <li>Allows two bots to play against each other.</li>
-                </ul>
-                <li>Move Validation:</li>
-                <ul>
-                    <li>Validates moves to ensure they are legal according to chess rules.</li>
-                </ul>
+                <li>Compiling and Running the application with multiple clients</li>
+                <li>Joining the application chat with username</li>
+                <li>Chatting with everyone online</li>
+                <li>Private Chatting with specified individual</li>
+                <li>Creating a thread</li>
+                <li>Replying to a thread</li>
             </ul>
-        </div>
+            <section>
+            <h2>Screenshots</h2>
+            <div class="screenshots-container">
+              <img src="../../assets/cc-threads.png" alt="Screenshot of Threads" class="screenshot">
+              <img src="../../assets/cc-chat.png" alt="Screenshot of Chat" class="screenshot">
+          </div>
+          <p>See the full demo here: [Youtube](https://www.youtube.com/watch?v=ccrG1b7ZdB0)</p>
+        </section>
+        <p>
+            <i>This project was originally submitted as coursework for CSCI2020U Software Systems Development & 
+            Integration at Ontario Tech University, Winter 2025.</i>
+          </p>
+      </div>
     </div>
 </template>
 
@@ -56,7 +56,8 @@ export default {
   },
   data() {
     return {
-      skills: ["Java", "Swing", "Software Development", "Software Engineering", "Algorithms", "Data Structures", "Problem Solving", "Eclipse"],
+      skills: ["Java", "Swing", "Software Development", "Software Engineering", "Git", "Visual Studio Code", "Shell", "Agile", "Teamwork",
+                "Problem Solving", "Time Management", "Communication", "Collaboration", "Creativity"]
     };
   }
 };

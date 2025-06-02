@@ -9,7 +9,7 @@
         <router-link to="/projects" class="nav-item">Projects</router-link>
         <router-link to="/services" class="nav-item">Services</router-link>
         <router-link to="/contact" class="nav-item">Contact</router-link>
-        <a href="https://medium.com/@djleamen" target="_blank" class="nav-item">Blog</a>
+        <a href="https://djleamen.substack.com" target="_blank" class="nav-item">Blog</a>
       </div>
     </div>
   </nav>

@@ -2,27 +2,22 @@
     <div class = "project-container">
       <button @click="goBack" class="back-btn">⬅</button>
         <div class = "content-container">
-            <h1>Wolves and Sheep</h1>
+            <h1>Bunnies</h1>
             <p>
-                Wolves & Sheep was my Grade 12 Computer Science final Java project, a simulation of a farm of wolves and sheep. 
-                The project demonstrates proficiency in Java programming, object-oriented design, and algorithmic thinking.
+                Bunnies was my Programming Workshop II final C++ project, a simulation of a farm of bunnies.
+                The project demonstrates proficiency in C++ programming, object-oriented design, and algorithmic thinking.
             </p>
             <h2>Simulation</h2>
             <p>
-                The simulation consists of a farm with a set number of wolves and sheep. The sheep move at random and eat grass to gain energy and 
-                reproduce, while the wolves move towards the nearest sheep. If a wolf catches a sheep, the sheep is eaten, and the wolf reproduces. 
-                If a wolf cannot catch a sheep in time, it dies. The simulation continues until all the sheep are eaten or the wolves die.
-            </p>
-            <p>
-                The goal of this project was to attempt to balance the population of wolves and sheep to prevent either from going extinct.
-                We used principles of object-oriented design to create classes for the farm, wolves, and sheep, and implemented algorithms to
-                simulate the movement and interactions of the animals.
+                The simulation consists of a farm with a set number of bunnies and radioactive mutant vampire bunnies. 
+                The bunnies move at random and require empty ajacent spaces to reproduce, while the radioactive mutant vampire bunnies move towards the nearest bunny.
+                If a radioactive mutant vampire bunny catches a bunny, the bunny is turned into a radioactive mutant vampire bunny.
             </p>
             <h2>Skills Developed</h2>
             <div class="skills-container">
                 <div class = "skill-bubble" v-for="skill in skills" :key="skill">{{ skill }}</div>
             </div>
-        </div>
+            </div>
     </div>
 </template>
 
@@ -39,8 +34,7 @@ export default {
   },
   data() {
     return {
-      skills: ["Java", "Swing", "Software Development", "NetBeans", "Eclipse", "Software Engineering", "Problem Solving",
-                "Critical Thinking", "Creativity", "Adaptability", "Time Management", "Teamwork", "Communication", "Innovation", "Resilience"]
+      skills: ["C++", "Data Structures & Algorithms", "Memory Management", "Jupyter Notebook"]
     };
   }
 };

@@ -2,33 +2,45 @@
     <div class = "project-container">
       <button @click="goBack" class="back-btn">⬅</button>
         <div class = "content-container">
-        <h1>IAEA CRP on Enhancing Computer Security for Radiation Detection Systems</h1>
-        <p>
-            The International Atomic Energy Agency (IAEA) has a Coordinated Research Project (CRP) 
-            on Enhancing Computer Security for Radiation Detection Systems. The CRP aims to 
-            enhance the computer security of radiation detection systems used in nuclear 
-            security applications. 
-        </p>
-        <p>
-            Dr. Khalil El-Khatib is the Canadian representative for this CRP and is 
-            leading the project at Ontario Tech University. Dr. El-Khatib has invited 
-            me to participate in the project as a research assistant, where I will be:
-        </p>
-        <ul>
-            <li>Contributing to research on securing Radiation Detection Systems (RDS) in cloud environments.</li>
-            <li>Focusing on leveraging Azure for enhanced security, scalability, and reliability.</li>
-            <li>Assisting in developing cloud security strategies, including secure data transmission (TLS/SSL encryption, firewall implementation), secure data storage (encryption, antivirus monitoring), and access control (multi-factor authentication, least privilege policies).</li>
-            <li>Exploring challenges and solutions in cloud migration for RDS, ensuring compliance with cybersecurity best practices to protect sensitive data in transit and at rest.</li>
-        </ul>
-        <p>
-            The project will provide me with valuable experience in cloud security,
-            research, and collaboration with international partners. I am excited to
-            contribute to the project and learn from experts in the field.
-        </p>
-        <h2>Skills Developed</h2>
+            <h1>The Awakened Leadership Institute (TALI)</h1>
+            <p>
+              The Awakened Leadership Institute (TALI) is a science-based leadership development 
+              space that offers online courses, workshops, and coaching services to help individuals
+              and organizations cultivate cognitive resilience, emotional intelligence, and transformational leadership skills.
+            </p>
+            <h2>My Role</h2>
+            <p>
+              Developing and optimizing a WordPress-based LMS platform, for TALI, 
+              enhancing sales funnel efficiency, checkout flow, and email automation, 
+              while implementing SEO and analytics to improve user engagement and conversion rates.
+            </p>
+            <h2>Breakdown</h2>
+            <ul>
+                <li>Designed and optimized a WordPress-based LMS platform (TutorLMS), improving course purchase and enrollment flow.</li>
+                <li>Developed a conversion-driven sales funnel that enhanced customer acquisition and retention for the TALI online course.</li>
+                <li>Integrated Mailchimp email automation, implementing lead nurturing sequences to increase student engagement.</li>
+                <li>Optimized checkout and payment processes, ensuring a seamless Stripe/PayPal transaction experience.</li>
+                <li>Implemented Google Analytics and SEO best practices, boosting website performance and tracking user behavior.</li>
+                <li>Provided ongoing technical support and content updates, maintaining optimal website functionality.</li>
+            </ul>
+            <h2>Skills Developed</h2>
         <div class="skills-container">
           <div class = "skill-bubble" v-for="skill in skills" :key="skill">{{ skill }}</div>
         </div>
+            <h2>Technologies Used</h2>
+            <ul>
+                <li>WordPress</li>
+                <li>TutorLMS</li>
+                <li>Mailchimp</li>
+                <li>Stripe</li>
+                <li>PayPal</li>
+                <li>Google Analytics</li>
+                <li>SEO</li>
+            </ul>
+            <h2>View the Website</h2>
+            <p>
+                <a href="https://celinacc.ca/tali/" target="_blank">Visit TALI</a>
+            </p>
         </div>
     </div>
 </template>
@@ -46,9 +58,10 @@ export default {
   },
   data() {
     return {
-      skills: ["Microsoft Azure", "Cloud Computing", "Cybersecurity", 
-              "Microsoft 365", "Research", "Physics", "Communication", "Science",
-               "Problem Solving", "Critical Thinking", "Writing" ]
+      skills: ["WordPress", "Mailchimp", "Google Analytics", "SEO", "UX/UI",
+              "Software Development", "Web Development", "Problem Solving", "Creativity",
+              "Adaptability", "Time Management", "Networking", "Communication",
+               "Collaboration", "Visual Studio Code" ]
     };
   }
 };

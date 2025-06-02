@@ -2,33 +2,54 @@
     <div class = "project-container">
       <button @click="goBack" class="back-btn">⬅</button>
         <div class = "content-container">
-            <h1>Screecher</h1>
+            <h1>File Sharing System</h1>
             <p>
-                Screecher was a third-person survival horror game inspired by 
-                Slenderman, developed in Unity as the capstone project for a C# 
-                Game Development summer camp. 
+                Project for CSCI 2020U Software Systems Development and Integration. 
+                The File Sharing System is a client-server application 
+                that enables users to share text files between a central 
+                server and multiple clients. The server exposes a shared folder, 
+                and clients can upload or download files using a simple 
+                Swing-based graphical interface. This project was developed 
+                with an emphasis on multi-threading, network communication, 
+                and responsive UI design.
             </p>
-            <h2>Gameplay</h2>
-            <p>
-                The player must navigate a dark, eerie forest, to
-                collect 10 pages scattered throughout the 
-                map while avoiding the Screecher, a monster that will chase the 
-                player if they get too close. The player can run, but the 
-                Screecher will catch up if they don't find a page quickly.
-                This project howcases proficiency in Unity’s physics engine and procedural 
-                level design, emphasizing atmospheric tension and immersive gameplay.
-            </p>
-            <h2>Features</h2>
+            <h3>Features</h3>
             <ul>
-                <li>Third-person camera</li>
-                <li>Player movement</li>
-                <li>Enemy AI</li>
-                <li>Collectibles</li>
-                <li>Win/Lose conditions</li>
+                <li>Server-Side:</li>
+                <ul>
+                    <li>Multi-threaded Connection Handling: Each client connection is processed in a separate thread.</li>
+                    <li>Commands:</li>
+                    <ul>
+                        <li>DIR – Returns a list of files in the server’s shared folder.</li>
+                        <li>UPLOAD – Receives a text file from a client and saves it to the shared folder.</li>
+                        <li>DOWNLOAD – Sends a requested text file from the shared folder to a client.</li>
+                    </ul>
+                </ul>
+                <li>Client-Side:</li>
+                <ul>
+                    <li>User Interface: A Swing GUI with a split-screen view displaying both local and server file lists.</li>
+                    <li>Operations:</li>
+                    <ul>
+                        <li>Upload: Transfer a file from the client’s shared folder to the server.</li>
+                        <li>Download: Retrieve a file from the server to the client’s shared folder.</li>
+                        <li>Refresh: Manually update file listings.</li>
+                    </ul>
+                </ul>
+                <li>UI Enhancements:</li>
+                <ul>
+                    <li>Progress bar and status messages during file transfers.</li>
+                    <li>File chooser integration for selecting files when none is pre-selected.</li>
+                    <li>Overwrite confirmation when downloading a file that already exists locally.</li>
+                    <li>SwingWorker to run background tasks and keep the interface responsive.</li>
+                </ul>
             </ul>
             <h2>Skills Developed</h2>
             <div class="skills-container">
                 <div class = "skill-bubble" v-for="skill in skills" :key="skill">{{ skill }}</div>
+            </div>
+            <h3>Screenshot</h3>
+            <div class="screenshots-container">
+              <img src="@/assets/file-sharing-system.png" alt="File Sharing System Screenshot" class="screenshot">
             </div>
         </div>
     </div>
@@ -47,10 +68,9 @@ export default {
   },
   data() {
     return {
-      skills: ["Unity", "C#", "Game Development", "Software Development",
-              "Software Engineering", "Problem Solving", "Critical Thinking",
-                 "Creativity", "Adaptability", "Time Management", "Leadership",
-                    "Teamwork", "Communication", "Innovation", "Resilience"]
+      skills: ["Java", "Swing", "Network Programming", "Git", "Visual Studio Code", 
+                "Software Development", "Defensive Programming", "Teamwork", "Multi-threading",
+                "Problem Solving", "Time Management", "Communication", "Collaboration"]
     };
   }
 };
@@ -79,8 +99,14 @@ export default {
 }
 
 .large-logo {
-  max-width: 800px; /* Increase size */
-  margin-left: -60px; /* Remove gap between logos */
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .small-logo {
@@ -127,12 +153,6 @@ code {
   background-color: #f4f4f4;
   padding: 2px 5px;
   border-radius: 5px;
-}
-
-img {
-  display: block;
-  margin: 0 auto;
-  border-radius: 10px;
 }
 
 a {

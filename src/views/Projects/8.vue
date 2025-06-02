@@ -2,46 +2,39 @@
     <div class = "project-container">
       <button @click="goBack" class="back-btn">⬅</button>
         <div class = "content-container">
-            <h1>The Awakened Leadership Institute (TALI)</h1>
+            <h1>Pure Canuck</h1>
             <p>
-              The Awakened Leadership Institute (TALI) is a science-based leadership development 
-              space that offers online courses, workshops, and coaching services to help individuals
-              and organizations cultivate cognitive resilience, emotional intelligence, and transformational leadership skills.
+                Pure Canuck is a Shopify site built for a small local Canadian business that sells customized clothing
+                and drinkware. The website features the complete products listing, a straightforward payment gateway, 
+                and contact information.  
             </p>
-            <h2>My Role</h2>
-            <p>
-              Developing and optimizing a WordPress-based LMS platform, for TALI, 
-              enhancing sales funnel efficiency, checkout flow, and email automation, 
-              while implementing SEO and analytics to improve user engagement and conversion rates.
-            </p>
-            <h2>Breakdown</h2>
+            <h2>Features</h2>
             <ul>
-                <li>Designed and optimized a WordPress-based LMS platform (TutorLMS), improving course purchase and enrollment flow.</li>
-                <li>Developed a conversion-driven sales funnel that enhanced customer acquisition and retention for the TALI online course.</li>
-                <li>Integrated Mailchimp email automation, implementing lead nurturing sequences to increase student engagement.</li>
-                <li>Optimized checkout and payment processes, ensuring a seamless Stripe/PayPal transaction experience.</li>
-                <li>Implemented Google Analytics and SEO best practices, boosting website performance and tracking user behavior.</li>
-                <li>Provided ongoing technical support and content updates, maintaining optimal website functionality.</li>
+                <li>Home page with features products</li>
+                <li>Product collections</li>
+                <li>Payment system</li>
+                <li>Contact information</li>
+                <li>Responsive design for mobile and desktop</li>
+                <li>Customizable product options</li>
+                <li>Search functionality</li>
+                <li>Complete documentation for setup and maintenance</li>
             </ul>
-            <h2>Skills Developed</h2>
-        <div class="skills-container">
-          <div class = "skill-bubble" v-for="skill in skills" :key="skill">{{ skill }}</div>
-        </div>
             <h2>Technologies Used</h2>
             <ul>
-                <li>WordPress</li>
-                <li>TutorLMS</li>
-                <li>Mailchimp</li>
-                <li>Stripe</li>
-                <li>PayPal</li>
-                <li>Google Analytics</li>
-                <li>SEO</li>
+                <li>Shopify</li>
+                <li>Liquid</li>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
             </ul>
-            <h2>View the Website</h2>
+            <h2>Skills Developed</h2>
+            <div class="skills-container">
+          <div class = "skill-bubble" v-for="skill in skills" :key="skill">{{ skill }}</div>
+          </div>
             <p>
-                <a href="https://celinacc.ca/tali/" target="_blank">Visit TALI</a>
+                <a href="https://purecanuck.ca" target="_blank">Visit Pure Canuck</a>
             </p>
-        </div>
+          </div>
     </div>
 </template>
 
@@ -58,10 +51,9 @@ export default {
   },
   data() {
     return {
-      skills: ["WordPress", "Mailchimp", "Google Analytics", "SEO", "UX/UI",
-              "Software Development", "Web Development", "Problem Solving", "Creativity",
-              "Adaptability", "Time Management", "Networking", "Communication",
-               "Collaboration", "Visual Studio Code" ]
+      skills: ["Liquid", "HTML", "CSS", "JavaScript", "Web Development", "Software Development", "Shopify",
+              "Problem Solving", "Creativity", "Adaptability", "Time Management", "Requirement Gathering",
+              "Networking", "Communication", "Collaboration", "Graphic Design", "SEO", "Attention to Detail"]
     };
   }
 };
@@ -209,5 +201,4 @@ a:hover {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
 </style>

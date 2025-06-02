@@ -2,36 +2,27 @@
     <div class = "project-container">
       <button @click="goBack" class="back-btn">⬅</button>
         <div class = "content-container">
-            <h1>The Creative Affair</h1>
+            <h1>Wolves and Sheep</h1>
             <p>
-                The Creative Affair is a website built for a small local business that specializes in custom
-                event planning and design. The website showcases the business's services, past events, and
-                contact information.  
+                Wolves & Sheep was my Grade 12 Computer Science final Java project, a simulation of a farm of wolves and sheep. 
+                The project demonstrates proficiency in Java programming, object-oriented design, and algorithmic thinking.
             </p>
-            <h2>Features</h2>
-            <ul>
-                <li>Home page with business information</li>
-                <li>Services page for adults, families</li>
-                <li>Products page for adults, families</li>
-                <li>Gallery page with past events</li>
-                <li>Testimonials page</li>
-                <li>Payment system</li>
-                <li>Contact page with form</li>
-            </ul>
-            <h2>Technologies Used</h2>
-            <ul>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>JavaScript</li>
-                <li>Vue.js</li>
-                <li>Node.js</li>
-                <li>Express</li>
-            </ul>
+            <h2>Simulation</h2>
+            <p>
+                The simulation consists of a farm with a set number of wolves and sheep. The sheep move at random and eat grass to gain energy and 
+                reproduce, while the wolves move towards the nearest sheep. If a wolf catches a sheep, the sheep is eaten, and the wolf reproduces. 
+                If a wolf cannot catch a sheep in time, it dies. The simulation continues until all the sheep are eaten or the wolves die.
+            </p>
+            <p>
+                The goal of this project was to attempt to balance the population of wolves and sheep to prevent either from going extinct.
+                We used principles of object-oriented design to create classes for the farm, wolves, and sheep, and implemented algorithms to
+                simulate the movement and interactions of the animals.
+            </p>
             <h2>Skills Developed</h2>
             <div class="skills-container">
-          <div class = "skill-bubble" v-for="skill in skills" :key="skill">{{ skill }}</div>
-          </div>
+                <div class = "skill-bubble" v-for="skill in skills" :key="skill">{{ skill }}</div>
             </div>
+        </div>
     </div>
 </template>
 
@@ -48,9 +39,8 @@ export default {
   },
   data() {
     return {
-      skills: ["HTML", "CSS", "JavaScript", "Web Development", "Software Development", "Node.js",
-                "Express.js","Problem Solving", "Creativity", "Adaptability", "Time Management",
-                 "Networking", "Communication", "Collaboration", "Visual Studio Code"]
+      skills: ["Java", "Swing", "Software Development", "NetBeans", "Eclipse", "Software Engineering", "Problem Solving",
+                "Critical Thinking", "Creativity", "Adaptability", "Time Management", "Teamwork", "Communication", "Innovation", "Resilience"]
     };
   }
 };
