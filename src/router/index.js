@@ -11,15 +11,15 @@ import Project4 from '../views/Projects/4.vue';
 import Project5 from '../views/Projects/5.vue';
 import Project6 from '../views/Projects/6.vue';
 import Project7 from '../views/Projects/7.vue';
-import Project8 from '../views/Projects/7.vue';
-import Project9 from '../views/Projects/8.vue';
-import Project10 from '../views/Projects/9.vue';
-import Project11 from '../views/Projects/10.vue';
-import Project12 from '../views/Projects/11.vue';
-import Project13 from '../views/Projects/12.vue';
-import Project14 from '../views/Projects/13.vue';
-import Project15 from '../views/Projects/14.vue';
-import Project16 from '../views/Projects/15.vue';
+import Project8 from '../views/Projects/8.vue';
+import Project9 from '../views/Projects/9.vue';
+import Project10 from '../views/Projects/10.vue';
+import Project11 from '../views/Projects/11.vue';
+import Project12 from '../views/Projects/12.vue';
+import Project13 from '../views/Projects/13.vue';
+import Project14 from '../views/Projects/14.vue';
+import Project15 from '../views/Projects/15.vue';
+import Project16 from '../views/Projects/16.vue';
 
 const routes = [
   {
