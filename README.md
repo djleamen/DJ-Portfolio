@@ -24,6 +24,11 @@ This portfolio is designed to provide a comprehensive view of my skills and expe
 - **HTML/CSS**: Markup and styling for the portfolio.
 - **JavaScript**: Programming language for dynamic content.
 
+## Running the App
+
+1. Use `npm install @vue/tsconfig --save-dev` if tsconfig is acting up.
+2. Run with `npm run dev`
+
 ## License
 
 This project is licensed under the MIT-0 License. See the LICENSE file for more information.
