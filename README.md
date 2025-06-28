@@ -1,5 +1,11 @@
 ## DJ Leamen's Personal Portfolio
 
+![Status](https://img.shields.io/badge/status-active-brightgreen)
+![Vue.js](https://img.shields.io/badge/Vue.js-3.x-green)
+![Azure](https://img.shields.io/badge/Hosted%20on-Azure-blue)
+![Last Commit](https://img.shields.io/github/last-commit/djleamen/DJ-Portfolio)
+![MIT-0](https://img.shields.io/badge/license-MIT--0-lightgrey)
+
 This repository contains the source code for my personal portfolio, built using Vue.js and AWS Amplify, and deployed on Azure. The portfolio showcases my projects, experience, links to my social media, information about the classes I've taken, what I'm currently learning, and more.
 
 ## Overview
@@ -8,13 +14,13 @@ This portfolio is designed to provide a comprehensive view of my skills and expe
 
 ## Features
 - **About**: 
-    - My technical skills and proficiencies
-    - Detailed information about my professional and extracurricular experience.
-    - Information about the courses I've taken, including descriptions and details.
-- **Projects**: A showcase of my software development projects with descriptions and links.
+    - Education and information about completed university courses.
+    - Comprehensive collection of my certificates and the extracurricular courses I've taken.
+    - Interactive list of my technical and professional skills.
+- **Projects**: A showcase of my software development projects with descriptions and links. Can be searched and sorted.
 - **Services**: Details regarding the list of the services I provide.
-- **Contact**: Links to my GitHub and LinkedIn profiles.
-- **Blog**: My Medium article posts.
+- **Contact**: Links to my social media profiles.
+- **Blog**: My Substack article posts.
 
 ## Technologies Used
 
