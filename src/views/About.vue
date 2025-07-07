@@ -6,7 +6,6 @@
     </p>
     <p2>{{ bio }}</p2>
 
-    <!-- Tab Navigation -->
     <div class="tab-container">
       <button 
         v-for="tab in tabs" 
@@ -18,9 +17,7 @@
       </button>
     </div>
 
-    <!-- Tab Content -->
     <div class="tab-content">
-      <!-- Education Tab -->
       <div v-if="activeTab === 'education'" class="tab-panel">
         <h2>Education</h2>
         <div class="education-card">
@@ -39,7 +36,16 @@
         <p2>All course descriptions taken from <a href="https://calendar.ontariotechu.ca" target="_blank" rel="noopener noreferrer">Ontario Tech University Course Calendar</a></p2>
       </div>
 
-      <!-- Certifications Tab -->
+      <div v-if="activeTab === 'work'" class="tab-panel">
+        <h2>Work Experience</h2>
+        <div v-for="job in workExperience" :key="job.position" class="job-card">
+          <h3 class="job-title">{{ job.position }}</h3>
+          <p class="company-name">{{ job.company }} - {{ job.location }}</p>
+          <p class="job-duration">{{ job.duration }}</p>
+          <p class="job-description">{{ job.description }}</p>
+        </div>
+      </div>
+
       <div v-if="activeTab === 'certifications'" class="tab-panel">
         <h2>Certifications I've Earned</h2>
         <div class="certifications-grid">
@@ -60,7 +66,6 @@
         </div>
       </div>
 
-      <!-- Skills Tab -->
       <div v-if="activeTab === 'skills'" class="tab-panel">
         <h2>Skills</h2>
         <div class="filter-container">
@@ -88,7 +93,6 @@
       </div>
     </div>
 
-    <!-- Course details popup -->
     <div v-if="activeCourse" class="popup-overlay" @click="closePopup">
       <div class="popup-content" @click.stop>
         <button class="close-button" @click="closePopup">&times;</button>
@@ -106,6 +110,7 @@ import { useRouter } from 'vue-router';
 import { education as educationData } from '../data/education';
 import { certs } from '../data/certs';
 import { skills, languages, frameworks, ml_ai, cloud, databases, ides, platformstools, devTools, methodologies, coreConcepts, soft } from '../data/skills';
+import { workExperience } from '../data/work';
 
 const bio = "DJ is experienced in software development, data analysis, cybersecurity, NLP, cloud computing, and system optimization. She is a strong collaborator with a proven track record in research, public speaking, operational improvements, peer mentoring, and delivering impactful projects in fast-paced environments. She is passionate about innovation and driving team success.";
 
@@ -116,9 +121,10 @@ const router = useRouter();
 
 const selectedType = ref('all');
 const filteredSkills = ref(skills);
-const activeTab = ref('education');
+const activeTab = ref('work');
 
 const tabs = [
+  { id: 'work', label: 'Work Experience' },
   { id: 'education', label: 'Education' },
   { id: 'certifications', label: 'Certifications' },
   { id: 'skills', label: 'Skills' }
@@ -273,7 +279,6 @@ h3 {
   margin: 5px 0;
 }
 
-/* Container to ensure skill bubbles wrap properly */
 .skills-container {
   display: flex;
   flex-wrap: wrap;
@@ -284,7 +289,6 @@ h3 {
   margin: 0 auto 30px;
 }
 
-/* Skill bubbles now properly sized */
 .skill-bubble {
   background-color: #2a3d66;
   color: white;
@@ -589,6 +593,52 @@ h3 {
   animation: fadeIn 0.3s ease-in-out;
 }
 
+.job-card {
+  background-color: rgba(26, 26, 46, 0.6);
+  padding: 25px;
+  border-radius: 20px;
+  max-width: 700px;
+  margin: 20px auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.job-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  border-color: rgba(97, 218, 251, 0.3);
+}
+
+.job-title {
+  font-size: 1.4rem;
+  color: #61dafb;
+  margin: 0 0 10px 0;
+  font-weight: 600;
+}
+
+.company-name {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 5px 0;
+  font-weight: 500;
+}
+
+.job-duration {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 5px 0 15px 0;
+  font-style: italic;
+}
+
+.job-description {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin: 10px 0 0 0;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -678,6 +728,27 @@ h3 {
   
   .tab-button {
     padding: 12px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .job-card {
+    padding: 20px;
+    margin: 15px auto;
+  }
+  
+  .job-title {
+    font-size: 1.2rem;
+  }
+  
+  .company-name {
+    font-size: 1rem;
+  }
+  
+  .job-duration {
+    font-size: 0.9rem;
+  }
+  
+  .job-description {
     font-size: 0.9rem;
   }
 }

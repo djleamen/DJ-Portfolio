@@ -210,7 +210,6 @@ h2 {
   margin-bottom: 20px;
 }
 
-/* Style the photo to crop in a circle with shadow */
 .photo {
   width: 280px;
   height: 280px;
@@ -258,7 +257,6 @@ h2 {
   margin-bottom: 15px;
 }
 
-/* Animation */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }

@@ -33,7 +33,7 @@
         </div>
         <span class="social-text">Sessionize</span>
       </a>
-      <a href="https://bsky.app/profile/dejjo.bsky.social" class="social-card" aria-label="Bluesky Profile">
+      <a href="https://bsky.app/profile/djleamen.substack.com" class="social-card" aria-label="Bluesky Profile">
         <div class="social-icon">
           <img src="@/assets/bluesky-icon.png" alt="Bluesky" />
         </div>
@@ -53,10 +53,10 @@
   padding: 20px 30px;
   color: white;
   max-width: 1100px;
-  width: 100%; /* Add this to ensure full width */
+  width: 100%;
   margin: 0 auto;
   border-radius: 20px;
-  box-sizing: border-box; /* Add this to maintain proper sizing */
+  box-sizing: border-box;
 }
 
 a {
@@ -171,7 +171,7 @@ p1 {
   .contact-container {
     padding: 40px 20px;
     margin: 20px;
-    width: calc(100% - 40px); /* Adjust width for margins */
+    width: calc(100% - 40px);
   }
   
   h1 {

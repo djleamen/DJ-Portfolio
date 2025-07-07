@@ -98,8 +98,8 @@ export default {
   .services-list {
     list-style: none;
     padding-left: 0;
-    background-color: transparent; /* explicitly remove background */
-    border-color: transparent; /* explicitly remove border */
+    background-color: transparent;
+    border-color: transparent;
 }
 
   .services-container h1 {
@@ -134,8 +134,8 @@ export default {
 
   .services-container ul {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Increased min-width */
-    gap: 20px; /* Adjusted gap for better spacing */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
     padding: 0;
   }
 
@@ -163,10 +163,8 @@ export default {
     font-size: 1.3rem;
   }
 
-/*style contact button*/
 
 .btn {
-  /* Create space around button */
   cursor: pointer;
   display: inline-block;
   background-color: #61dafb;
@@ -201,7 +199,7 @@ export default {
 }
 
 .popup-content {
-  position: relative; /* Added for positioning the close button */
+  position: relative;
   background: white;
   padding: 30px;
   border-radius: 10px;

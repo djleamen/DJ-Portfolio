@@ -5,7 +5,6 @@ import Projects from '../views/Projects.vue';
 import Services from '../views/Services.vue';
 import Contact from '../views/Contact.vue';
 
-// Import projects with descriptive names
 import SustainProject from '../views/Projects/SUSTAIN.vue';
 import ScrozamProject from '../views/Projects/Scrozam.vue';
 import PurplWavProject from '../views/Projects/PurplWav.vue';
@@ -23,6 +22,9 @@ import DailyJournalProject from '../views/Projects/DailyJournal.vue';
 import ChessBotProject from '../views/Projects/ChessBot.vue';
 import ChillChatProject from '../views/Projects/ChillChat.vue';
 import StatsJamProject from '../views/Projects/StatsJam.vue';
+import MusicMoodMatcher from '../views/Projects/MusicMoodMatcher.vue';
+import DocReader from '../views/Projects/DocReader.vue';
+import MP3Renamer from '../views/Projects/MP3Renamer.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -51,7 +53,6 @@ const routes: RouteRecordRaw[] = [
     component: Contact
   },
   
-  // Project routes with descriptive paths
   {
     path: '/projects/sustain',
     name: 'SustainProject',
@@ -154,6 +155,24 @@ const routes: RouteRecordRaw[] = [
     component: StatsJamProject,
     meta: { projectId: 17 }
   },
+  {
+    path: '/projects/doc-reader',
+    name: 'DocReader',
+    component: DocReader,
+    meta: { projectId: 18 }
+  },
+  {
+    path: '/projects/music-mood-matcher',
+    name: 'MusicMoodMatcher',
+    component: MusicMoodMatcher,
+    meta: { projectId: 19 }
+  },
+  {
+    path: '/projects/mp3-renamer',
+    name: 'MP3Renamer',
+    component: MP3Renamer,
+    meta: { projectId: 20 }
+  },
   
   // Legacy route support - redirect from old format to new
   {
@@ -176,7 +195,10 @@ const routes: RouteRecordRaw[] = [
         '14': '/projects/daily-journal',
         '15': '/projects/chess-bot',
         '16': '/projects/chill-chat',
-        '17': '/projects/statsjam'
+        '17': '/projects/statsjam',
+        '18': '/projects/doc-reader',
+        '19': '/projects/music-mood-matcher',
+        '20': '/projects/mp3-renamer'
       };
       return idToPathMap[to.params.id as string] || '/projects';
     }
@@ -204,7 +226,10 @@ const routes: RouteRecordRaw[] = [
         '14': '/projects/daily-journal',
         '15': '/projects/chess-bot',
         '16': '/projects/chill-chat',
-        '17': '/projects/statsjam'
+        '17': '/projects/statsjam',
+        '18': '/projects/doc-reader',
+        '19': '/projects/music-mood-matcher',
+        '20': '/projects/mp3-renamer'
       };
 
       return idToPathMap[id] || '/projects';

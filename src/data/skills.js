@@ -1,15 +1,16 @@
 export const skills = [
   "Python", "Java", "C++", "C#", "Shell", "JavaScript", "Liquid", "TypeScript", "HTML", 
   "CSS", "SQL", "Q#", "Assembly",
-  "React.js", "Django", "Swing", "Express.js", "Vue.js", "FastAPI", "PyTorch", "NumPy", 
-  "Pandas", "Matplotlib", 
+  "React.js", "Django", "Swing", "Express.js", "Vue.js", "FastAPI", "PyTorch", 
+  "NumPy", "Streamlit", "Pandas", "Matplotlib", "Seaborn", "scikit-learn", "NLTK", 
+  "LangChain", "Uvicorn",
   "Generative AI", "Natural Language Processing (NLP)", "Deep Learning", 
-  "Machine Learning", "Large Language Models (LLM)", "ML/AI", "Computer Vision", 
-  "Artificial Intelligence (AI)", "Prompt Engineering",
+  "Retrieval-Augmented Generation (RAG)", "Machine Learning", "Large Language Models (LLM)", 
+  "ML/AI", "Computer Vision", "Artificial Intelligence (AI)", "Prompt Engineering", "TTS/STT",
   "Microsoft Azure", "AWS", "Cloud Computing", "Cloudflare", 
-  "IBM Db2", "MySQL", "NoSQL", "MongoDB", "Salesforce Training", "Relational Databases", 
+  "IBM Db2", "MySQL", "NoSQL", "MongoDB", "Salesforce Training", "Relational Databases", "Vector Databases",
   "Visual Studio Code", "Jupyter Notebook", "IntelliJ IDEA", "NetBeans", "Eclipse",
-  "Microsoft 365", "Git", "MATLAB", "APIs", "SAP ERP", "WordPress", "Shopify", "Linux",
+  "Microsoft 365", "Git", "MATLAB", "APIs", "SAP ERP", "WordPress", "Shopify", "Linux", "ACRCloud",
    "Unity", "Mailchimp", "Microsoft Excel", "Microsoft Dynamics", "Google Analytics", 
   "Node.js", "Angular", "Gradle", "Maven", "npm", "pip", "Docker", "Agile", "Scrum", 
   "Kanban", "Waterfall", "Version Control",
@@ -33,22 +34,23 @@ export const skills = [
 // Updated skill categorization
 export const languages = ["Python", "Java", "C++", "C#", "Shell", "JavaScript",
                           "Liquid", "TypeScript", "SQL", "Q#", "Assembly"];
-export const frameworks = ["React.js", "Django", "Swing", "Express.js", "Vue.js", 
+export const frameworks = ["React.js", "Django", "Swing", "Express.js", "Vue.js", "Seaborn", 
+                            "scikit-learn", "NLTK", "LangChain", "Uvicorn",
                             "FastAPI", "PyTorch", "NumPy", "Pandas", "Matplotlib"];
-export const ml_ai = ["PyTorch", "NumPy", "Pandas", "Matplotlib", "Generative AI", 
-                      "Natural Language Processing (NLP)", "Deep Learning", 
-                      "Machine Learning", "Computer Vision", 
+export const ml_ai = ["PyTorch", "NumPy", "Pandas", "Matplotlib", "Generative AI", "Retrieval-Augmented Generation (RAG)",
+                      "Natural Language Processing (NLP)", "Deep Learning", "scikit-learn", "TTS/STT",
+                      "Machine Learning", "Computer Vision", "Seaborn", "NLTK", "LangChain",
                       "Artificial Intelligence (AI)", "Prompt Engineering", 
                       "Large Language Models (LLM)", "ML/AI"];
 export const cloud = ["Microsoft Azure", "AWS", "Cloud Computing", "Cloudflare"];
 export const databases = ["IBM Db2", "MySQL", "NoSQL", "MongoDB", "Salesforce Training", 
-                          "Relational Databases"];
+                          "Relational Databases", "Vector Databases",];
 export const ides = ["Visual Studio Code", "Jupyter Notebook", "IntelliJ IDEA", 
                       "NetBeans", "Eclipse"];
 export const platformstools = ["Microsoft 365", "Git", "MATLAB", "APIs", "SAP ERP", 
                                 "WordPress", "Shopify", "Linux", "Unity", "Mailchimp", 
-                                "Microsoft Excel", "Microsoft Dynamics", 
-                                "Google Analytics"];
+                                "Microsoft Excel", "Microsoft Dynamics", "Streamlit",
+                                "Google Analytics", "ACRCloud", ];
 export const devTools = ["Node.js", "Angular", "Gradle", "Maven", "npm", "pip", 
                           "Docker"];
 export const methodologies = ["Agile", "Scrum", "Kanban", "Waterfall", 
@@ -56,7 +58,7 @@ export const methodologies = ["Agile", "Scrum", "Kanban", "Waterfall",
 export const coreConcepts = ["Computer Hardware", "Data Structures & Algorithms", 
                               "Software Development", "Software Engineering", 
                               "Computer Architecture", "Computer Science", 
-                              "Web Development", "Mobile Development", 
+                              "Web Development", "Mobile Development", "TTS/STT",
                               "Database Management", "Data Analysis", 
                               "Data Visualization", "Memory Management", 
                               "Cybersecurity", "AI Ethics", "Quantum Computing", 
