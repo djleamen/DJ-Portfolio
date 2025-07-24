@@ -16,8 +16,10 @@
         <li>Advanced RAG Pipeline: Combines retrieval and generation for accurate answers</li>
         <li>Vector Database Options: FAISS, ChromaDB, and Pinecone support</li>
         <li>Conversational Mode: Maintains context across multiple queries</li>
-        <li>Web Interface: Beautiful Streamlit UI for easy interaction</li>
-        <li>REST API: FastAPI-based API for integration</li>
+        <li>Modern Web Interface: Beautiful Django UI with Bootstrap styling</li>
+        <li>REST API: Django REST Framework API for integration</li>
+        <li>Admin Interface: Django admin for data management</li>
+        <li>User Session Tracking: Persistent conversational sessions</li>
         <li>CLI Tool: Command-line interface for batch processing</li>
         <li>Scalable Architecture: Modular design for easy extension</li>
     </ul>
@@ -25,16 +27,6 @@
     <h2>Architecture</h2>
     <img src="../../assets/ragdocarch.png" alt="RAG Document Reader Architecture" class="project-image">
 
-    <h2>Key components</h2>
-    <ul>
-        <li>Document Processor: Extracts and chunks text from various formats</li>
-        <li>Vector Store Manager: Handles embedding storage and similarity search</li>
-        <li>RAG Engine: Orchestrates retrieval and generation</li>
-        <li>API Layer: FastAPI for REST endpoints</li>
-        <li>UI Layer: Streamlit for web interface</li>
-        <li>CLI: Command-line tools for batch operations</li>
-    </ul>
-    
     <h2>Skills Developed</h2>
     <div class="skills-container">
       <div class="skill-bubble" v-for="skill in skills.slice(0, 20)" :key="skill">{{ skill }}</div>
@@ -69,7 +61,7 @@ export default {
   data() {
     return {
       skills: [
-        "Python", "FastAPI", "Git", "APIs", "Debugging", "Natural Language Processing (NLP)", 
+        "Python", "Django", "FastAPI", "Git", "APIs", "Debugging", "Natural Language Processing (NLP)", 
         "Vector Databases", "CSS", "Pandas", "NumPy", "Large Language Models (LLM)", 
         "Generative AI", "Machine Learning", "Artificial Intelligence (AI)", "pip", 
         "LangChain", "Uvicorn", "Docker", "UX/UI", "Data Structures & Algorithms", 

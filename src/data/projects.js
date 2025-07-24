@@ -147,7 +147,7 @@ export const projects = [
                                   date: "2025-06-08" },
   { id: '18', title: "RAG Document Reader", description: "A specialized large document Q&A AI agent using Retrieval-Augmented Generation (RAG).",
                                   link: "https://github.com/djleamen/doc-reader",
-                                  tags: ["Python", "FastAPI", "Git", "APIs", "Debugging", "Natural Language Processing (NLP)", "Vector Databases", "CSS", "Pandas", "NumpPy", 
+                                  tags: ["Python", "Django", "FastAPI", "Git", "APIs", "Debugging", "Natural Language Processing (NLP)", "Vector Databases", "CSS", "Pandas", "NumpPy", 
                                     "Large Language Models (LLM)", "Generative AI", "Machine Learning", "Artificial Intelligence (AI)", "pip", "LangChain", "Uvicorn", "Docker", "UX/UI",
                                     "Data Structures & Algorithms", "Software Development", "Software Engineering", "Streamlit", "Testing", "ML/AI", "NTLK", "Retrieval-Augmented Generation (RAG)",
                                     "Attention to Detail", "Data Entry", "Algorithms", "Data Analysis", "Data Visualization", "Problem Solving"],
