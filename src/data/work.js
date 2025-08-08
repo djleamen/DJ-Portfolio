@@ -2,7 +2,7 @@ export const workExperience = [
   {
     position: "Machine Learning and AI Developer",
     company: "Kyndryl",
-    type: "Internship",
+    type: "Internship Full-time",
     duration: "May 2025 - Present",
     location: "Toronto, Ontario, Canada",
     workType: "Hybrid",
@@ -11,11 +11,29 @@ export const workExperience = [
   {
     position: "Automation Development Consultant", 
     company: "Tidal",
-    type: "Casual / On-call",
-    duration: "May 2025 - Present",
+    type: "Contract Part-time",
+    duration: "May 2025 - August 2025",
     location: "Remote",
     workType: "Remote",
-    description: "Developing an automated PowerPoint report generation system using the Tidal Accelerator API, enhancing user efficiency."
+    description: "Developed an automated PowerPoint report generation system using the Tidal Accelerator API, enhancing user efficiency."
+  },
+  {
+    position: "Officer of Sponsorships",
+    company: "Ontario Tech University Computer Science Club",
+    type: "Volunteer",
+    duration: "June 2025 - Present",
+    location: "Oshawa, Ontario, Canada",
+    workType: "Hybrid",
+    description: "Spearheading sponsorship initiatives to secure funding and resources for the Computer Science Club, enhancing community engagement and support."
+  },
+  {
+    position: "Director of Marketing",
+    company: "Ontario Tech University ACM-W Student Chapter",
+    type: "Volunteer",
+    duration: "June 2025 - Present",
+    location: "Oshawa, Ontario, Canada",
+    workType: "Hybrid",
+    description: "Leading marketing strategies to promote events and initiatives, fostering community engagement and awareness within the ACM-W community."
   },
   {
     position: "Web Developer",
