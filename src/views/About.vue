@@ -4,8 +4,8 @@
     <p>I'm a Computer Science student at Ontario Tech University with a passion for learning new technologies and building innovative projects. My interests include: full-stack software development, AI, and cloud computing.
       See below and click for more details about my skills, education, and courses I've taken.
     </p>
-    <p2>{{ bio }}</p2>
 
+    <!-- Tab Navigation -->
     <div class="tab-container">
       <button 
         v-for="tab in tabs" 
@@ -17,7 +17,9 @@
       </button>
     </div>
 
+    <!-- Tab Content -->
     <div class="tab-content">
+      <!-- Education Tab -->
       <div v-if="activeTab === 'education'" class="tab-panel">
         <h2>Education</h2>
         <div class="education-card">
@@ -36,6 +38,7 @@
         <p2>All course descriptions taken from <a href="https://calendar.ontariotechu.ca" target="_blank" rel="noopener noreferrer">Ontario Tech University Course Calendar</a></p2>
       </div>
 
+      <!-- Work Experience Tab -->
       <div v-if="activeTab === 'work'" class="tab-panel">
         <h2>Work Experience</h2>
         <div v-for="job in workExperience" :key="job.position" class="job-card">
@@ -46,6 +49,7 @@
         </div>
       </div>
 
+      <!-- Certifications Tab -->
       <div v-if="activeTab === 'certifications'" class="tab-panel">
         <h2>Certifications I've Earned</h2>
         <div class="certifications-grid">
@@ -66,6 +70,7 @@
         </div>
       </div>
 
+      <!-- Skills Tab -->
       <div v-if="activeTab === 'skills'" class="tab-panel">
         <h2>Skills</h2>
         <div class="filter-container">
@@ -93,6 +98,7 @@
       </div>
     </div>
 
+    <!-- Course details popup -->
     <div v-if="activeCourse" class="popup-overlay" @click="closePopup">
       <div class="popup-content" @click.stop>
         <button class="close-button" @click="closePopup">&times;</button>
@@ -100,7 +106,7 @@
         <p>{{ activeCourse.description }}</p>
       </div>
     </div>
-  
+  <p2>{{ bio }}</p2>
   </div>
 </template>
 
@@ -279,6 +285,7 @@ h3 {
   margin: 5px 0;
 }
 
+/* Container to ensure skill bubbles wrap properly */
 .skills-container {
   display: flex;
   flex-wrap: wrap;
@@ -289,6 +296,7 @@ h3 {
   margin: 0 auto 30px;
 }
 
+/* Skill bubbles now properly sized */
 .skill-bubble {
   background-color: #2a3d66;
   color: white;

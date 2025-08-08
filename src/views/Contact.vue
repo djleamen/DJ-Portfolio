@@ -53,10 +53,10 @@
   padding: 20px 30px;
   color: white;
   max-width: 1100px;
-  width: 100%;
+  width: 100%; /* Add this to ensure full width */
   margin: 0 auto;
   border-radius: 20px;
-  box-sizing: border-box;
+  box-sizing: border-box; /* Add this to maintain proper sizing */
 }
 
 a {
@@ -171,7 +171,7 @@ p1 {
   .contact-container {
     padding: 40px 20px;
     margin: 20px;
-    width: calc(100% - 40px);
+    width: calc(100% - 40px); /* Adjust width for margins */
   }
   
   h1 {

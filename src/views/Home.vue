@@ -42,7 +42,9 @@
 import { ref } from "vue";
 import { projects as allProjects } from '../data/projects';
 
-const projects = ref(allProjects.slice(0, 3));
+// Featured projects: Doc Reader, PurplWav, and Mai Buddy
+const featuredProjectIds = ['18', '3', '22'];
+const projects = ref(allProjects.filter(project => featuredProjectIds.includes(project.id)));
 </script>
 
 <style scoped>
@@ -210,6 +212,7 @@ h2 {
   margin-bottom: 20px;
 }
 
+/* Style the photo to crop in a circle with shadow */
 .photo {
   width: 280px;
   height: 280px;
@@ -257,6 +260,7 @@ h2 {
   margin-bottom: 15px;
 }
 
+/* Animation */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }

@@ -220,6 +220,7 @@ onUnmounted(() => {
     padding: 0 16px;
   }
   
+  /* Animate menu icon */
   .menu-toggle.active .bar:nth-child(1) {
     transform: translateY(9px) rotate(45deg);
   }

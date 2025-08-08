@@ -49,7 +49,7 @@ html, body {
   padding: 0;
   background: #1f1f35;
   color: white;
-  font-family: 'Inter', 'Roboto', sans-serif;
+  font-family: 'Raleway', sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -140,6 +140,7 @@ body {
   gap: 24px; 
 }
 
+/* Page transition animations */
 .page-enter-active,
 .page-leave-active {
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -155,6 +156,7 @@ body {
   transform: translateY(-20px);
 }
 
+/* Add responsive design */
 @media (max-width: 768px) {
   .content {
     padding-top: 70px;
@@ -176,6 +178,7 @@ body {
   }
 }
 
+/* Material Design Elevations */
 .elevation-1 {
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
@@ -196,6 +199,7 @@ body {
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
 
+/* Material Design Animation */
 .md-transition {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

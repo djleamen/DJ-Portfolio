@@ -62,7 +62,7 @@ export default {
     return {
       skills: [
         "Python", "Django", "FastAPI", "Git", "APIs", "Debugging", "Natural Language Processing (NLP)", 
-        "Vector Databases", "CSS", "Pandas", "NumPy", "Large Language Models (LLM)", 
+        "Vector Databases", "CSS", "Pandas", "NumPy", "Large Language Models (LLM)", "Bootstrap",
         "Generative AI", "Machine Learning", "Artificial Intelligence (AI)", "pip", 
         "LangChain", "Uvicorn", "Docker", "UX/UI", "Data Structures & Algorithms", 
         "Software Development", "Software Engineering", "Streamlit", "Testing", "ML/AI", 

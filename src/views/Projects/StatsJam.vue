@@ -70,7 +70,7 @@ export default {
   data() {
     return {
       skills: [
-        "React.js", "Node.js", "Express.js", "JavaScript", "HTML", "CSS", 
+        "React", "Node.js", "Express.js", "JavaScript", "HTML", "CSS", 
         "TypeScript", "Git", "APIs", "Data Visualization", "Software Development", 
         "Web Development", "Problem Solving", "Creativity"
       ]

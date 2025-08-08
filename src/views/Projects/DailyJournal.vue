@@ -3,7 +3,7 @@
         <h1>Daily Journal</h1>
         <p class="project-date">{{ formattedDate }}</p>
         <p>
-            <strong>Daily Journal</strong> is a Java Swing application that allows users to create 
+            Daily Journal is a Java Swing application that allows users to create 
             and manage daily journal entries. The application provides a user-friendly interface for 
             writing, editing, and deleting journal entries. Users can also view their entries in a 
             list format, making it easy to navigate through past entries.

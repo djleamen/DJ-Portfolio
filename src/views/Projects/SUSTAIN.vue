@@ -35,10 +35,6 @@
       <div class="skill-bubble more-skills" v-if="skills.length > 20">+{{ skills.length - 20 }} more</div>
     </div>
     
-    <h2>Project Link</h2>
-    <a href="https://sustainai.ca" target="_blank" rel="noopener noreferrer">
-      Visit SUSTAIN <i class="fas fa-external-link-alt"></i>
-    </a>
   </ProjectPage>
 </template>
 
@@ -64,7 +60,7 @@ export default {
     return {
       skills: [
         "Python", "Shell", "JavaScript", "Git", "APIs", 
-        "Generative AI (LLMs)", "CSS", "HTML", "React.js", 
+        "Generative AI (LLMs)", "CSS", "HTML", "React", 
         "Microsoft Azure", "NLP", "Cloud Computing", "Leadership",
         "Data Structures & Algorithms", "Software Development", 
         "Software Engineering", "AI Ethics", "Communication",

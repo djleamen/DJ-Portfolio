@@ -61,7 +61,7 @@ export default {
   },
   data() {
     return {
-      skills: ["Java", "Swing","JavaScript", "Python", "React.js", 
+      skills: ["Java", "Swing","JavaScript", "Python", "React", 
                 "FastAPI", "Git", "Microsoft 365", "Shell", "Agile", 
                 "Waterfall", "Kanban", "Visual Studio Code", "npm",
                 "Software Development", "Software Engineering", "Web Development",

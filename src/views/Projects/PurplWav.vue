@@ -6,8 +6,6 @@
           <img src="../../assets/purplwav.png" alt="PurplWav Logo" class="logo large-logo">
         </div>
 
-        <p>Using Vue.js AWS Template.</p>
-
         <p>This project is a Vue.js application for the PurplWav epilepsy awareness campaign. Deployed on AWS.</p>
 
         <h2>Skills Developed</h2>

@@ -5,6 +5,7 @@ import Projects from '../views/Projects.vue';
 import Services from '../views/Services.vue';
 import Contact from '../views/Contact.vue';
 
+// Import projects with descriptive names
 import SustainProject from '../views/Projects/SUSTAIN.vue';
 import ScrozamProject from '../views/Projects/Scrozam.vue';
 import PurplWavProject from '../views/Projects/PurplWav.vue';
@@ -25,6 +26,8 @@ import StatsJamProject from '../views/Projects/StatsJam.vue';
 import MusicMoodMatcher from '../views/Projects/MusicMoodMatcher.vue';
 import DocReader from '../views/Projects/DocReader.vue';
 import MP3Renamer from '../views/Projects/MP3Renamer.vue';
+import Modelcules from '../views/Projects/Modelcules.vue';
+import MaiBuddy from '../views/Projects/MaiBuddy.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -53,6 +56,7 @@ const routes: RouteRecordRaw[] = [
     component: Contact
   },
   
+  // Project routes with descriptive paths
   {
     path: '/projects/sustain',
     name: 'SustainProject',
@@ -173,7 +177,19 @@ const routes: RouteRecordRaw[] = [
     component: MP3Renamer,
     meta: { projectId: 20 }
   },
-  
+  {
+    path: '/projects/modelcules',
+    name: 'Modelcules',
+    component: Modelcules,
+    meta: { projectId: 21 }
+  },
+  {
+    path: '/projects/mai-buddy',
+    name: 'MaiBuddy',
+    component: MaiBuddy,
+    meta: { projectId: 22 }
+  },
+
   // Legacy route support - redirect from old format to new
   {
     path: '/views/Projects/:id(\\d+)',
@@ -198,7 +214,9 @@ const routes: RouteRecordRaw[] = [
         '17': '/projects/statsjam',
         '18': '/projects/doc-reader',
         '19': '/projects/music-mood-matcher',
-        '20': '/projects/mp3-renamer'
+        '20': '/projects/mp3-renamer',
+        '21': '/projects/modelcules',
+        '22': '/projects/mai-buddy'
       };
       return idToPathMap[to.params.id as string] || '/projects';
     }
@@ -229,7 +247,9 @@ const routes: RouteRecordRaw[] = [
         '17': '/projects/statsjam',
         '18': '/projects/doc-reader',
         '19': '/projects/music-mood-matcher',
-        '20': '/projects/mp3-renamer'
+        '20': '/projects/mp3-renamer',
+        '21': '/projects/modelcules',
+        '22': '/projects/mai-buddy'
       };
 
       return idToPathMap[id] || '/projects';

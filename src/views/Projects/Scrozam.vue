@@ -3,7 +3,6 @@
     <h1>Scrozam!</h1>
     <p class="project-date">{{ formattedDate }}</p>
     
-    <div class="description-container">
       <div class="description-text">
         <p><strong>Scrozam!</strong> is a web application that detects songs using the ACRCloud API and scrobbles the identified tracks to a user's Last.fm account.</p>
         <p>This project is something I always wanted for myself, as I love to track my music listening habits, but realized I was missing out on a lot of scrobbles when I 
@@ -12,7 +11,6 @@
       <div class="logo-container">
         <img src="../../assets/scrozamlogo.png" alt="Scrozam Logo" class="logo small-logo">
       </div>
-    </div>
     <section>
       <h2>Skills Developed</h2>
       <div class="skills-container">
@@ -88,7 +86,7 @@ export default {
   data() {
     return {
       skills: [
-        "React.js", "Express.js", "Python", "Shell", "JavaScript", 
+        "React", "Express.js", "Python", "Shell", "JavaScript", 
         "HTML", "Git", "APIs", "CSS", "Node.js", "npm", "pip",
         "Software Development", "Software Engineering", "Web Development",
         "Problem Solving", "Creativity", "Innovation", "Adaptability", "Resilience"
