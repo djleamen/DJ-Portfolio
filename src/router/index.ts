@@ -28,6 +28,7 @@ import DocReader from '../views/Projects/DocReader.vue';
 import MP3Renamer from '../views/Projects/MP3Renamer.vue';
 import Modelcules from '../views/Projects/Modelcules.vue';
 import MaiBuddy from '../views/Projects/MaiBuddy.vue';
+import FastTrack from '../views/Projects/FastTrack.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -189,6 +190,12 @@ const routes: RouteRecordRaw[] = [
     component: MaiBuddy,
     meta: { projectId: 22 }
   },
+  {
+    path: '/projects/fast-track',
+    name: 'FastTrack',
+    component: FastTrack,
+    meta: { projectId: 23 }
+  },
 
   // Legacy route support - redirect from old format to new
   {
@@ -216,7 +223,8 @@ const routes: RouteRecordRaw[] = [
         '19': '/projects/music-mood-matcher',
         '20': '/projects/mp3-renamer',
         '21': '/projects/modelcules',
-        '22': '/projects/mai-buddy'
+        '22': '/projects/mai-buddy',
+        '23': '/projects/fast-track'
       };
       return idToPathMap[to.params.id as string] || '/projects';
     }
@@ -249,7 +257,8 @@ const routes: RouteRecordRaw[] = [
         '19': '/projects/music-mood-matcher',
         '20': '/projects/mp3-renamer',
         '21': '/projects/modelcules',
-        '22': '/projects/mai-buddy'
+        '22': '/projects/mai-buddy',
+        '23': '/projects/fast-track'
       };
 
       return idToPathMap[id] || '/projects';

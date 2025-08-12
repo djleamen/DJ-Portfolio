@@ -3,7 +3,7 @@
     <h1>My Services</h1>
     <p>
       I develop efficient, user-focused software solutions with expertise in web and application development, 
-      cloud solutions, and database management. Using Agile methodologies, I ensure iterative progress, 
+      AI & cloud solutions, and database management. Using Agile methodologies, I ensure iterative progress, 
       continuous feedback, and adaptability. My approach blends technical excellence with UX design, 
       accessibility, and structured development sprints to deliver functional, business-aligned solutions. 
       Let's connect to bring your vision to life!
@@ -11,7 +11,7 @@
     <h3>Services provided</h3>
     <p1>(Click on a service for more details)</p1>
       <ul class="services-list">
-        <li @click="showPopup('Application Development')"><i class="icon">✔</i> Application Development</li>
+        <li @click="showPopup('AI Development')"><i class="icon">✔</i> AI Development</li>
         <li @click="showPopup('Cloud Application Development')"><i class="icon">✔</i> Cloud Application Development</li>
         <li @click="showPopup('Custom Software Development')"><i class="icon">✔</i> Custom Software Development</li>
         <li @click="showPopup('Database Development')"><i class="icon">✔</i> Database Development</li>
@@ -65,7 +65,7 @@ export default {
     },
     getPopupContent(title) {
       const contentMap = {
-        'Application Development': 'I bring a broad background in multiple programming languages (Python, Java, C++, C#) and frameworks (React.js, Django, FastAPI) along with a methodical, agile-oriented approach. My experience delivering impactful, user-focused solutions and collaborating across teams ensures efficient development cycles and high-quality applications.',
+        'AI Development': 'I leverage advanced machine learning techniques and frameworks (TensorFlow, PyTorch) to build intelligent applications. My experience includes natural language processing, computer vision, and predictive analytics, enabling me to create solutions that learn and adapt over time.',
         'Cloud Application Development': 'My hands-on work with Microsoft Azure, AWS, and GCP—combined with implementing security protocols for cloud-based systems—enables me to build robust, scalable, and secure cloud applications. I have a track record of optimizing deployments and driving innovation in fast-paced, cloud-centric environments.',
         'Custom Software Development': 'By leveraging a deep understanding of multiple programming paradigms, data structures, and system optimization, I tailor solutions that fit unique business needs. My expertise in ML/AI, cybersecurity, and integration ensures reliable, future-proof custom software for diverse projects.',
         'Database Development': 'Proficiency with SQL (MySQL, Microsoft SQL Server) and NoSQL databases (IBM Db2) allows me to design efficient, scalable, and secure data structures. I have experience in data preprocessing and cleaning for ML, ensuring databases are optimized for analytics and high performance.',

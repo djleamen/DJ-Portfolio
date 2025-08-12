@@ -8,7 +8,7 @@ export const skills = [
   "Retrieval-Augmented Generation (RAG)", "Machine Learning", "Large Language Models (LLM)", 
   "ML/AI", "Computer Vision", "Artificial Intelligence (AI)", "Prompt Engineering", "TTS/STT",
   "Microsoft Azure", "AWS", "Cloud Computing", "Cloudflare", 
-  "IBM Db2", "MySQL", "NoSQL", "MongoDB", "Salesforce Training", "Relational Databases", "Vector Databases",
+  "IBM Db2", "MySQL", "NoSQL", "MongoDB", "Salesforce", "Relational Databases", "Vector Databases",
   "Visual Studio Code", "Jupyter Notebook", "IntelliJ IDEA", "NetBeans", "Eclipse",
   "Microsoft 365", "Git", "MATLAB", "APIs", "SAP ERP", "WordPress", "Shopify", "Linux", "ACRCloud",
    "Unity", "Mailchimp", "Microsoft Excel", "Microsoft Dynamics", "Google Analytics", 
@@ -43,7 +43,7 @@ export const ml_ai = ["PyTorch", "NumPy", "Pandas", "Matplotlib", "Generative AI
                       "Artificial Intelligence (AI)", "Prompt Engineering", 
                       "Large Language Models (LLM)", "ML/AI"];
 export const cloud = ["Microsoft Azure", "AWS", "Cloud Computing", "Cloudflare"];
-export const databases = ["IBM Db2", "MySQL", "NoSQL", "MongoDB", "Salesforce Training", 
+export const databases = ["IBM Db2", "MySQL", "NoSQL", "MongoDB", "Salesforce", 
                           "Relational Databases", "Vector Databases",];
 export const ides = ["Visual Studio Code", "Jupyter Notebook", "IntelliJ IDEA", 
                       "NetBeans", "Eclipse"];

@@ -28,7 +28,7 @@
       </select>
     </div>
     
-    <transition-group name="fade" tag="div" class="project-list">
+    <transition-group name="fade" tag="div" class="project-list" v-if="filteredProjects.length > 0">
       <div v-for="(project, index) in displayedProjects" :key="index" 
            class="project-card elevation-3" 
            @click="goToProjectDetail(project)">
@@ -49,32 +49,49 @@
       <div v-for="n in emptySlots" :key="'empty-' + n" class="project-card empty"></div>
     </transition-group>
     
-    <div v-if="filteredProjects.length === 0" class="empty-state">
+    <div v-if="filteredProjects.length === 0 && selectedSkill" class="empty-state">
       <div class="empty-icon">
         <i class="fas fa-search"></i>
       </div>
       <h3>No projects found</h3>
-      <p>Try adjusting your search criteria or check back later for new projects.</p>
+      <p>No projects use {{ selectedSkill }} yet.</p>
     </div>
-    
+
     <div v-if="selectedSkill" class="related-content">
-      <h2>Courses using {{ selectedSkill }}</h2>
-      <div class="courses-container">
-        <transition-group name="list" tag="div" class="bubble-container">
-          <div v-for="course in filteredCourses" :key="course.name" class="skill-bubble course-bubble" @click="openCoursePopup(course)">{{ course.name }}</div>
-          <div v-if="filteredCourses.length === 0" class="empty-message">No related courses yet</div>
-        </transition-group>
+      <div v-if="filteredWorkPositions.length > 0">
+        <h2>Positions where {{ selectedSkill }} was used</h2>
+        <div class="work-container">
+          <transition-group name="list" tag="div" class="bubble-container">
+            <div v-for="position in filteredWorkPositions" :key="`${position.position}-${position.company}`" 
+                 class="work-position-card">
+              <h3>{{ position.position }}</h3>
+              <p class="company">{{ position.company }}</p>
+              <p class="duration">{{ position.duration }}</p>
+              <p class="location">{{ position.location }} ({{ position.workType }})</p>
+            </div>
+          </transition-group>
+        </div>
       </div>
       
-      <h2>Certifications using {{ selectedSkill }}</h2>
-      <div class="certs-container">
-        <transition-group name="list" tag="div" class="bubble-container">
-          <a v-for="cert in filteredCerts" :key="cert.name" :href="cert.link" target="_blank" rel="noopener noreferrer" 
-             class="skill-bubble cert-bubble">
-            {{ cert.name }}
-          </a>
-          <div v-if="filteredCerts.length === 0" class="empty-message">No related certifications yet</div>
-        </transition-group>
+      <div v-if="filteredCourses.length > 0">
+        <h2>Courses using {{ selectedSkill }}</h2>
+        <div class="courses-container">
+          <transition-group name="list" tag="div" class="bubble-container">
+            <div v-for="course in filteredCourses" :key="course.name" class="skill-bubble course-bubble" @click="openCoursePopup(course)">{{ course.name }}</div>
+          </transition-group>
+        </div>
+      </div>
+      
+      <div v-if="filteredCerts.length > 0">
+        <h2>Certifications using {{ selectedSkill }}</h2>
+        <div class="certs-container">
+          <transition-group name="list" tag="div" class="bubble-container">
+            <a v-for="cert in filteredCerts" :key="cert.name" :href="cert.link" target="_blank" rel="noopener noreferrer" 
+               class="skill-bubble cert-bubble">
+              {{ cert.name }}
+            </a>
+          </transition-group>
+        </div>
       </div>
     </div>
     
@@ -97,6 +114,7 @@ import { projects } from '../data/projects';
 import { courses } from '../data/courses';
 import { certs } from '../data/certs';
 import { education } from '../data/education';
+import { workExperience } from '../data/work';
 import { useRouter, useRoute } from 'vue-router';
 
 export default {
@@ -161,6 +179,13 @@ export default {
     const selectedSkill = computed(() => {
       return route.query.skill;
     });
+
+    const filteredWorkPositions = computed(() => {
+      if (selectedSkill.value) {
+        return workExperience.filter(position => position.skills && position.skills.includes(selectedSkill.value));
+      }
+      return [];
+    });
     
     const filteredCourses = computed(() => {
       if (selectedSkill.value) {
@@ -175,6 +200,7 @@ export default {
       }
       return [];
     });
+    
     
     const goToProjectDetail = (project) => {
       // Map project IDs to their corresponding routes
@@ -200,7 +226,8 @@ export default {
         '19': '/projects/music-mood-matcher',
         '20': '/projects/mp3-renamer',
         '21': '/projects/modelcules',
-        '22': '/projects/mai-buddy'
+        '22': '/projects/mai-buddy',
+        '23': '/projects/fast-track'
       };
       
       // Use the route that corresponds to the project ID
@@ -246,6 +273,7 @@ export default {
       emptySlots, 
       headerTitle,
       selectedSkill,
+      filteredWorkPositions,
       filteredCourses,
       filteredCerts,
       goToProjectDetail,
@@ -614,6 +642,50 @@ h1 {
   transform: translateY(-3px);
   box-shadow: 0 5px 12px rgba(0,0,0,0.3);
   background-color: #3a4d76;
+}
+
+.work-position-card {
+  background-color: #1a2332;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 8px;
+  min-width: 280px;
+  max-width: 350px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+.work-position-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 12px rgba(0,0,0,0.3);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.work-position-card h3 {
+  color: #61dafb;
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.work-position-card .company {
+  color: white;
+  font-weight: 500;
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.work-position-card .duration {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+  margin: 4px 0;
+}
+
+.work-position-card .location {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12px;
+  margin: 4px 0 0 0;
 }
 
 .empty-message {
