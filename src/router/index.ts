@@ -5,7 +5,6 @@ import Projects from '../views/Projects.vue';
 import Services from '../views/Services.vue';
 import Contact from '../views/Contact.vue';
 
-// Import projects with descriptive names
 import SustainProject from '../views/Projects/SUSTAIN.vue';
 import ScrozamProject from '../views/Projects/Scrozam.vue';
 import PurplWavProject from '../views/Projects/PurplWav.vue';
@@ -57,7 +56,6 @@ const routes: RouteRecordRaw[] = [
     component: Contact
   },
   
-  // Project routes with descriptive paths
   {
     path: '/projects/sustain',
     name: 'SustainProject',
@@ -197,7 +195,7 @@ const routes: RouteRecordRaw[] = [
     meta: { projectId: 23 }
   },
 
-  // Legacy route support - redirect from old format to new
+  // Legacy route support
   {
     path: '/views/Projects/:id(\\d+)',
     redirect: to => {
@@ -265,7 +263,6 @@ const routes: RouteRecordRaw[] = [
     }
   },
   
-  // Catch-all route for 404
   {
     path: '/:pathMatch(.*)*',
     redirect: '/'

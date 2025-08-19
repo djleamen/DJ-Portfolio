@@ -226,7 +226,7 @@ p {
   font-size: 1.1rem;
 }
 
-p2 {
+.p2 {
   margin: 15px 0;
   font-style: italic;
   display: block;
@@ -235,7 +235,7 @@ p2 {
   margin-top: 20px;
 }
 
-p2:last-of-type {
+.p2:last-of-type {
   margin-bottom: 40px;
 }
 
@@ -285,7 +285,6 @@ h3 {
   margin: 5px 0;
 }
 
-/* Container to ensure skill bubbles wrap properly */
 .skills-container {
   display: flex;
   flex-wrap: wrap;
@@ -296,7 +295,6 @@ h3 {
   margin: 0 auto 30px;
 }
 
-/* Skill bubbles now properly sized */
 .skill-bubble {
   background-color: #2a3d66;
   color: white;

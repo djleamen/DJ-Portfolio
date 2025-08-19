@@ -30,7 +30,6 @@ export default {
     return { goBack };
   },
   mounted() {
-    // Ensure page scrolls to top when component mounts
     nextTick(() => {
       window.scrollTo(0, 0);
     });
@@ -92,7 +91,6 @@ export default {
   font-style: italic;
 }
 
-/* Common project page styles */
 h1, h2, h3 {
   color: black;
 }

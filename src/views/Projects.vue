@@ -162,10 +162,6 @@ export default {
       }
     });
     
-    const displayedProjects = computed(() => {
-      return sortedProjects.value;
-    });
-    
     const emptySlots = computed(() => {
       const remainder = filteredProjects.value.length % 3;
       return remainder === 0 ? 0 : 3 - remainder;
@@ -203,7 +199,6 @@ export default {
     
     
     const goToProjectDetail = (project) => {
-      // Map project IDs to their corresponding routes
       const idToPathMap = {
         '1': '/projects/sustain',
         '2': '/projects/scrozam',
@@ -230,7 +225,6 @@ export default {
         '23': '/projects/fast-track'
       };
       
-      // Use the route that corresponds to the project ID
       const path = idToPathMap[project.id] || '/projects';
       router.push({ path });
     };
@@ -244,13 +238,11 @@ export default {
     };
     
     const openCoursePopup = (course) => {
-      // Find the course with full details from education data
       const fullCourseDetails = education.courses.find(c => c.name === course.name);
       
       if (fullCourseDetails) {
         activeCourse.value = fullCourseDetails;
       } else {
-        // Just use the basic course info we already have
         activeCourse.value = { ...course, description: "No detailed description available." };
       }
       document.body.classList.add('no-scroll');
@@ -261,7 +253,6 @@ export default {
       document.body.classList.remove('no-scroll');
     };
     
-    // Reset search when navigating between different skills
     watch(() => route.query.skill, () => {
       searchQuery.value = '';
     });
@@ -694,7 +685,6 @@ h1 {
   font-style: italic;
 }
 
-/* Animation for list transitions */
 .list-enter-active,
 .list-leave-active {
   transition: all 0.3s ease;
@@ -705,7 +695,6 @@ h1 {
   transform: translateY(30px);
 }
 
-/* Animation for fade transitions */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s ease;
@@ -715,7 +704,6 @@ h1 {
   opacity: 0;
 }
 
-/* Popup styles - ensure full viewport coverage */
 .popup-overlay {
   position: fixed;
   top: 0;

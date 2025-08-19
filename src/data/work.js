@@ -44,7 +44,7 @@ export const workExperience = [
     skills: ["Communication", "Networking", "Collaboration", "Problem Solving", "Enterpreneurship",
             "Leadership", "Teamwork", "Critical Thinking", "Creativity", "Innovation",
             "Adaptability", "Time Management", "Decision Making", "Professional Development",
-            "Public Speaking", "Presentation", "Writing", "Research", "Research", "Resilience",
+            "Public Speaking", "Presentation", "Writing", "Research", "Resilience",
             "Graphic Design", "Advertising", "Attention to Detail", "Stress Management"],
   },
   {
@@ -85,7 +85,7 @@ export const workExperience = [
     skills: ["M365", "Microsoft Excel", "Data Analysis", "Problem Solving", "Attention to Detail", "Collaboration", 
             "Communication", "Database Management", "Information Technology", "Data Entry",
             "Adaptability", "Accessibility", "Time Management", "Decision Making", "Professional Development",
-            "Public Speaking", "Presentation", "Writing", "Research", "Research"],
+            "Public Speaking", "Presentation", "Writing", "Research"],
   },
   {
     position: "Music Teacher",
@@ -100,7 +100,7 @@ export const workExperience = [
   }
 ];
 
-/*
+/* Full skill list:
 export const skills = [
   "Python", "Java", "C++", "C#", "Shell", "JavaScript", "Liquid", "TypeScript", "HTML", 
   "CSS", "SQL", "Q#", "Assembly",
