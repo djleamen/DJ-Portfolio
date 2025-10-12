@@ -1,0 +1,21 @@
+{
+  "name": "portfolio-api",
+  "version": "1.0.0",
+  "description": "Azure Functions API for portfolio data",
+  "main": "src/functions/*.js",
+  "engines": {
+    "node": "~20"
+  },
+  "scripts": {
+    "start": "func start",
+    "test": "echo \"No tests yet\""
+  },
+  "dependencies": {
+    "@azure/functions": "^4.5.0",
+    "mongodb": "^6.3.0",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.5"
+  }
+}

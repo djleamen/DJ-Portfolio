@@ -1,0 +1,13 @@
+{
+  "name": "portfolio-scripts",
+  "version": "1.0.0",
+  "description": "Migration and utility scripts",
+  "type": "commonjs",
+  "scripts": {
+    "migrate": "node migrate-to-mongodb.js"
+  },
+  "dependencies": {
+    "mongodb": "^6.3.0",
+    "dotenv": "^16.4.5"
+  }
+}

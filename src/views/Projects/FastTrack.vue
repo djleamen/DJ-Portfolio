@@ -49,15 +49,22 @@
 
 <script>
 import ProjectPage from '@/components/ProjectPage.vue';
-import { projects } from '@/data/projects.js';
+import { apiService } from '@/services/api';
 
 export default {
   components: {
     ProjectPage
   },
+  async created() {
+    try {
+      this.projects = await apiService.getProjects();
+    } catch (error) {
+      console.error('Failed to load projects:', error);
+    }
+  },
   computed: {
     formattedDate() {
-      const project = projects.find(p => p.id === '23');
+      const project = this.projects.find(p => p.id === '23');
       if (project && project.date) {
         const date = new Date(project.date);
         return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
@@ -67,6 +74,7 @@ export default {
   },
   data() {
     return {
+      projects: [],
       skills: ["React", "JavaScript", "APIs", "TypeScript", "CSS", "HTML", "Git", "Problem Solving", "Docker",
               "Data Analysis", "Software Development", "Software Engineering", "Version Control",
               "AWS", "Cloud Computing", "Node.js", "npm", "Critical Thinking", "Creativity", "Adaptability",

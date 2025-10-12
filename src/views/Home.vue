@@ -18,8 +18,10 @@
       </div>
       <section class="projects-preview">
         <h2>Featured Projects</h2>
-        <div class="project-list">
-          <div v-for="(project, index) in projects" :key="index" class="project-card elevation-2">
+        <div v-if="loading" class="loading">Loading projects...</div>
+        <div v-else-if="error" class="error">{{ error }}</div>
+        <div v-else class="project-list">
+          <div v-for="(project, index) in projects" :key="project._id || index" class="project-card elevation-2">
             <h3>{{ project.title }}</h3>
             <p>{{ project.description }}</p>
             <a :href="project.link" target="_blank" rel="noopener noreferrer" class="btn">Try it out!</a>
@@ -39,11 +41,25 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { projects as allProjects } from '../data/projects';
+import { ref, onMounted } from "vue";
+import { apiService } from '../services/api';
 
 const featuredProjectIds = ['18', '3', '22'];
-const projects = ref(allProjects.filter(project => featuredProjectIds.includes(project.id)));
+const projects = ref([]);
+const loading = ref(true);
+const error = ref(null);
+
+onMounted(async () => {
+  try {
+    const allProjects = await apiService.getProjects();
+    projects.value = allProjects.filter(project => featuredProjectIds.includes(project.id));
+  } catch (err) {
+    console.error('Failed to load projects:', err);
+    error.value = 'Failed to load projects. Please try again later.';
+  } finally {
+    loading.value = false;
+  }
+});
 </script>
 
 <style scoped>

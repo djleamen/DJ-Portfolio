@@ -10,7 +10,7 @@ This repository contains the source code for my personal portfolio, built using 
 
 ## Overview
 
-This portfolio is designed to provide a comprehensive view of my skills and experiences. It is integrated with AWS Amplify to leverage cloud services for authentication, API, and database capabilities.
+This portfolio is designed to provide a comprehensive view of my skills and experiences. It uses **MongoDB Atlas** for data storage and **Azure Functions** for API endpoints, providing a scalable and maintainable architecture.
 
 ## Features
 - **About**: 
@@ -24,16 +24,21 @@ This portfolio is designed to provide a comprehensive view of my skills and expe
 
 ## Technologies Used
 
-- **Vue.js**: Frontend framework for building the user interface.
-- **AWS Amplify**: Vue app template.
-- **Microsoft Azure**: Deployment and resources.
-- **HTML/CSS**: Markup and styling for the portfolio.
-- **JavaScript**: Programming language for dynamic content.
+- **Vue.js 3** + **TypeScript**: Frontend framework for building the user interface.
+- **MongoDB Atlas**: Cloud database for storing portfolio data.
+- **Azure Functions**: Serverless API endpoints for data retrieval.
+- **Azure Static Web Apps**: Hosting and deployment platform.
+- **Vite**: Build tool and development server.
 
-## Running the App
+## Architecture
 
-1. Use `npm install @vue/tsconfig --save-dev` if tsconfig is acting up.
-2. Run with `npm run dev`
+```
+Frontend (Vue.js) → Azure Functions API → MongoDB Atlas
+```
+
+- **Frontend**: Vue 3 + TypeScript SPA
+- **Backend**: Azure Functions (Node.js) with serverless API endpoints
+- **Database**: MongoDB Atlas (Free Tier M0 Cluster)
 
 ## License
 

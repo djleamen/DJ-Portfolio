@@ -6,7 +6,10 @@
     <h1>{{ headerTitle }}</h1>
     <p class="subtitle">(Click on a project card to view details)</p>
     
-    <div class="filter-container" v-if="!selectedSkill">
+    <div v-if="loading" class="loading">Loading projects...</div>
+    <div v-else-if="error" class="error">{{ error }}</div>
+    
+    <div v-else class="filter-container" v-if="!selectedSkill">
       <div class="search-box">
         <i class="fas fa-search search-icon"></i>
         <input 
@@ -109,12 +112,8 @@
 </template>
 
 <script>
-import { ref, computed, watch } from 'vue';
-import { projects } from '../data/projects';
-import { courses } from '../data/courses';
-import { certs } from '../data/certs';
-import { education } from '../data/education';
-import { workExperience } from '../data/work';
+import { ref, computed, watch, onMounted } from 'vue';
+import { apiService } from '../services/api';
 import { useRouter, useRoute } from 'vue-router';
 
 export default {
@@ -123,14 +122,50 @@ export default {
     const route = useRoute();
     const searchQuery = ref('');
     const sortOption = ref('newest');
+    
+    // Data from API
+    const projects = ref([]);
+    const courses = ref([]);
+    const certs = ref([]);
+    const education = ref([]);
+    const workExperience = ref([]);
+    const loading = ref(true);
+    const error = ref(null);
+
+    // Load data from API
+    onMounted(async () => {
+      try {
+        const [projectsData, coursesData, certsData, workData] = await Promise.all([
+          apiService.getProjects(),
+          apiService.getCourses(),
+          apiService.getCerts(),
+          apiService.getWork()
+        ]);
+        
+        projects.value = projectsData;
+        // coursesData now contains education details with courses array
+        education.value = coursesData;
+        // Flatten all courses from all education records
+        courses.value = coursesData.flatMap(edu => edu.courses || []);
+        certs.value = certsData;
+        workExperience.value = workData;
+        loading.value = false;
+      } catch (err) {
+        console.error('Failed to load data:', err);
+        error.value = 'Failed to load data. Please try again later.';
+        loading.value = false;
+      }
+    });
     const activeCourse = ref(null);
     
     const filteredProjects = computed(() => {
-      let result = [...projects];
+      let result = [...projects.value];
       
       const skill = route.query.skill;
       if (skill) {
-        result = result.filter(project => project.tags.includes(skill));
+        result = result.filter(project => {
+          return project.tags && project.tags.includes(skill);
+        });
       }
       
       if (searchQuery.value) {
@@ -138,7 +173,7 @@ export default {
         result = result.filter(project => 
           project.title.toLowerCase().includes(query) || 
           project.description.toLowerCase().includes(query) ||
-          project.tags.some(tag => tag.toLowerCase().includes(query))
+          (project.tags && project.tags.some(tag => tag.toLowerCase().includes(query)))
         );
       }
       
@@ -178,21 +213,21 @@ export default {
 
     const filteredWorkPositions = computed(() => {
       if (selectedSkill.value) {
-        return workExperience.filter(position => position.skills && position.skills.includes(selectedSkill.value));
+        return workExperience.value.filter(position => position.skills && position.skills.includes(selectedSkill.value));
       }
       return [];
     });
     
     const filteredCourses = computed(() => {
       if (selectedSkill.value) {
-        return courses.filter(course => course.skills && course.skills.includes(selectedSkill.value));
+        return courses.value.filter(course => course.skills && course.skills.includes(selectedSkill.value));
       }
       return [];
     });
     
     const filteredCerts = computed(() => {
       if (selectedSkill.value) {
-        return certs.filter(cert => cert.skills && cert.skills.includes(selectedSkill.value));
+        return certs.value.filter(cert => cert.skills && cert.skills.includes(selectedSkill.value));
       }
       return [];
     });
@@ -222,7 +257,9 @@ export default {
         '20': '/projects/mp3-renamer',
         '21': '/projects/modelcules',
         '22': '/projects/mai-buddy',
-        '23': '/projects/fast-track'
+        '23': '/projects/fast-track',
+        '24': '/projects/mapleclear',
+        '25': '/projects/devduck',
       };
       
       const path = idToPathMap[project.id] || '/projects';
@@ -238,7 +275,8 @@ export default {
     };
     
     const openCoursePopup = (course) => {
-      const fullCourseDetails = education.courses.find(c => c.name === course.name);
+      const educationData = education.value[0] || {};
+      const fullCourseDetails = educationData.courses?.find(c => c.name === course.name);
       
       if (fullCourseDetails) {
         activeCourse.value = fullCourseDetails;
@@ -274,7 +312,9 @@ export default {
       truncatedDescription,
       activeCourse,
       openCoursePopup,
-      closeCoursePopup
+      closeCoursePopup,
+      loading,
+      error
     };
   }
 };

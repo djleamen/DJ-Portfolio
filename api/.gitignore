@@ -1,0 +1,12 @@
+node_modules
+.env
+local.settings.json
+.vscode
+__pycache__
+*.pyc
+.python_packages
+bin
+obj
+.DS_Store
+start-api.sh
+host.json

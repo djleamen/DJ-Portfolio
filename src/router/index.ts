@@ -28,6 +28,8 @@ import MP3Renamer from '../views/Projects/MP3Renamer.vue';
 import Modelcules from '../views/Projects/Modelcules.vue';
 import MaiBuddy from '../views/Projects/MaiBuddy.vue';
 import FastTrack from '../views/Projects/FastTrack.vue';
+import MapleClear from '../views/Projects/MapleClear.vue';
+import DevDuck from '../views/Projects/DevDuck.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -194,6 +196,18 @@ const routes: RouteRecordRaw[] = [
     component: FastTrack,
     meta: { projectId: 23 }
   },
+  {
+    path: '/projects/mapleclear',
+    name: 'MapleClear',
+    component: MapleClear,
+    meta: { projectId: 24 }
+  },
+  {
+    path: '/projects/devduck',
+    name: 'DevDuck',
+    component: DevDuck,
+    meta: { projectId: 25 }
+  },
 
   // Legacy route support
   {
@@ -222,7 +236,9 @@ const routes: RouteRecordRaw[] = [
         '20': '/projects/mp3-renamer',
         '21': '/projects/modelcules',
         '22': '/projects/mai-buddy',
-        '23': '/projects/fast-track'
+        '23': '/projects/fast-track',
+        '24': '/projects/mapleclear',
+        '25': '/projects/devduck',
       };
       return idToPathMap[to.params.id as string] || '/projects';
     }
@@ -256,7 +272,9 @@ const routes: RouteRecordRaw[] = [
         '20': '/projects/mp3-renamer',
         '21': '/projects/modelcules',
         '22': '/projects/mai-buddy',
-        '23': '/projects/fast-track'
+        '23': '/projects/fast-track',
+        '24': '/projects/mapleclear',
+        '25': '/projects/devduck',
       };
 
       return idToPathMap[id] || '/projects';

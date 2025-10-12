@@ -111,23 +111,84 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue';
+import { reactive, ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { education as educationData } from '../data/education';
-import { certs } from '../data/certs';
-import { skills, languages, frameworks, ml_ai, cloud, databases, ides, platformstools, devTools, methodologies, coreConcepts, soft } from '../data/skills';
-import { workExperience } from '../data/work';
+import { apiService } from '../services/api';
 
 const bio = "DJ is experienced in software development, data analysis, cybersecurity, NLP, cloud computing, and system optimization. She is a strong collaborator with a proven track record in research, public speaking, operational improvements, peer mentoring, and delivering impactful projects in fast-paced environments. She is passionate about innovation and driving team success.";
 
-const education = reactive(educationData);
+const education = reactive({ courses: [] });
+const certs = ref([]);
+const workExperience = ref([]);
+const skillsData = ref({});
+const skills = ref([]);
+const languages = ref([]);
+const frameworks = ref([]);
+const ml_ai = ref([]);
+const cloud = ref([]);
+const databases = ref([]);
+const ides = ref([]);
+const platformstools = ref([]);
+const devTools = ref([]);
+const methodologies = ref([]);
+const coreConcepts = ref([]);
+const soft = ref([]);
+
+const loading = ref(true);
+const error = ref(null);
 
 const activeCourse = ref(null);
 const router = useRouter();
 
 const selectedType = ref('all');
-const filteredSkills = ref(skills);
+const filteredSkills = ref([]);
 const activeTab = ref('work');
+
+// Load data from API
+onMounted(async () => {
+  try {
+    // Fetch all data in parallel
+    const [coursesData, certsData, workData, skillsDataResponse] = await Promise.all([
+      apiService.getCourses(),
+      apiService.getCerts(),
+      apiService.getWork(),
+      apiService.getSkills()
+    ]);
+
+    // Set education (from courses endpoint which now contains education details)
+    if (coursesData.length > 0) {
+      Object.assign(education, coursesData[0]);
+    }
+
+    // Set certifications
+    certs.value = certsData;
+
+    // Set work experience
+    workExperience.value = workData;
+
+    // Set skills
+    skillsData.value = skillsDataResponse;
+    skills.value = skillsDataResponse.skills || [];
+    languages.value = skillsDataResponse.languages || [];
+    frameworks.value = skillsDataResponse.frameworks || [];
+    ml_ai.value = skillsDataResponse.ml_ai || [];
+    cloud.value = skillsDataResponse.cloud || [];
+    databases.value = skillsDataResponse.databases || [];
+    ides.value = skillsDataResponse.ides || [];
+    platformstools.value = skillsDataResponse.platformstools || [];
+    devTools.value = skillsDataResponse.devTools || [];
+    methodologies.value = skillsDataResponse.methodologies || [];
+    coreConcepts.value = skillsDataResponse.coreConcepts || [];
+    soft.value = skillsDataResponse.soft || [];
+    filteredSkills.value = skills.value;
+
+    loading.value = false;
+  } catch (err) {
+    console.error('Failed to load data:', err);
+    error.value = 'Failed to load data. Please try again later.';
+    loading.value = false;
+  }
+});
 
 const tabs = [
   { id: 'work', label: 'Work Experience' },
@@ -153,40 +214,40 @@ function filterProjects(skill) {
 function filterSkills() {
   switch (selectedType.value) {
     case 'languages':
-      filteredSkills.value = languages;
+      filteredSkills.value = languages.value;
       break;
     case 'frameworks':
-      filteredSkills.value = frameworks;
+      filteredSkills.value = frameworks.value;
       break;
     case 'ml_ai':
-      filteredSkills.value = ml_ai;
+      filteredSkills.value = ml_ai.value;
       break;
     case 'cloud':
-      filteredSkills.value = cloud;
+      filteredSkills.value = cloud.value;
       break;
     case 'databases':
-      filteredSkills.value = databases;
+      filteredSkills.value = databases.value;
       break;
     case 'ides':
-      filteredSkills.value = ides;
+      filteredSkills.value = ides.value;
       break;
     case 'platformstools':
-      filteredSkills.value = platformstools;
+      filteredSkills.value = platformstools.value;
       break;
     case 'devTools':
-      filteredSkills.value = devTools;
+      filteredSkills.value = devTools.value;
       break;
     case 'methodologies':
-      filteredSkills.value = methodologies;
+      filteredSkills.value = methodologies.value;
       break;
     case 'coreConcepts':
-      filteredSkills.value = coreConcepts;
+      filteredSkills.value = coreConcepts.value;
       break;
     case 'soft':
-      filteredSkills.value = soft;
+      filteredSkills.value = soft.value;
       break;
     default:
-      filteredSkills.value = skills;
+      filteredSkills.value = skills.value;
   }
 }
 </script>

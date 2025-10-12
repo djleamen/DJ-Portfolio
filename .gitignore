@@ -29,5 +29,16 @@ coverage
 
 *.tsbuildinfo
 
-.devcontainer
-.devcontainer/*
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Azure Functions
+api/local.settings.json
+api/node_modules
+api/.vscode
+
+devcontainer
+
+setup.sh
