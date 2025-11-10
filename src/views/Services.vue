@@ -262,7 +262,7 @@ export default {
 @media (max-width: 768px) {
   .services-container {
     padding: 40px 20px;
-    margin: 20px;
+    margin: 20px 10px;
   }
   
   .services-container h1 {
@@ -273,14 +273,79 @@ export default {
     font-size: 1.3rem;
   }
   
+  .services-container p {
+    font-size: 1rem;
+  }
+  
+  .services-container ul {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
   .services-container ul li {
     min-width: auto;
     width: 100%;
+    padding: 14px 18px;
+  }
+
+  .services-container ul li .icon {
+    font-size: 1.1rem;
   }
 
   .popup-content {
     padding: 30px 20px;
     width: 95%;
+    max-width: 400px;
+  }
+  
+  .popup-content h2 {
+    font-size: 1.3rem;
+  }
+  
+  .popup-content p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-container {
+    padding: 30px 15px;
+    margin: 15px 5px;
+  }
+  
+  .services-container h1 {
+    font-size: 1.8rem;
+  }
+  
+  .services-container h3 {
+    font-size: 1.2rem;
+  }
+  
+  .services-container p {
+    font-size: 0.95rem;
+  }
+  
+  .services-container ul li {
+    padding: 12px 16px;
+    font-size: 0.95rem;
+  }
+  
+  .popup-content {
+    padding: 25px 15px;
+    width: 95%;
+  }
+  
+  .popup-content h2 {
+    font-size: 1.2rem;
+  }
+  
+  .popup-content p {
+    font-size: 0.95rem;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
   }
 }
 </style>

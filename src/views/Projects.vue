@@ -818,4 +818,197 @@ h1 {
 .no-scroll {
   overflow: hidden;
 }
+
+@media (max-width: 1024px) {
+  .projects-container {
+    padding: 40px 25px;
+  }
+  
+  .project-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-container {
+    padding: 30px 20px;
+  }
+  
+  .projects-container h1 {
+    font-size: 2.2rem;
+  }
+  
+  .subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .filter-container {
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px 15px;
+  }
+  
+  .search-box {
+    width: 100%;
+  }
+  
+  .sort-select {
+    width: 100%;
+  }
+  
+  .project-list {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .project-card {
+    min-width: auto;
+  }
+  
+  .project-card h3 {
+    font-size: 1.3rem;
+  }
+  
+  .project-description p {
+    font-size: 0.95rem;
+  }
+  
+  .project-tag {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+  }
+  
+  .back-btn {
+    padding: 10px 18px;
+    font-size: 0.95rem;
+  }
+  
+  .related-content h2 {
+    font-size: 1.6rem;
+  }
+  
+  .work-position-card {
+    min-width: auto;
+    max-width: 100%;
+    margin: 8px 0;
+  }
+  
+  .bubble-container {
+    gap: 10px;
+  }
+  
+  .skill-bubble {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+  
+  .popup-content {
+    padding: 30px 20px;
+    width: 95%;
+  }
+  
+  .popup-content h3 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-container {
+    padding: 25px 15px;
+  }
+  
+  .projects-container h1 {
+    font-size: 1.8rem;
+  }
+  
+  .subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .filter-container {
+    padding: 15px 10px;
+  }
+  
+  .search-input {
+    font-size: 0.95rem;
+    padding: 10px 12px 10px 38px;
+  }
+  
+  .project-card {
+    padding: 18px;
+  }
+  
+  .project-card h3 {
+    font-size: 1.2rem;
+  }
+  
+  .project-description p {
+    font-size: 0.9rem;
+  }
+  
+  .project-tag {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+  }
+  
+  .btn {
+    padding: 10px 18px;
+    font-size: 0.9rem;
+  }
+  
+  .back-btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .related-content h2 {
+    font-size: 1.4rem;
+  }
+  
+  .skill-bubble {
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+  
+  .work-position-card h3 {
+    font-size: 14px;
+  }
+  
+  .work-position-card .company {
+    font-size: 13px;
+  }
+  
+  .work-position-card .duration {
+    font-size: 12px;
+  }
+  
+  .work-position-card .location {
+    font-size: 11px;
+  }
+  
+  .popup-content {
+    padding: 25px 15px;
+  }
+  
+  .popup-content h3 {
+    font-size: 1.3rem;
+  }
+  
+  .popup-content p {
+    font-size: 0.95rem;
+  }
+  
+  .empty-state {
+    padding: 30px 15px;
+  }
+  
+  .empty-icon {
+    font-size: 2.5rem;
+  }
+  
+  .empty-state h3 {
+    font-size: 1.3rem;
+  }
+}
 </style>

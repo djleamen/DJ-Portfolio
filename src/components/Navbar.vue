@@ -74,9 +74,12 @@ onUnmounted(() => {
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   z-index: 1000;
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
+  box-sizing: border-box;
+  margin: 0;
 }
 
 .navbar.scrolled {
@@ -92,6 +95,7 @@ onUnmounted(() => {
   width: 100%;
   max-width: 1200px;
   height: 70px;
+  box-sizing: border-box;
 }
 
 .nav-links {
@@ -135,10 +139,11 @@ onUnmounted(() => {
 }
 
 .logo {
-  height: 40px;
+  height: 55px;
   user-select: none;
   background: transparent;
   border-radius: 0;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .logo-link {
@@ -152,6 +157,10 @@ onUnmounted(() => {
   background: transparent;
   padding: 0;
   border: none;
+}
+
+.logo-link:hover .logo {
+  transform: scale(1.05);
 }
 
 .menu-toggle {

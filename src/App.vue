@@ -1,14 +1,15 @@
 <template>
-  <div class="app">
-    <Navbar />
-    <MobileWarningOverlay />
-    <div class="main-content">
-      <div class="content">
-        <router-view v-slot="{ Component }">
-          <transition name="page" mode="out-in">
-            <component :is="Component" />
-          </transition>
-        </router-view>
+  <div class="page-wrapper">
+    <div class="app">
+      <Navbar />
+      <div class="main-content">
+        <div class="content">
+          <router-view v-slot="{ Component }">
+            <transition name="page" mode="out-in">
+              <component :is="Component" />
+            </transition>
+          </router-view>
+        </div>
       </div>
     </div>
     <footer class="footer">
@@ -39,7 +40,6 @@
 
 <script setup>
 import Navbar from "./components/Navbar.vue";
-import MobileWarningOverlay from "./components/MobileWarning.vue";
 </script>
 
 <style>
@@ -54,6 +54,8 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -61,11 +63,20 @@ body {
   flex-direction: column;
 }
 
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
 .app {
   background: transparent;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  flex: 1;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .main-content {
@@ -89,11 +100,15 @@ body {
   background: rgba(26, 26, 46, 0.95);
   color: white;
   width: 100vw;
-  margin-left: calc(-50vw + 50%);
   margin-top: 60px;
   position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
+  box-sizing: border-box;
 }
 
 .footer p {
@@ -173,6 +188,47 @@ body {
   .social-icon img {
     width: 18px;
     height: 18px;
+  }
+  
+  .footer {
+    padding: 1.25rem 0;
+    margin-top: 40px;
+  }
+  
+  .footer p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding-top: 70px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .socials {
+    gap: 12px;
+    flex-wrap: wrap;
+    max-width: 300px;
+  }
+  
+  .social-icon {
+    padding: 6px;
+  }
+  
+  .social-icon img {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .footer {
+    padding: 1rem 0;
+    margin-top: 30px;
+  }
+  
+  .footer p {
+    font-size: 0.8rem;
   }
 }
 

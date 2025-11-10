@@ -41,11 +41,8 @@
     </div>
     
     <h2>Project Links</h2>
-    <a href="https://devpost.com/software/devduck" target="_blank" rel="noopener noreferrer">
-      View Devpost <i class="fas fa-external-link-alt"></i>
-    </a>
     <a href="https://devpost.com/software/devduck-t3dqzc" target="_blank" rel="noopener noreferrer">
-      Visit DevDuck <i class="fas fa-external-link-alt"></i>
+      Visit DevPost <i class="fas fa-external-link-alt"></i>
     </a>
   </ProjectPage>
 </template>

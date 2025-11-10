@@ -720,7 +720,7 @@ h3 {
 @media (max-width: 768px) {
   .about-container {
     padding: 40px 20px;
-    margin: 20px;
+    margin: 20px 10px;
   }
   
   h1 {
@@ -731,6 +731,10 @@ h3 {
     font-size: 1.8rem;
   }
   
+  h3 {
+    font-size: 1.3rem;
+  }
+  
   .popup-content {
     padding: 30px 20px;
     width: 95%;
@@ -739,7 +743,7 @@ h3 {
   .filter-container {
     flex-direction: column;
     gap: 15px;
-    padding: 20px;
+    padding: 20px 15px;
   }
   
   .filter-container label {
@@ -817,6 +821,103 @@ h3 {
   
   .job-description {
     font-size: 0.9rem;
+  }
+  
+  .education-card {
+    padding: 20px;
+    margin: 15px auto 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-container {
+    padding: 30px 15px;
+    margin: 15px 5px;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+  }
+  
+  .tab-container {
+    max-width: 100%;
+  }
+  
+  .tab-button {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+  }
+  
+  .skills-container {
+    gap: 8px;
+  }
+  
+  .skill-bubble, .course-bubble {
+    padding: 7px 12px;
+    font-size: 12px;
+  }
+  
+  .filter-container {
+    padding: 15px 10px;
+  }
+  
+  .popup-content {
+    padding: 25px 15px;
+  }
+  
+  .popup-content h3 {
+    font-size: 1.3rem;
+  }
+  
+  .popup-content p {
+    font-size: 0.95rem;
+  }
+  
+  .job-card {
+    padding: 18px;
+  }
+  
+  .job-title {
+    font-size: 1.1rem;
+  }
+  
+  .company-name {
+    font-size: 0.95rem;
+  }
+  
+  .job-duration {
+    font-size: 0.85rem;
+  }
+  
+  .job-description {
+    font-size: 0.85rem;
+  }
+  
+  .education-card {
+    padding: 18px;
+  }
+  
+  .certification-card,
+  .course-card {
+    padding: 10px;
+  }
+  
+  .cert-name,
+  .course-name {
+    font-size: 0.85rem;
+  }
+  
+  .skill-tag {
+    font-size: 0.7rem;
+    padding: 4px 8px;
   }
 }
 </style>

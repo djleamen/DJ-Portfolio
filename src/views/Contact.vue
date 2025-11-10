@@ -170,7 +170,7 @@ p {
 @media (max-width: 768px) {
   .contact-container {
     padding: 40px 20px;
-    margin: 20px;
+    margin: 20px 10px;
     width: calc(100% - 40px);
   }
   
@@ -178,10 +178,20 @@ p {
     font-size: 2.2rem;
   }
   
+  p {
+    font-size: 1.1rem;
+    margin: 20px auto;
+  }
+  
   .socials {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
     padding: 20px 10px;
+    margin: 20px auto;
+  }
+  
+  .social-card {
+    padding: 18px;
   }
   
   .social-icon {
@@ -197,11 +207,61 @@ p {
   .social-text {
     font-size: 1rem;
   }
+  
+  .btn {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
+  .contact-container {
+    padding: 30px 15px;
+    margin: 15px 5px;
+    width: calc(100% - 30px);
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  p {
+    font-size: 1rem;
+    margin: 15px auto;
+  }
+  
   .socials {
     grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 15px 5px;
+    margin: 15px auto;
+  }
+  
+  .social-card {
+    padding: 15px 10px;
+  }
+  
+  .social-icon {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .social-icon img {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .social-text {
+    font-size: 0.9rem;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
+  
+  .socials-bottom {
+    padding: 15px 10px;
   }
 }
 </style>

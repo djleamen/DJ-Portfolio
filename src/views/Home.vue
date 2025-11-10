@@ -68,15 +68,19 @@ onMounted(async () => {
   flex-direction: column;
   min-height: 100vh;
   color: white;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .home-container {
   max-width: 1000px;
+  width: 100%;
   text-align: center;
   color: white;
   margin: 0 auto;
   flex: 1;
   padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .hero {
@@ -105,13 +109,14 @@ onMounted(async () => {
   white-space: nowrap;
   overflow: hidden;
   width: 0;
+  max-width: 100%;
   margin: 0.5rem auto;
   animation: typing 3s steps(30, end) forwards, pause 5s forwards 3s;
 }
 
 @keyframes typing {
   from { width: 0 }
-  to { width: 100% }
+  to { width: min(100%, 600px) }
 }
 
 @keyframes pause {
@@ -303,11 +308,13 @@ h2 {
     flex-direction: column;
     text-align: center;
     gap: 30px;
+    margin: 30px auto 60px;
   }
   
   .about-preview {
     text-align: center;
     order: 2;
+    padding: 25px;
   }
   
   .about-preview h2 {
@@ -326,10 +333,18 @@ h2 {
   
   .typing-animation {
     font-size: 1.6rem;
+    white-space: normal;
+    word-wrap: break-word;
+    width: 100% !important;
+    animation: fadeIn 1s ease forwards;
   }
   
   .project-card {
     min-width: 100%;
+  }
+  
+  .project-list {
+    gap: 20px;
   }
 }
 
@@ -339,16 +354,143 @@ h2 {
     margin-bottom: 40px;
   }
   
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  
+  .typing-animation {
+    font-size: 1.3rem;
+    white-space: normal;
+    word-wrap: break-word;
+    width: 100% !important;
+    animation: fadeIn 1s ease forwards;
+    text-align: center;
+    padding: 0 10px;
+  }
+  
   h2 {
     font-size: 1.8rem;
   }
   
+  .about-preview {
+    padding: 20px;
+  }
+  
   .about-preview p {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
+  }
+  
+  .photo {
+    width: 180px;
+    height: 180px;
   }
   
   .project-card {
     padding: 20px;
+  }
+  
+  .project-card h3 {
+    font-size: 1.3rem;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    margin: 15px 8px;
+  }
+  
+  .btn-large {
+    padding: 12px 26px;
+    font-size: 1rem;
+  }
+  
+  .contact-preview {
+    padding: 20px;
+    margin: 30px auto 15px;
+  }
+  
+  .contact-preview p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-container {
+    padding: 0 15px;
+  }
+  
+  .hero {
+    margin-top: 40px;
+    margin-bottom: 30px;
+  }
+  
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+  
+  .typing-animation {
+    font-size: 1.1rem;
+    white-space: normal;
+    word-wrap: break-word;
+    width: 100% !important;
+    animation: fadeIn 1s ease forwards;
+    text-align: center;
+    padding: 0 10px;
+    line-height: 1.4;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  .about-preview {
+    padding: 18px;
+  }
+  
+  .about-preview p {
+    font-size: 1rem;
+  }
+  
+  .photo {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .project-card {
+    padding: 18px;
+  }
+  
+  .project-card h3 {
+    font-size: 1.2rem;
+  }
+  
+  .project-card p {
+    font-size: 0.95rem;
+  }
+  
+  .btn {
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    margin: 12px 6px;
+  }
+  
+  .btn-large {
+    padding: 11px 24px;
+    font-size: 0.95rem;
+  }
+  
+  .contact-preview {
+    padding: 18px;
+    margin: 25px auto 10px;
+  }
+  
+  .contact-preview h2 {
+    margin-bottom: 15px;
+  }
+  
+  .contact-preview p {
+    font-size: 0.95rem;
+    margin-bottom: 15px;
   }
 }
 </style>
