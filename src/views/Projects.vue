@@ -260,6 +260,8 @@ export default {
         '23': '/projects/fast-track',
         '24': '/projects/mapleclear',
         '25': '/projects/devduck',
+        '26': '/projects/intelligent-app',
+        '27': '/projects/msft-ai-research'
       };
       
       const path = idToPathMap[project.id] || '/projects';

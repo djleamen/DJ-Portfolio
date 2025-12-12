@@ -367,3 +367,28 @@
     aspect-ratio: 16 / 9;
   }
 }
+
+/* Additional project component styles */
+.more-skills {
+  background-color: #4fa3d1 !important;
+  color: white !important;
+  font-weight: bold;
+}
+
+.project-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.description-text {
+  margin-bottom: 30px;
+}
+
+.description-container {
+  margin-top: -60px;
+  display: flex;
+  align-items: center;
+  margin-bottom: -80px;
+}

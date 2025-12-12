@@ -10,6 +10,7 @@
         <router-link to="/projects" class="nav-item">Projects</router-link>
         <router-link to="/services" class="nav-item">Services</router-link>
         <router-link to="/contact" class="nav-item">Contact</router-link>
+        <a href="https://www.patreon.com/cw/djleamen" target="_blank" rel="noopener" class="nav-item">Patreon</a>
         <a href="https://djleamen.substack.com" target="_blank" rel="noopener" class="nav-item">Blog</a>
       </div>
       <button class="menu-toggle" @click="toggleMobileMenu" aria-label="Toggle menu">

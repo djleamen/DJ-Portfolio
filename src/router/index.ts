@@ -30,6 +30,8 @@ import MaiBuddy from '../views/Projects/MaiBuddy.vue';
 import FastTrack from '../views/Projects/FastTrack.vue';
 import MapleClear from '../views/Projects/MapleClear.vue';
 import DevDuck from '../views/Projects/DevDuck.vue';
+import IntelligentApp from '../views/Projects/IntelligentApp.vue';
+import MsftAIResearch from '../views/Projects/AIMLResearch.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -208,6 +210,18 @@ const routes: RouteRecordRaw[] = [
     component: DevDuck,
     meta: { projectId: 25 }
   },
+  {
+    path: '/projects/intelligent-app',
+    name: 'IntelligentApplicationSystem',
+    component: IntelligentApp,
+    meta: { projectId: 26 }
+  },
+  {
+    path: '/projects/msft-ai-research',
+    name: 'MsftAIResearch',
+    component: MsftAIResearch,
+    meta: { projectId: 27 }
+  },
 
   // Legacy route support
   {
@@ -239,6 +253,8 @@ const routes: RouteRecordRaw[] = [
         '23': '/projects/fast-track',
         '24': '/projects/mapleclear',
         '25': '/projects/devduck',
+        '26': '/projects/intelligent-app',
+        '27': '/projects/msft-ai-research'
       };
       return idToPathMap[to.params.id as string] || '/projects';
     }
@@ -275,6 +291,8 @@ const routes: RouteRecordRaw[] = [
         '23': '/projects/fast-track',
         '24': '/projects/mapleclear',
         '25': '/projects/devduck',
+        '26': '/projects/intelligent-app',
+        '27': '/projects/msft-ai-research'
       };
 
       return idToPathMap[id] || '/projects';
