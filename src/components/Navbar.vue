@@ -2,7 +2,7 @@
   <nav class="navbar" :class="{ 'scrolled': hasScrolled }">
     <div class="nav-container">
       <router-link to="/" class="logo-link">
-        <img src="../assets/banner.png" alt="Logo" class="logo" />
+        <img src="../assets/logo.png" alt="Logo Icon" class="logo-icon" />
       </router-link>
       <div class="nav-links">
         <router-link to="/" class="nav-item">Home</router-link>
@@ -138,12 +138,13 @@ onUnmounted(() => {
   font-weight: 600;
 }
 
-.logo {
+.logo-icon {
   height: 55px;
   user-select: none;
   background: transparent;
   border-radius: 0;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-right: 0;
 }
 
 .logo-link {
@@ -157,9 +158,11 @@ onUnmounted(() => {
   background: transparent;
   padding: 0;
   border: none;
+  gap: 0;
 }
 
-.logo-link:hover .logo {
+.logo-link:hover .logo,
+.logo-link:hover .logo-icon {
   transform: scale(1.05);
 }
 

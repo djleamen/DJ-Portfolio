@@ -3,7 +3,7 @@
     <div class="home-container">
       <section class="hero">
         <h1 class="fade-in">Hi there, I'm <span class="highlight">DJ Leamen</span></h1>
-        <p class="typing-animation">Full-Stack Developer | AI & Cloud Enthusiast</p>
+        <p class="typing-animation">Cloud, Apps, Data & AI Developer</p>
       </section>
       <div class="about-photo-container">
         <section class="about-preview slide-in">
@@ -44,7 +44,7 @@
 import { ref, onMounted } from "vue";
 import { apiService } from '../services/api';
 
-const featuredProjectIds = ['18', '3', '22'];
+const featuredProjectIds = new Set(['18', '3', '22']);
 const projects = ref([]);
 const loading = ref(true);
 const error = ref(null);
@@ -52,7 +52,7 @@ const error = ref(null);
 onMounted(async () => {
   try {
     const allProjects = await apiService.getProjects();
-    projects.value = allProjects.filter(project => featuredProjectIds.includes(project.id));
+    projects.value = allProjects.filter(project => featuredProjectIds.has(project.id));
   } catch (err) {
     console.error('Failed to load projects:', err);
     error.value = 'Failed to load projects. Please try again later.';
@@ -111,7 +111,7 @@ onMounted(async () => {
   width: 0;
   max-width: 100%;
   margin: 0.5rem auto;
-  animation: typing 3s steps(30, end) forwards, pause 5s forwards 3s;
+  animation: typing 2s steps(30, end) forwards, pause 5s forwards 2s;
 }
 
 @keyframes typing {

@@ -1,6 +1,6 @@
 <template>
   <div class="projects-container">
-    <button v-if="selectedSkill" @click="goBack" class="back-btn" aria-label="Back to skills">
+    <button v-if="selectedSkill" @click="goBack" class="back-btn" aria-label="Back to About">
       <i class="fas fa-arrow-left"></i> Back to About
     </button>
     <h1>{{ headerTitle }}</h1>

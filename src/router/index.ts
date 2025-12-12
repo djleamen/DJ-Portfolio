@@ -211,7 +211,7 @@ const routes: RouteRecordRaw[] = [
 
   // Legacy route support
   {
-    path: '/views/Projects/:id(\\d+)',
+    path: String.raw`/views/Projects/:id(\d+)`,
     redirect: to => {
       const idToPathMap: Record<string, string> = {
         '1': '/projects/sustain',
