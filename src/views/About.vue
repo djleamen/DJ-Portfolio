@@ -1,11 +1,25 @@
 <template>
   <div class="about-container">
     <h1>About Me</h1>
-    <p>I'm a Computer Science student at Ontario Tech University with a passion for learning new technologies and building innovative projects. My interests include: full-stack software development, AI, and cloud computing.
-      See below and click for more details about my skills, education, and courses I've taken.
-    </p>
+    
+    <!-- Loading State -->
+    <div v-if="loading" class="loading-state">
+      <div class="loading-spinner"></div>
+      <p>Loading profile...</p>
+    </div>
 
-    <!-- Tab Navigation -->
+    <!-- Error State -->
+    <div v-else-if="error" class="error-state">
+      <p>{{ error }}</p>
+    </div>
+
+    <!-- Main Content -->
+    <template v-else>
+      <p>I'm a Computer Science student at Ontario Tech University with a passion for learning new technologies and building innovative projects. My interests include: full-stack software development, AI, and cloud computing.
+        See below and click for more details about my skills, education, and courses I've taken.
+      </p>
+
+      <!-- Tab Navigation -->
     <div class="tab-container">
       <button 
         v-for="tab in tabs" 
@@ -98,15 +112,16 @@
       </div>
     </div>
 
-    <!-- Course details popup -->
-    <div v-if="activeCourse" class="popup-overlay" @click="closePopup">
-      <div class="popup-content" @click.stop>
-        <button class="close-button" @click="closePopup">&times;</button>
-        <h3>{{ activeCourse.name }}</h3>
-        <p>{{ activeCourse.description }}</p>
+      <!-- Course details popup -->
+      <div v-if="activeCourse" class="popup-overlay" @click="closePopup">
+        <div class="popup-content" @click.stop>
+          <button class="close-button" @click="closePopup">&times;</button>
+          <h3>{{ activeCourse.name }}</h3>
+          <p>{{ activeCourse.description }}</p>
+        </div>
       </div>
-    </div>
-  <p2>{{ bio }}</p2>
+      <p2>{{ bio }}</p2>
+    </template>
   </div>
 </template>
 
@@ -160,8 +175,8 @@ onMounted(async () => {
       Object.assign(education, coursesData[0]);
     }
 
-    // Set certifications
-    certs.value = certsData;
+    // Set certifications and sort alphabetically
+    certs.value = certsData.sort((a, b) => a.name.localeCompare(b.name));
 
     // Set work experience
     workExperience.value = workData;
@@ -263,6 +278,48 @@ function filterSkills() {
   flex-direction: column;
   align-items: center;
   border-radius: 20px;
+}
+
+.loading-state,
+.error-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: white;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(97, 218, 251, 0.2);
+  border-top-color: #61dafb;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-state p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.error-state p {
+  font-size: 1.1rem;
+  color: #ff6b6b;
+  background-color: rgba(255, 107, 107, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 107, 107, 0.3);
 }
 
 ul {

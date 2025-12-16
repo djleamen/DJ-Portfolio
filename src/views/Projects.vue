@@ -6,8 +6,13 @@
     <h1>{{ headerTitle }}</h1>
     <p class="subtitle">(Click on a project card to view details)</p>
     
-    <div v-if="loading" class="loading">Loading projects...</div>
-    <div v-else-if="error" class="error">{{ error }}</div>
+    <div v-if="loading" class="loading-state">
+      <div class="loading-spinner"></div>
+      <p>Loading projects...</p>
+    </div>
+    <div v-else-if="error" class="error-state">
+      <p>{{ error }}</p>
+    </div>
     
     <div v-else class="filter-container" v-if="!selectedSkill">
       <div class="search-box">
@@ -464,6 +469,48 @@ h1 {
   outline: none;
   border-color: #61dafb;
   box-shadow: 0 0 0 3px rgba(97, 218, 251, 0.25);
+}
+
+.loading-state,
+.error-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: white;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(97, 218, 251, 0.2);
+  border-top-color: #61dafb;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-state p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.error-state p {
+  font-size: 1.1rem;
+  color: #ff6b6b;
+  background-color: rgba(255, 107, 107, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 107, 107, 0.3);
 }
 
 .project-list {
