@@ -2,38 +2,42 @@
   <div class="page-container">
     <div class="home-container">
       <section class="hero">
-        <h1 class="fade-in">Hi there, I'm <span class="highlight">DJ Leamen</span></h1>
+        <h1 class="fade-in"><span class="highlight">Dilara 'DJ' Leamen</span></h1>
         <p class="typing-animation">Cloud, Apps, Data & AI Developer</p>
       </section>
       <div class="about-photo-container">
         <section class="about-preview slide-in">
-          <h2>About Me</h2>
-          <p>I'm a passionate Computer Science student who loves creating innovative solutions, working with data, and exploring new technologies.</p>
-          <p>I have experience working with a variety of programming languages and tools, and I'm always eager to learn more.</p>
-          <router-link to="/about" class="btn">Learn More</router-link>
+          <p><b>Building the AI that powers the world</b></p>
+          <p>Hi there, I'm DJ! I'm a Computer Science student developer passionate about building technology for real-world impact.</p>
+          <p>My expertise spans machine learning and AI, full-stack development, cloud computing, and automation consulting, with a strong focus on building scalable, efficient, and sustainable solutions.</p>
+          <router-link to="/about" class="btn">Find out more...</router-link>
         </section>
         <div class="photo slide-in">
           <img src="@/assets/dj.png" alt="DJ Leamen" />
         </div>
       </div>
       <section class="projects-preview">
-        <h2>Featured Projects</h2>
+        <div class="section-heading">
+          <h2>Featured Projects</h2>
+          <p>Selected builds in AI, cloud, and product engineering.</p>
+        </div>
         <div v-if="loading" class="loading">Loading projects...</div>
         <div v-else-if="error" class="error">{{ error }}</div>
         <div v-else class="project-list">
           <div v-for="(project, index) in projects" :key="project._id || index" class="project-card elevation-2">
+            <span class="project-badge">Featured</span>
             <h3>{{ project.title }}</h3>
             <p>{{ project.description }}</p>
-            <a :href="project.link" target="_blank" rel="noopener noreferrer" class="btn">Try it out!</a>
+            <a :href="project.link" target="_blank" rel="noopener noreferrer" class="btn btn-card">Try it out!</a>
           </div>
         </div>
-        <router-link to="/projects" class="btn btn-outline">View All Projects</router-link>
+        <router-link to="/projects" class="btn btn-outline btn-projects">View All Projects</router-link>
       </section>
       </div>
       <div class="home-container">
       <section class="contact-preview">
         <h2>Get in Touch</h2>
-        <p>Interested in collaborating or have a question? Feel free to reach out!</p>
+        <p>Interested in collaborating or have a question? Reach out!</p>
         <router-link to="/contact" class="btn btn-large">Contact Me</router-link>
       </section>
     </div>
@@ -44,7 +48,7 @@
 import { ref, onMounted } from "vue";
 import { apiService } from '../services/api';
 
-const featuredProjectIds = new Set(['18', '3', '22']);
+const featuredProjectIds = new Set(['18', '26', '3']);
 const projects = ref([]);
 const loading = ref(true);
 const error = ref(null);
@@ -93,10 +97,11 @@ onMounted(async () => {
   font-size: 3rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
+  margin-top: -1.2rem;
 }
 
 .highlight {
-  background: linear-gradient(to right, #4fa3d1, #2575fc);
+  background: linear-gradient(to right, #0a6b9f, #61dafb);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -126,8 +131,8 @@ onMounted(async () => {
 
 .btn {
   display: inline-block;
-  background-color: #61dafb;
-  color: #0d1b2a;
+  background-color: transparent;
+  color: #61dafb;
   padding: 12px 24px;
   text-decoration: none;
   border-radius: 8px;
@@ -141,8 +146,9 @@ onMounted(async () => {
 }
 
 .btn:hover {
-  background-color: #4fa3d1;
+  background-color: transparent;
   border-color: #4fa3d1;
+  color: #4fa3d1;
   transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
@@ -154,8 +160,9 @@ onMounted(async () => {
 }
 
 .btn-outline:hover {
-  background-color: #61dafb;
-  color: #0d1b2a;
+  background-color: transparent;
+  color: #4fa3d1;
+  border-color: #4fa3d1;
 }
 
 .btn-large {
@@ -164,50 +171,82 @@ onMounted(async () => {
 }
 
 .project-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 25px;
-  margin: 20px 0 20px;
+  margin: 24px 0 12px;
 }
 
 .project-card {
-  background-color: rgba(26, 26, 46, 0.6);
+  background: linear-gradient(160deg, rgba(35, 38, 74, 0.85), rgba(20, 22, 46, 0.9));
   padding: 25px;
   border-radius: 20px;
-  width: 300px;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  flex: 1 1 calc(33.333% - 40px);
   box-sizing: border-box;
-  min-height: 250px;
+  min-height: 290px;
   display: flex;
   flex-direction: column;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
 }
 
 .project-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.28);
 }
 
 .project-card h3 {
   margin-top: 0;
   font-size: 1.5rem;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   color: #61dafb;
 }
 
 .project-card p {
   flex-grow: 1;
-  margin-bottom: 20px;
-  line-height: 1.5;
+  margin-bottom: 22px;
+  line-height: 1.6;
+}
+
+.projects-preview {
+  margin-top: 20px;
+}
+
+.section-heading p {
+  margin: 0 0 4px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 1.03rem;
+}
+
+.project-badge {
+  display: inline-block;
+  width: fit-content;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(97, 218, 251, 0.65);
+  background: rgba(97, 218, 251, 0.12);
+  color: #7be6ff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.btn-card {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+}
+
+.btn-projects {
+  margin-top: 16px;
 }
 
 h2 {
   font-size: 2rem;
   margin: 40px 0 20px;
   font-weight: bold;
-  background: linear-gradient(to right, #4fa3d1, #2575fc);
+  background: white;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -216,11 +255,14 @@ h2 {
 
 .contact-preview {
   text-align: center;
-  margin: 40px auto 20px;
-  padding: 25px;
+  margin: 56px auto 24px;
+  padding: 30px 25px;
   border-radius: 20px;
   backdrop-filter: blur(10px);
   max-width: 600px;
+  background-color: rgba(26, 26, 46, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .contact-preview h2 {
@@ -274,7 +316,7 @@ h2 {
 }
 
 .about-preview p {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   line-height: 1.8;
   margin-bottom: 15px;
 }
@@ -341,6 +383,7 @@ h2 {
   
   .project-card {
     min-width: 100%;
+    min-height: auto;
   }
   
   .project-list {

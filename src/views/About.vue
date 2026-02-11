@@ -360,7 +360,7 @@ p {
 h1 {
   font-size: 2.8rem;
   font-weight: bold;
-  background: linear-gradient(to right, #4fa3d1, #2575fc);
+  background: linear-gradient(to right, #4fa3d1, #61dafb);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

@@ -26,9 +26,9 @@
         <div class="popup-content" @click.stop>
           <button class="close-button" @click="closePopup">&times;</button>
           <h2>{{ popupTitle }}</h2>
-          <p>{{ popupContent }}</p>
+          <p1>{{ popupContent }}</p1>
           <div class="popup-buttons">
-            <router-link to="/contact" class="btn">Contact Me</router-link>
+            <router-link to="/contact" class="btn">Contact</router-link>
           </div>
         </div>
       </div>
@@ -104,7 +104,7 @@ export default {
   .services-container h1 {
     font-size: 2.8rem;
     font-weight: bold;
-    background: linear-gradient(to right, #4fa3d1, #2575fc);
+    background: linear-gradient(to right, #4fa3d1, #61dafb);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -126,9 +126,17 @@ export default {
     }
 
   .services-container p {
-    font-size: 1.1rem;
+    font-size: 1rem;
     line-height: 1.6;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+    margin-left: 6rem;
+    margin-right: 6rem;
+  }
+
+  .services-container p1 {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
   }
 
   .services-container ul {
@@ -157,7 +165,7 @@ export default {
   }
 
   .services-container ul li .icon {
-    color: #2575fc;
+    color: #61dafb;
     margin-right: 12px;
     font-size: 1.3rem;
   }

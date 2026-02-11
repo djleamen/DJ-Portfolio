@@ -6,9 +6,8 @@
       The Intelligent Application System was developed by Kyndryl Canada's
       Cloud/ADAI consult intern team in partnership with Habitat for Humanity GTA. 
       This innovative solution significantly transforms the Habitat for Humanity 
-      housing application process through AI-powered conversational interfaces 
-      and automated document validation. The system replaces a complex 10-page 
-      form with 50+ document uploads with an intuitive conversational agent that 
+      housing application process through AI-powered automated document validation. 
+      The system offers an intuitive conversational agent that 
       guides applicants through the process while automatically extracting and 
       validating information from uploaded documents.
     </p> 
@@ -17,10 +16,11 @@
       Built on JotForm Enterprise 2.0 with custom Azure Functions integration, 
       the system features a conversational AI agent trained on Habitat's policies 
       and FAQs. The architecture includes OCR document processing with blur detection, 
-      automatic data extraction into Salesforce CRM, and cross-validation capabilities 
-      for credit scores, names, and identification documents. Custom JavaScript widgets 
-      handle document upload and validation, while Azure Static Web Apps host the 
-      processing interfaces. The system supports both mobile-native functionality with 
+      automatic data extraction into Salesforce, and cross-validation capabilities 
+      for credit scores, names, and identification documents. A custom HTML widget hosted on
+      Azure Static Web Apps handles the document upload and validation, 
+      while Azure Functions handle the processing and integration middlware. 
+      The system supports both mobile-native functionality with 
       camera upload capabilities and traditional desktop workflows.
     </p> 
     

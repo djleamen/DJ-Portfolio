@@ -28,6 +28,19 @@ async function fetchAPI<T>(endpoint: string, options: FetchOptions = {}): Promis
   }
 }
 
+function applyWorkOverrides(workItems: any[]) {
+  return workItems.map((item) => {
+    if (item?.position === 'Vice President of External Affairs') {
+      return {
+        ...item,
+        duration: 'Oct 2025 - Jan 2026',
+      };
+    }
+
+    return item;
+  });
+}
+
 export const api = {
   // Certifications
   getCerts: () => fetchAPI<any[]>('/certs'),
@@ -55,7 +68,7 @@ export const api = {
   }>('/skills'),
 
   // Work Experience
-  getWork: () => fetchAPI<any[]>('/work'),
+  getWork: () => fetchAPI<any[]>('/work').then(applyWorkOverrides),
 };
 
 // Export as both 'api' and 'apiService' for compatibility
