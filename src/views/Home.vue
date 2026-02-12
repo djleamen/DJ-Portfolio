@@ -35,6 +35,12 @@
       </section>
       </div>
       <div class="home-container">
+        <section class="sessions-section">
+          <h2>Speaking Engagements</h2>
+          <div id="sessionize-widget"></div>
+        </section>
+      </div>
+      <div class="home-container">
       <section class="contact-preview">
         <h2>Get in Touch</h2>
         <p>Interested in collaborating or have a question? Reach out!</p>
@@ -44,14 +50,22 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { apiService } from '../services/api';
 
+interface Project {
+  _id?: string;
+  id: string;
+  title: string;
+  description: string;
+  link: string;
+}
+
 const featuredProjectIds = new Set(['18', '26', '3']);
-const projects = ref([]);
+const projects = ref<Project[]>([]);
 const loading = ref(true);
-const error = ref(null);
+const error = ref<string | null>(null);
 
 onMounted(async () => {
   try {
@@ -62,6 +76,191 @@ onMounted(async () => {
     error.value = 'Failed to load projects. Please try again later.';
   } finally {
     loading.value = false;
+  }
+
+  const widget = document.getElementById('sessionize-widget');
+  if (widget) {
+    const iframe = document.createElement('iframe');
+    iframe.style.width = '100%';
+    iframe.style.border = 'none';
+    iframe.style.minHeight = '400px';
+    widget.appendChild(iframe);
+    
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+    if (iframeDoc) {
+      iframeDoc.open();
+      iframeDoc.write(`
+        <!DOCTYPE html>
+        <html style="background: transparent;">
+          <head>
+            <style>
+              * {
+                box-sizing: border-box;
+              }
+              
+              body { 
+                margin: 0; 
+                padding: 10px 20px; 
+                background: transparent !important;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                color: white !important;
+                font-size: 16px;
+                line-height: 1.7;
+              }
+              
+              div, section, article, p, span, h1, h2, h3, h4, h5, h6 {
+                color: white !important;
+              }
+              
+              a {
+                color: #61dafb !important;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                font-size: 1.05rem;
+                font-weight: 500;
+              }
+              
+              a:hover {
+                color: #4fa3d1 !important;
+              }
+              
+              /* Style session cards/containers */
+              .sz-widget, 
+              [class*="session"],
+              [class*="event"],
+              .sz-card,
+              div[style*="border"],
+              div[style*="padding"] {
+                background: linear-gradient(160deg, rgba(35, 38, 74, 0.85), rgba(20, 22, 46, 0.9)) !important;
+                border-radius: 20px !important;
+                padding: 30px !important;
+                margin: 20px 0 !important;
+                box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22) !important;
+                border: 1px solid rgba(255, 255, 255, 0.05) !important;
+                transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+              }
+              
+              .sz-widget:hover,
+              [class*="session"]:hover,
+              [class*="event"]:hover,
+              .sz-card:hover {
+                transform: translateY(-4px) !important;
+                box-shadow: 0 18px 30px rgba(0, 0, 0, 0.28) !important;
+              }
+              
+              h1, h2, h3, h4, h5, h6 {
+                color: #61dafb !important;
+                font-weight: 600 !important;
+                margin-top: 0 !important;
+                margin-bottom: 20px !important;
+                line-height: 1.4 !important;
+              }
+              
+              h1 {
+                font-size: 1.8rem !important;
+              }
+              
+              h2 {
+                font-size: 1.5rem !important;
+                margin-bottom: 25px !important;
+              }
+              
+              h3 {
+                font-size: 1.3rem !important;
+                margin-bottom: 18px !important;
+              }
+              
+              h4, h5, h6 {
+                font-size: 1.2rem !important;
+                margin-bottom: 15px !important;
+              }
+              
+              p {
+                margin-bottom: 16px !important;
+                line-height: 1.7 !important;
+                font-size: 1.05rem !important;
+              }
+              
+              time, .date, [class*="date"], [class*="time"] {
+                color: rgba(255, 255, 255, 0.78) !important;
+                font-size: 1.1rem !important;
+                font-weight: 600 !important;
+                display: block !important;
+                margin-bottom: 12px !important;
+              }
+              
+              button, .btn, [class*="button"] {
+                background-color: transparent !important;
+                color: #61dafb !important;
+                padding: 12px 24px !important;
+                border-radius: 8px !important;
+                border: 2px solid #61dafb !important;
+                font-weight: 600 !important;
+                transition: all 0.3s ease !important;
+                cursor: pointer !important;
+                font-size: 1rem !important;
+              }
+              
+              button:hover, .btn:hover, [class*="button"]:hover {
+                border-color: #4fa3d1 !important;
+                color: #4fa3d1 !important;
+                transform: translateY(-2px) !important;
+              }
+              
+              img {
+                border-radius: 12px;
+                max-width: 100%;
+              }
+              
+              ul, ol {
+                color: white !important;
+                padding-left: 20px !important;
+                margin: 15px 0 !important;
+              }
+              
+              li {
+                color: white !important;
+                line-height: 1.8 !important;
+                margin-bottom: 10px !important;
+                font-size: 1.05rem !important;
+              }
+              
+              br {
+                display: block !important;
+                margin: 10px 0 !important;
+                content: "" !important;
+              }
+              
+              span {
+                line-height: 1.7 !important;
+              }
+            </style>
+          </head>
+          <body>
+            <script type="text/javascript" src="https://sessionize.com/api/speaker/events/m5gm58hmcl/1x1x61dafbx5"><\/script>
+          </body>
+        </html>
+      `);
+      iframeDoc.close();
+      
+      // Auto-resize iframe
+      iframe.onload = () => {
+        try {
+          const body = iframeDoc.body;
+          const html = iframeDoc.documentElement;
+          const height = Math.max(
+            body.scrollHeight,
+            body.offsetHeight,
+            html.clientHeight,
+            html.scrollHeight,
+            html.offsetHeight
+          );
+          iframe.style.height = `${height + 10}px`;
+        } catch (e) {
+          iframe.style.height = '500px';
+        }
+      };
+    }
   }
 });
 </script>
@@ -171,6 +370,7 @@ onMounted(async () => {
 }
 
 .project-list {
+  margin-top: 40px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 25px;
@@ -208,7 +408,13 @@ onMounted(async () => {
 }
 
 .projects-preview {
-  margin-top: 20px;
+  text-align: center;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  background-color: rgba(26, 26, 46, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 70px;
 }
 
 .section-heading p {
@@ -263,6 +469,7 @@ h2 {
   background-color: rgba(26, 26, 46, 0.5);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: -1.5rem;
 }
 
 .contact-preview h2 {
@@ -272,6 +479,24 @@ h2 {
 .contact-preview p {
   font-size: 1.1rem;
   margin-bottom: 20px;
+}
+
+.sessions-section {
+  text-align: center;
+  margin: 40px auto;
+  padding: 30px 25px 20px;
+  max-width: 900px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  background-color: rgba(26, 26, 46, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 140px;
+}
+
+.sessions-section h2 {
+  margin-top: 1.9rem;
+  margin-bottom: 10px;
 }
 
 .photo {
@@ -308,6 +533,7 @@ h2 {
   backdrop-filter: blur(10px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 2rem;
 }
 
 .about-preview h2 {
