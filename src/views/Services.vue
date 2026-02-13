@@ -1,5 +1,5 @@
 <template>
-<div class="services-container">
+  <div class="services-container">
     <h1>My Services</h1>
     <p>
       I develop efficient, user-focused software solutions with expertise in web and application development, 
@@ -8,8 +8,8 @@
       accessibility, and structured development sprints to deliver functional, business-aligned solutions. 
       Let's connect to bring your vision to life!
     </p>
-    <h3>Services provided</h3>
-    <p1>(Click on a service for more details)</p1>
+    <h3>Services Provided</h3>
+    <p class="p1">(Click on a service for more details)</p>
       <ul class="services-list">
         <li @click="showPopup('AI Development')"><i class="icon">✔</i> AI Development</li>
         <li @click="showPopup('Cloud Application Development')"><i class="icon">✔</i> Cloud Application Development</li>
@@ -26,19 +26,17 @@
         <div class="popup-content" @click.stop>
           <button class="close-button" @click="closePopup">&times;</button>
           <h2>{{ popupTitle }}</h2>
-          <p1>{{ popupContent }}</p1>
+          <p class="popup-copy">{{ popupContent }}</p>
           <div class="popup-buttons">
             <router-link to="/contact" class="btn">Contact</router-link>
           </div>
         </div>
       </div>
-      <div>
-      </div>
-      <h3>Availability:</h3>
-        <p>Remote or in person (Whitby, ON)</p>
-      <h3>Pricing:</h3>
-        <p>Contact for pricing</p>
-        <router-link to="/contact" class="btn">Contact</router-link>
+    <h3>Availability</h3>
+    <p>Remote or in person (Whitby, ON)</p>
+    <h3>Pricing</h3>
+    <p>Contact for pricing</p>
+    <router-link to="/contact" class="btn">Contact</router-link>
   </div>
 </template>
 
@@ -83,277 +81,181 @@ export default {
 
 <style scoped>
 .services-container {
-    text-align: center;
-    padding: 20px 30px;
-    color: white;
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 20px;
-  }
-
-  .services-list {
-    list-style: none;
-    padding-left: 0;
-    background-color: transparent;
-    border-color: transparent;
+  --stack-gap: clamp(30px, 4.2vw, 46px);
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: clamp(34px, 4.8vw, 62px) 16px clamp(64px, 8vw, 110px);
+  text-align: center;
+  color: #eef4ff;
 }
 
-  .services-container h1 {
-    font-size: 2.8rem;
-    font-weight: bold;
-    background: linear-gradient(to right, #4fa3d1, #61dafb);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 1.5rem;
-  }
+.services-container h1 {
+  margin: 0 0 clamp(18px, 2.4vw, 26px);
+  font-size: clamp(2rem, 4.2vw, 3.2rem);
+  line-height: 1.08;
+  font-weight: 800;
+  background: linear-gradient(90deg, #70e2ff, #44bff5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
-    .services-container h3 {
-        font-size: 1.5rem;
-        color: white;
-        margin-top: 10px;
-        margin-bottom: 0px;
-    }
+.services-container h3 {
+  margin: var(--stack-gap) 0 8px;
+  font-size: 2rem;
+  color: #f5f9ff;
+}
 
-    .services-container h4 {
-        font-size: 1.2rem;
-        color: white;
-        margin-top: 30px;
-        margin-bottom: 0px;
-    }
+.services-container p {
+  margin: 0 auto var(--stack-gap);
+  max-width: 920px;
+  font-size: 1.05rem;
+  line-height: 1.72;
+  color: rgba(230, 240, 255, 0.92);
+}
 
-  .services-container p {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 40px;
-    margin-left: 6rem;
-    margin-right: 6rem;
-  }
+.p1 {
+  margin-bottom: calc(var(--stack-gap) * 0.72);
+  color: rgba(219, 230, 255, 0.74);
+  font-style: italic;
+}
 
-  .services-container p1 {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 40px;
-  }
+.services-list {
+  list-style: none;
+  margin: 0 auto calc(var(--stack-gap) + 4px);
+  padding: 0;
+  width: 100%;
+  max-width: 940px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
 
-  .services-container ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 0;
-  }
+.services-container ul li {
+  margin: 0;
+  border-radius: 16px;
+  border: 1px solid rgba(130, 168, 255, 0.22);
+  background:
+    radial-gradient(circle at 12% 12%, rgba(98, 213, 255, 0.1), transparent 38%),
+    linear-gradient(150deg, rgba(27, 33, 70, 0.86), rgba(17, 22, 52, 0.88));
+  box-shadow: 0 16px 34px rgba(7, 12, 36, 0.3);
+  cursor: pointer;
+  padding: 16px 18px;
+  text-align: left;
+  font-size: 1.03rem;
+  color: rgba(230, 240, 255, 0.95);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
 
-  .services-container ul li {
-    border-radius: 20px;
-    background-color: rgba(26, 26, 46, 0.6);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    min-width: 500px; 
-    margin-bottom: 0px;
-    margin-top: 16px;
-    cursor: pointer;
-    padding: 16px 20px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-  }
+.services-container ul li:hover {
+  transform: translateY(-2px);
+  border-color: rgba(126, 232, 255, 0.5);
+}
 
-  .services-container ul li:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
-  }
-
-  .services-container ul li .icon {
-    color: #61dafb;
-    margin-right: 12px;
-    font-size: 1.3rem;
-  }
+.services-container ul li .icon {
+  color: #7ee8ff;
+  margin-right: 8px;
+  font-size: 1rem;
+}
 
 .btn {
-  cursor: pointer;
-  display: inline-block;
-  background-color: #61dafb;
-  color: black;
-  padding: 10px 24px;
+  margin-top: 8px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 11px 18px;
+  border-radius: 11px;
+  border: 1px solid rgba(126, 232, 255, 0.5);
+  background: rgba(98, 213, 255, 0.18);
+  color: #a5f3ff;
   text-decoration: none;
-  border-radius: 4px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .btn:hover {
-  background-color: #4fa3d1;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transform: translateY(-2px);
+  background: rgba(98, 213, 255, 0.24);
 }
 
 .popup-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  inset: 0;
+  z-index: 100;
+  padding: 16px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 1000;
+  justify-content: center;
+  background: rgba(6, 8, 22, 0.74);
+  backdrop-filter: blur(8px);
 }
 
 .popup-content {
   position: relative;
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  text-align: center;
-  max-width: 500px;
-  width: 90%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: min(760px, 100%);
+  max-height: min(82vh, 760px);
+  overflow-y: auto;
+  border-radius: 18px;
+  padding: 24px;
+  text-align: left;
+  border: 1px solid rgba(130, 168, 255, 0.24);
+  background: linear-gradient(150deg, rgba(27, 33, 70, 0.98), rgba(17, 22, 52, 0.98));
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.45);
 }
 
 .popup-content h2 {
-  margin-bottom: 10px;
-  font-size: 1.5rem;
-  color: #2a2a72;
+  margin: 0 0 8px;
+  color: #7ee8ff;
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
 }
 
-.popup-content p {
-  margin-bottom: 20px;
-  font-size: 1.1rem;
-  color: #333;
+.popup-copy {
+  margin: 0;
+  color: rgba(230, 240, 255, 0.92);
+  line-height: 1.68;
 }
 
 .popup-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.popup-buttons .btn {
-  flex: 1;
-  max-width: 150px;
+  margin-top: 16px;
 }
 
 .close-button {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #333;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(126, 232, 255, 0.16);
+  color: #d7f9ff;
+  font-size: 1.3rem;
+  line-height: 1;
   cursor: pointer;
-  transition: all 0.2s ease;
 }
 
-.close-button:hover {
-  color: #2575fc;
-  font-size: 1.8rem;
-  margin-left: -10px;
-  margin-top: -5px;
-  transition: all 0.2s ease;
-}
-
-.p1 {
-  margin-top: 5px;
-  color:rgb(177, 177, 178);
-  font-style: italic;
-  text-align: center;
-}
-
-@media (max-width: 768px) {
-  .services-container {
-    padding: 40px 20px;
-    margin: 20px 10px;
-  }
-  
-  .services-container h1 {
-    font-size: 2.2rem;
-  }
-  
-  .services-container h3 {
-    font-size: 1.3rem;
-  }
-  
-  .services-container p {
-    font-size: 1rem;
-  }
-  
-  .services-container ul {
+@media (max-width: 860px) {
+  .services-list {
     grid-template-columns: 1fr;
-    gap: 15px;
-  }
-  
-  .services-container ul li {
-    min-width: auto;
-    width: 100%;
-    padding: 14px 18px;
-  }
-
-  .services-container ul li .icon {
-    font-size: 1.1rem;
-  }
-
-  .popup-content {
-    padding: 30px 20px;
-    width: 95%;
-    max-width: 400px;
-  }
-  
-  .popup-content h2 {
-    font-size: 1.3rem;
-  }
-  
-  .popup-content p {
-    font-size: 1rem;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 700px) {
   .services-container {
-    padding: 30px 15px;
-    margin: 15px 5px;
+    padding: 26px 10px 44px;
   }
-  
-  .services-container h1 {
-    font-size: 1.8rem;
-  }
-  
+
   .services-container h3 {
-    font-size: 1.2rem;
+    font-size: 1.65rem;
   }
-  
+
   .services-container p {
-    font-size: 0.95rem;
+    font-size: 0.98rem;
   }
-  
+
   .services-container ul li {
-    padding: 12px 16px;
-    font-size: 0.95rem;
-  }
-  
-  .popup-content {
-    padding: 25px 15px;
-    width: 95%;
-  }
-  
-  .popup-content h2 {
-    font-size: 1.2rem;
-  }
-  
-  .popup-content p {
-    font-size: 0.95rem;
-  }
-  
-  .btn {
-    padding: 10px 20px;
-    font-size: 0.9rem;
+    padding: 14px;
   }
 }
 </style>

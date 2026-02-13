@@ -1,5 +1,5 @@
 <template>
-  <ProjectPage projectId="18">
+  <ProjectPage projectId="19">
     <h1>AI Music Mood Matcher</h1>
     <p class="project-date">{{ formattedDate }}</p>
     
@@ -82,7 +82,7 @@ export default {
   },
   computed: {
     formattedDate() {
-      const project = this.projects.find(p => p.id === '18');
+      const project = this.projects.find(p => p.id === '19');
       if (project && project.date) {
         const date = new Date(project.date);
         return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });

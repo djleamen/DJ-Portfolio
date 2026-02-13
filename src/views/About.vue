@@ -49,7 +49,7 @@
             </div>
           </div>
         </div>
-        <p2>All course descriptions taken from <a href="https://calendar.ontariotechu.ca" target="_blank" rel="noopener noreferrer">Ontario Tech University Course Calendar</a></p2>
+        <p class="p2">All course descriptions taken from <a href="https://calendar.ontariotechu.ca" target="_blank" rel="noopener noreferrer">Ontario Tech University Course Calendar</a></p>
       </div>
 
       <!-- Work Experience Tab -->
@@ -120,7 +120,7 @@
           <p>{{ activeCourse.description }}</p>
         </div>
       </div>
-      <p2>{{ bio }}</p2>
+      <p class="p2">{{ bio }}</p>
     </template>
   </div>
 </template>
@@ -269,23 +269,54 @@ function filterSkills() {
 
 <style scoped>
 .about-container {
-  text-align: center;
-  padding: 20px 30px;
-  color: white;
-  max-width: 1100px;
+  max-width: 1120px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 20px;
+  padding: clamp(34px, 4.8vw, 62px) 16px clamp(40px, 6vw, 72px);
+  text-align: center;
+  color: #eef4ff;
+}
+
+h1 {
+  margin: 0 0 clamp(16px, 2.2vw, 24px);
+  font-size: clamp(2rem, 4.2vw, 3.2rem);
+  line-height: 1.08;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  background: linear-gradient(90deg, #70e2ff, #44bff5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+p {
+  margin: 0 auto 16px;
+  max-width: 860px;
+  font-size: 1.08rem;
+  line-height: 1.72;
+  color: rgba(230, 240, 255, 0.92);
+}
+
+.p2 {
+  margin-top: 14px;
+  font-size: 0.92rem;
+  color: rgba(214, 228, 255, 0.74);
+}
+
+h2 {
+  margin: 8px 0 16px;
+  font-size: clamp(1.5rem, 3.2vw, 2.3rem);
+  color: #7ee8ff;
+}
+
+h3 {
+  margin: 18px 0 12px;
+  font-size: 1.45rem;
+  color: #f5f9ff;
 }
 
 .loading-state,
 .error-state {
-  text-align: center;
-  padding: 60px 20px;
-  color: white;
-  min-height: 300px;
+  min-height: 260px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -293,13 +324,312 @@ function filterSkills() {
 }
 
 .loading-spinner {
-  width: 50px;
-  height: 50px;
-  border: 4px solid rgba(97, 218, 251, 0.2);
-  border-top-color: #61dafb;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 14px;
   border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  margin-bottom: 20px;
+  border: 3px solid rgba(126, 232, 255, 0.22);
+  border-top-color: #7ee8ff;
+  animation: spin 0.75s linear infinite;
+}
+
+.error-state p {
+  max-width: 620px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 118, 118, 0.4);
+  background: rgba(255, 118, 118, 0.1);
+  color: #ffd8d8;
+}
+
+.tab-container {
+  max-width: 720px;
+  margin: 28px auto 24px;
+  padding: 6px;
+  border-radius: 16px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+  background: rgba(22, 29, 65, 0.75);
+  border: 1px solid rgba(130, 168, 255, 0.22);
+  box-shadow: 0 12px 28px rgba(7, 12, 36, 0.34);
+}
+
+.tab-button {
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: rgba(214, 228, 255, 0.75);
+  font-size: 0.98rem;
+  font-weight: 600;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.tab-button:hover {
+  color: #dff5ff;
+  background: rgba(98, 213, 255, 0.12);
+}
+
+.tab-button.active {
+  color: #92f0ff;
+  background: rgba(98, 213, 255, 0.22);
+  box-shadow: inset 0 0 0 1px rgba(126, 232, 255, 0.4);
+}
+
+.tab-content {
+  width: 100%;
+}
+
+.tab-panel {
+  animation: fadeIn 0.28s ease;
+}
+
+.education-card,
+.job-card,
+.filter-container,
+.course-card,
+.certification-card {
+  border-radius: 18px;
+  border: 1px solid rgba(130, 168, 255, 0.22);
+  background:
+    radial-gradient(circle at 12% 12%, rgba(98, 213, 255, 0.1), transparent 38%),
+    linear-gradient(150deg, rgba(27, 33, 70, 0.86), rgba(17, 22, 52, 0.88));
+  box-shadow: 0 16px 34px rgba(7, 12, 36, 0.3);
+}
+
+.education-card {
+  max-width: 740px;
+  margin: 0 auto 22px;
+  padding: 22px 24px;
+}
+
+.education-card p {
+  margin: 4px 0;
+}
+
+.job-card {
+  max-width: 760px;
+  margin: 0 auto 16px;
+  padding: 20px 22px;
+  text-align: center;
+}
+
+.job-title {
+  margin: 0 0 8px;
+  color: #7ee8ff;
+  font-size: 1.95rem;
+}
+
+.company-name {
+  margin: 0;
+  color: #eef4ff;
+  font-size: 1.18rem;
+}
+
+.job-duration {
+  margin: 4px 0 10px;
+  color: rgba(214, 228, 255, 0.74);
+  font-style: italic;
+}
+
+.job-description {
+  margin: 0;
+  font-size: 1.03rem;
+}
+
+.filter-container {
+  max-width: 760px;
+  margin: 0 auto 20px;
+  padding: 16px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.filter-container label {
+  color: rgba(227, 239, 255, 0.86);
+  font-weight: 600;
+}
+
+.filter-container select {
+  min-width: 210px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(130, 168, 255, 0.35);
+  background: rgba(15, 20, 47, 0.9);
+  color: #eef4ff;
+  font-size: 0.98rem;
+}
+
+.filter-container select:focus {
+  outline: none;
+  border-color: rgba(126, 232, 255, 0.65);
+  box-shadow: 0 0 0 3px rgba(126, 232, 255, 0.2);
+}
+
+.skills-section,
+.skills-container {
+  width: 100%;
+}
+
+.skills-container,
+.cert-skills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.skills-container {
+  max-width: 960px;
+  margin: 0 auto 24px;
+}
+
+.skill-bubble,
+.cert-skills .skill-tag,
+.more-skills {
+  border-radius: 999px;
+  padding: 7px 12px;
+  font-size: 0.84rem;
+  border: 1px solid rgba(126, 232, 255, 0.22);
+  background: rgba(67, 95, 164, 0.48);
+  color: #e5f3ff;
+}
+
+.skill-bubble {
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.skill-bubble:hover,
+.cert-skills .skill-tag:hover {
+  transform: translateY(-1px);
+  border-color: rgba(126, 232, 255, 0.52);
+}
+
+.courses-grid {
+  max-width: 960px;
+  margin: 0 auto 18px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.course-card {
+  padding: 12px;
+}
+
+.course-header {
+  display: flex;
+  align-items: center;
+}
+
+.course-name {
+  margin: 0;
+  width: 100%;
+  color: #90efff;
+  font-size: 0.93rem;
+  line-height: 1.32;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.course-name:hover {
+  color: #d6f8ff;
+}
+
+.certifications-grid {
+  max-width: 960px;
+  margin: 0 auto 22px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.certification-card {
+  padding: 14px;
+  text-align: left;
+}
+
+.cert-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.cert-name {
+  margin: 0;
+  color: #90efff;
+  font-size: 0.94rem;
+  line-height: 1.3;
+}
+
+.cert-link {
+  color: rgba(214, 228, 255, 0.66);
+  text-decoration: none;
+}
+
+.cert-link:hover {
+  color: #c8f8ff;
+}
+
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(6, 8, 22, 0.74);
+  backdrop-filter: blur(8px);
+}
+
+.popup-content {
+  position: relative;
+  width: min(760px, 100%);
+  max-height: min(82vh, 760px);
+  overflow-y: auto;
+  border-radius: 18px;
+  padding: 24px;
+  text-align: left;
+  border: 1px solid rgba(130, 168, 255, 0.24);
+  background: linear-gradient(150deg, rgba(27, 33, 70, 0.98), rgba(17, 22, 52, 0.98));
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.45);
+}
+
+.popup-content h3 {
+  margin: 0 0 8px;
+  color: #7ee8ff;
+}
+
+.popup-content p {
+  margin: 0;
+  color: rgba(230, 240, 255, 0.92);
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(126, 232, 255, 0.16);
+  color: #d7f9ff;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.no-scroll {
+  overflow: hidden;
 }
 
 @keyframes spin {
@@ -308,465 +638,10 @@ function filterSkills() {
   }
 }
 
-.loading-state p {
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.error-state p {
-  font-size: 1.1rem;
-  color: #ff6b6b;
-  background-color: rgba(255, 107, 107, 0.1);
-  padding: 20px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 107, 107, 0.3);
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-  color: #f8f8ff;
-}
-
-li {
-  margin: 10px 0;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-li:hover {
-  transform: translateX(5px);
-}
-
-p {
-  margin: 20px 0;
-  line-height: 1.7;
-  max-width: 800px;
-  font-size: 1.1rem;
-}
-
-.p2 {
-  margin: 15px 0;
-  font-style: italic;
-  display: block;
-  opacity: 0.8;
-  font-size: 0.9rem;
-  margin-top: 20px;
-}
-
-.p2:last-of-type {
-  margin-bottom: 40px;
-}
-
-h1 {
-  font-size: 2.8rem;
-  font-weight: bold;
-  background: linear-gradient(to right, #4fa3d1, #61dafb);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 1.5rem;
-}
-
-h2 {
-  font-size: 2rem;
-  margin-top: 30px;
-  margin-bottom: 20px;
-  font-weight: bold;
-  color: #61dafb;
-}
-
-h3 {
-  font-size: 1.5rem;
-  margin-top: 30px;
-  margin-bottom: 15px;
-  font-weight: 600;
-}
-
-.skills-section {
-  text-align: center;
-  width: 100%;
-  max-width: 900px;
-  margin: 30px auto;
-}
-
-.education-card {
-  background-color: rgba(26, 26, 46, 0.6);
-  padding: 25px;
-  border-radius: 20px;
-  max-width: 600px;
-  margin: 20px auto 30px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.education-card p {
-  margin: 5px 0;
-}
-
-.skills-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-  padding: 15px 0;
-  max-width: 900px;
-  margin: 0 auto 30px;
-}
-
-.skill-bubble {
-  background-color: #2a3d66;
-  color: white;
-  padding: 10px 16px;
-  border-radius: 20px;
-  font-size: 14px;
-  white-space: nowrap;
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
-  border: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-}
-
-.skill-bubble:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 12px rgba(0,0,0,0.3);
-  background-color: #3a4d76;
-}
-
-.course-card {
-  background-color: rgba(26, 26, 46, 0.6);
-  padding: 15px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-}
-
-.course-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  border-color: rgba(97, 218, 251, 0.3);
-}
-
-.course-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.course-name {
-  font-size: 0.95rem;
-  color: #61dafb;
-  margin: 0;
-  flex: 1;
-  line-height: 1.2;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.course-name:hover {
-  color: #4fa3d1;
-}
-
-.popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 100;
-  backdrop-filter: blur(8px);
-}
-
-.popup-content {
-  max-width: 800px;
-  width: 90%;
-  background: white;
-  color: #0d1b2a;
-  padding: 40px;
-  border-radius: 20px;
-  text-align: left;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-  position: relative;
-  overflow: auto;
-  max-height: 80vh;
-}
-
-.popup-content h3 {
-  margin-top: 0;
-  color: #2a3d66;
-  font-size: 1.8rem;
-}
-
-.popup-content p {
-  color: #333;
-}
-
-.close-button {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: transparent;
-  border: none;
-  font-size: 30px;
-  color: #2a3d66;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  padding: 0;
-  box-shadow: none;
-}
-
-.close-button:hover {
-  background-color: rgba(0,0,0,0.1);
-  transform: none;
-  box-shadow: none;
-}
-
-.filter-container {
-  margin: 30px auto;
-  text-align: center;
-  background-color: rgba(26, 26, 46, 0.6);
-  padding: 20px 30px;
-  border-radius: 20px;
-  max-width: 900px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.filter-container label {
-  margin-right: 15px;
-  font-weight: 500;
-  font-size: 1.1rem;
-}
-
-.filter-container select {
-  padding: 12px 20px;
-  border-radius: 10px;
-  border: 1px solid rgba(42, 61, 102, 0.5);
-  background-color: rgba(26, 26, 46, 0.8);
-  color: white;
-  font-size: 1rem;
-  outline: none;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-  min-width: 200px;
-}
-
-.filter-container select:hover {
-  background-color: rgba(42, 61, 102, 0.9);
-}
-
-.filter-container select:focus {
-  border-color: #4fa3d1;
-  box-shadow: 0 0 0 3px rgba(79, 163, 209, 0.3);
-}
-
-.no-scroll {
-  overflow: hidden;
-}
-
-.courses-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  margin: 20px auto 30px;
-  max-width: 900px;
-}
-
-.certifications-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 15px;
-  margin: 20px auto 40px;
-  max-width: 900px;
-}
-
-.certification-card {
-  background-color: rgba(26, 26, 46, 0.6);
-  padding: 15px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-}
-
-.certification-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  border-color: rgba(97, 218, 251, 0.3);
-}
-
-.cert-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 12px;
-}
-
-.cert-name {
-  font-size: 0.95rem;
-  color: #61dafb;
-  margin: 0;
-  flex: 1;
-  padding-right: 8px;
-  line-height: 1.2;
-}
-
-.cert-link {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.8rem;
-  transition: color 0.3s ease;
-  text-decoration: none;
-  flex-shrink: 0;
-}
-
-.cert-link:hover {
-  color: #61dafb;
-}
-
-.cert-skills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.cert-skills .skill-tag {
-  background-color: rgba(42, 61, 102, 0.7);
-  color: rgba(255, 255, 255, 0.9);
-  padding: 3px 6px;
-  border-radius: 10px;
-  font-size: 0.7rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-}
-
-.cert-skills .skill-tag:hover {
-  background-color: #61dafb;
-  color: #0d1b2a;
-  transform: translateY(-1px);
-}
-
-.more-skills {
-  background-color: rgba(97, 218, 251, 0.2);
-  color: #61dafb;
-  padding: 3px 6px;
-  border-radius: 10px;
-  font-size: 0.7rem;
-  white-space: nowrap;
-}
-
-.tab-container {
-  display: flex;
-  justify-content: center;
-  gap: 0;
-  margin: 40px auto 30px;
-  max-width: 600px;
-  background-color: rgba(26, 26, 46, 0.3);
-  border-radius: 15px;
-  padding: 5px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-}
-
-.tab-button {
-  flex: 1;
-  padding: 15px 20px;
-  border: none;
-  background-color: transparent;
-  color: rgba(255, 255, 255, 0.7);
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 10px;
-  font-size: 1rem;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.tab-button:hover {
-  background-color: rgba(97, 218, 251, 0.1);
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.tab-button.active {
-  background-color: rgba(97, 218, 251, 0.2);
-  color: #61dafb;
-  box-shadow: 0 2px 8px rgba(97, 218, 251, 0.3);
-}
-
-.tab-content {
-  width: 100%;
-}
-
-.tab-panel {
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-.job-card {
-  background-color: rgba(26, 26, 46, 0.6);
-  padding: 25px;
-  border-radius: 20px;
-  max-width: 700px;
-  margin: 20px auto;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  text-align: center;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.job-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-  border-color: rgba(97, 218, 251, 0.3);
-}
-
-.job-title {
-  font-size: 1.4rem;
-  color: #61dafb;
-  margin: 0 0 10px 0;
-  font-weight: 600;
-}
-
-.company-name {
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.9);
-  margin: 5px 0;
-  font-weight: 500;
-}
-
-.job-duration {
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.7);
-  margin: 5px 0 15px 0;
-  font-style: italic;
-}
-
-.job-description {
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.6;
-  margin: 10px 0 0 0;
-}
-
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -774,207 +649,54 @@ h3 {
   }
 }
 
-@media (max-width: 768px) {
-  .about-container {
-    padding: 40px 20px;
-    margin: 20px 10px;
-  }
-  
-  h1 {
-    font-size: 2.2rem;
-  }
-  
-  h2 {
-    font-size: 1.8rem;
-  }
-  
-  h3 {
-    font-size: 1.3rem;
-  }
-  
-  .popup-content {
-    padding: 30px 20px;
-    width: 95%;
-  }
-  
-  .filter-container {
-    flex-direction: column;
-    gap: 15px;
-    padding: 20px 15px;
-  }
-  
-  .filter-container label {
-    display: block;
-    margin-bottom: 8px;
-    margin-right: 0;
-  }
-  
-  .filter-container select {
-    width: 100%;
-  }
-  
-  .skills-container {
-    gap: 10px;
-  }
-  
-  .skill-bubble, .course-bubble {
-    padding: 8px 14px;
-    font-size: 13px;
-  }
-  
-  .courses-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  
-  .course-card {
-    padding: 12px;
-  }
-  
-  .course-name {
-    font-size: 0.9rem;
-  }
-  
-  .certifications-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  
-  .certification-card {
-    padding: 12px;
-  }
-  
-  .cert-name {
-    font-size: 0.9rem;
-  }
-  
+@media (max-width: 960px) {
   .tab-container {
-    flex-direction: column;
-    gap: 5px;
-    max-width: 300px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  
-  .tab-button {
-    padding: 12px 16px;
-    font-size: 0.9rem;
-  }
-  
-  .job-card {
-    padding: 20px;
-    margin: 15px auto;
-  }
-  
-  .job-title {
-    font-size: 1.2rem;
-  }
-  
-  .company-name {
-    font-size: 1rem;
-  }
-  
-  .job-duration {
-    font-size: 0.9rem;
-  }
-  
-  .job-description {
-    font-size: 0.9rem;
-  }
-  
-  .education-card {
-    padding: 20px;
-    margin: 15px auto 25px;
+
+  .courses-grid,
+  .certifications-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 700px) {
   .about-container {
-    padding: 30px 15px;
-    margin: 15px 5px;
+    padding: 24px 10px 36px;
   }
-  
-  h1 {
-    font-size: 1.8rem;
+
+  p {
+    font-size: 1rem;
   }
-  
-  h2 {
-    font-size: 1.5rem;
-  }
-  
-  h3 {
-    font-size: 1.2rem;
-  }
-  
+
   .tab-container {
-    max-width: 100%;
+    grid-template-columns: 1fr;
   }
-  
+
   .tab-button {
-    padding: 10px 14px;
-    font-size: 0.85rem;
+    font-size: 0.92rem;
   }
-  
-  .skills-container {
-    gap: 8px;
+
+  .courses-grid,
+  .certifications-grid {
+    grid-template-columns: 1fr;
   }
-  
-  .skill-bubble, .course-bubble {
-    padding: 7px 12px;
-    font-size: 12px;
-  }
-  
+
   .filter-container {
-    padding: 15px 10px;
+    flex-direction: column;
+    align-items: stretch;
   }
-  
-  .popup-content {
-    padding: 25px 15px;
+
+  .filter-container select {
+    width: 100%;
   }
-  
-  .popup-content h3 {
-    font-size: 1.3rem;
-  }
-  
-  .popup-content p {
-    font-size: 0.95rem;
-  }
-  
-  .job-card {
-    padding: 18px;
-  }
-  
+
   .job-title {
-    font-size: 1.1rem;
+    font-size: 1.7rem;
   }
-  
+
   .company-name {
-    font-size: 0.95rem;
-  }
-  
-  .job-duration {
-    font-size: 0.85rem;
-  }
-  
-  .job-description {
-    font-size: 0.85rem;
-  }
-  
-  .education-card {
-    padding: 18px;
-  }
-  
-  .certification-card,
-  .course-card {
-    padding: 10px;
-  }
-  
-  .cert-name,
-  .course-name {
-    font-size: 0.85rem;
-  }
-  
-  .skill-tag {
-    font-size: 0.7rem;
-    padding: 4px 8px;
+    font-size: 1.05rem;
   }
 }
 </style>

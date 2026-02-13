@@ -74,7 +74,7 @@ export default {
   },
   computed: {
     formattedDate() {
-      const project = this.projects.find(p => p.id === '10');
+      const project = this.projects.find(p => p.id === '27');
       if (project && project.date) {
         const date = new Date(project.date);
         return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });

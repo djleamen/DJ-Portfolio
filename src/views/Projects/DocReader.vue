@@ -1,5 +1,5 @@
 <template>
-  <ProjectPage projectId="19">
+  <ProjectPage projectId="18">
     <h1>RAG Document Reader</h1>
     <p class="project-date">{{ formattedDate }}</p>
     
@@ -57,7 +57,7 @@ export default {
   },
   computed: {
     formattedDate() {
-      const project = this.projects.find(p => p.id === '19');
+      const project = this.projects.find(p => p.id === '18');
       if (project && project.date) {
         const date = new Date(project.date);
         return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
