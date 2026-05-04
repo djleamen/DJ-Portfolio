@@ -13,7 +13,7 @@
       </div>
     </div>
     <footer class="footer">
-      <p>© 2025 DJ Leamen</p>
+      <p>© 2026 DJ Leamen</p>
       <div class="socials">
         <a href="https://linkedin.com/in/djleamen" class="social-icon" aria-label="LinkedIn">
           <img src="@/assets/linkedin-icon.png" alt="LinkedIn" />
