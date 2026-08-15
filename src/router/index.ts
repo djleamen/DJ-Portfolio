@@ -32,6 +32,10 @@ import MapleClear from '../views/Projects/MapleClear.vue';
 import DevDuck from '../views/Projects/DevDuck.vue';
 import IntelligentApp from '../views/Projects/IntelligentApp.vue';
 import MsftAIResearch from '../views/Projects/AIMLResearch.vue';
+import SocialMediaAnalysis from '../views/Projects/SocialMediaAnalysis.vue';
+import SearchAdLearning from '../views/Projects/SearchAdLearning.vue';
+import StrokePrediction from '../views/Projects/StrokePrediction.vue';
+import BetterVisualizer from '../views/Projects/BetterVisualizer.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -222,6 +226,30 @@ const routes: RouteRecordRaw[] = [
     component: MsftAIResearch,
     meta: { projectId: 27 }
   },
+  {
+    path: '/projects/social-media-performance-analysis',
+    name: 'SocialMediaAnalysis',
+    component: SocialMediaAnalysis,
+    meta: { projectId: 28 }
+  },
+  {
+    path: '/projects/search-ad-learning',
+    name: 'SearchAdLearning',
+    component: SearchAdLearning,
+    meta: { projectId: 29 }
+  },
+  {
+    path: '/projects/stroke-prediction',
+    name: 'StrokePrediction',
+    component: StrokePrediction,
+    meta: { projectId: 30 }
+  },
+  {
+    path: '/projects/better-visualizer',
+    name: 'BetterVisualizer',
+    component: BetterVisualizer,
+    meta: { projectId: 31 }
+  },
 
   // Legacy route support
   {
@@ -254,7 +282,11 @@ const routes: RouteRecordRaw[] = [
         '24': '/projects/mapleclear',
         '25': '/projects/devduck',
         '26': '/projects/intelligent-app',
-        '27': '/projects/msft-ai-research'
+        '27': '/projects/msft-ai-research',
+        '28': '/projects/social-media-performance-analysis',
+        '29': '/projects/search-ad-learning',
+        '30': '/projects/stroke-prediction',
+        '31': '/projects/better-visualizer'
       };
       return idToPathMap[to.params.id as string] || '/projects';
     }
@@ -292,7 +324,11 @@ const routes: RouteRecordRaw[] = [
         '24': '/projects/mapleclear',
         '25': '/projects/devduck',
         '26': '/projects/intelligent-app',
-        '27': '/projects/msft-ai-research'
+        '27': '/projects/msft-ai-research',
+        '28': '/projects/social-media-performance-analysis',
+        '29': '/projects/search-ad-learning',
+        '30': '/projects/stroke-prediction',
+        '31': '/projects/better-visualizer'
       };
 
       return idToPathMap[id] || '/projects';
@@ -308,12 +344,8 @@ const routes: RouteRecordRaw[] = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
-  scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition;
-    } else {
-      return { top: 0 };
-    }
+  scrollBehavior() {
+    return { top: 0, left: 0, behavior: 'auto' };
   }
 });
 

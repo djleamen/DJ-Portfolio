@@ -1,184 +1,115 @@
 <template>
   <div class="contact-container">
-    <h1>Contact Me</h1>
-    <p>Let's connect! Reach out to me on:</p>
-    <div class="socials">
-      <a href="https://linkedin.com/in/djleamen" class="social-card" aria-label="LinkedIn Profile">
-        <div class="social-icon">
-          <img src="@/assets/linkedin-icon.png" alt="LinkedIn" />
-        </div>
-        <span class="social-text">LinkedIn</span>
+    <header class="contact-hero">
+      <p class="eyebrow">Contact / 05</p>
+      <h1>Want to talk about what you’re building?</h1>
+      <a href="mailto:dilara_leamen@icloud.com" class="email-link">
+        dilara_leamen@icloud.com <span>↗</span>
       </a>
-      <a href="https://github.com/djleamen" class="social-card" aria-label="GitHub Profile">
-        <div class="social-icon">
-          <img src="@/assets/github-icon.png" alt="GitHub" />
-        </div>
-        <span class="social-text">GitHub</span>
-      </a>
-      <a href="https://www.instagram.com/dejjos/" class="social-card" aria-label="Instagram Profile">
-        <div class="social-icon">
-          <img src="@/assets/instagram-icon.png" alt="Instagram" />
-        </div>
-        <span class="social-text">Instagram</span>
-      </a>
-      <a href="mailto:dilara_leamen@icloud.com" class="social-card" aria-label="Email">
-        <div class="social-icon">
-          <img src="@/assets/email-icon.png" alt="Email" />
-        </div>
-        <span class="social-text">Email</span>
-      </a>
-      <a href="https://sessionize.com/djleamen" class="social-card" aria-label="Sessionize Profile">
-        <div class="social-icon">
-          <img src="@/assets/sessionize-icon.png" alt="Sessionize" />
-        </div>
-        <span class="social-text">Sessionize</span>
-      </a>
-      <a href="https://bsky.app/profile/djleamen.substack.com" class="social-card" aria-label="Bluesky Profile">
-        <div class="social-icon">
-          <img src="@/assets/bluesky-icon.png" alt="Bluesky" />
-        </div>
-        <span class="social-text">Bluesky</span>
-      </a>
-    </div>
-    <div class="socials-bottom">
-      <p>Or, find everything on my Linktree:</p>
-      <a href="https://linktr.ee/djleamen" class="btn" aria-label="Linktree Profile">Linktree</a>
-    </div>
+    </header>
+
+    <section class="contact-directory" aria-labelledby="elsewhere-title">
+      <div>
+        <p class="eyebrow">Elsewhere</p>
+        <h2 id="elsewhere-title">Find me online</h2>
+      </div>
+      <div class="socials">
+        <a href="https://linkedin.com/in/djleamen" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span><small>Work / connect</small><b>↗</b></a>
+        <a href="https://github.com/djleamen" target="_blank" rel="noopener noreferrer"><span>GitHub</span><small>Code / projects</small><b>↗</b></a>
+        <a href="https://www.instagram.com/dejjos/" target="_blank" rel="noopener noreferrer"><span>Instagram</span><small>Life / process</small><b>↗</b></a>
+        <a href="https://sessionize.com/djleamen" target="_blank" rel="noopener noreferrer"><span>Sessionize</span><small>Speaking / sessions</small><b>↗</b></a>
+        <a href="https://bsky.app/profile/djleamen.substack.com" target="_blank" rel="noopener noreferrer"><span>Bluesky</span><small>Notes / conversation</small><b>↗</b></a>
+        <a href="https://linktr.ee/djleamen" target="_blank" rel="noopener noreferrer"><span>Linktree</span><small>Everything else</small><b>↗</b></a>
+      </div>
+    </section>
   </div>
 </template>
 
 <style scoped>
 .contact-container {
-  --stack-gap: clamp(28px, 4vw, 42px);
-  max-width: 1120px;
+  max-width: 1160px;
   margin: 0 auto;
-  padding: clamp(34px, 4.8vw, 62px) 16px clamp(58px, 7vw, 100px);
-  text-align: center;
-  color: #eef4ff;
-  box-sizing: border-box;
+  padding: clamp(10px, 3vw, 38px) 0 var(--gap);
+  color: var(--body);
+}
+
+.contact-hero {
+  padding: clamp(36px, 5vw, 64px) 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-bottom: 1px solid var(--hairline);
 }
 
 h1 {
-  margin: 0 0 clamp(16px, 2.2vw, 24px);
-  font-size: clamp(2rem, 4.2vw, 3.2rem);
-  line-height: 1.08;
-  font-weight: 800;
-  background: linear-gradient(90deg, #70e2ff, #44bff5);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  max-width: 10ch;
+  margin: 22px 0 clamp(28px, 4vw, 48px);
+  font-size: clamp(2.6rem, 4.2vw, 4.6rem);
+  line-height: 0.94;
+  font-weight: 480;
+  letter-spacing: 0;
 }
 
 p {
-  margin: 0 auto;
-  max-width: 720px;
-  font-size: 1.1rem;
-  line-height: 1.68;
-  color: rgba(230, 240, 255, 0.9);
+  margin: 0;
+  max-width: 60ch;
+  font-size: clamp(1.02rem, 1.25vw, 1.18rem);
+  line-height: 1.7;
+  color: var(--body);
 }
 
-a {
+.email-link {
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid var(--accent);
+  color: var(--accent-bright);
+  font-family: var(--mono);
+  font-size: clamp(0.88rem, 1.5vw, 1.15rem);
   text-decoration: none;
 }
 
-.socials {
-  width: 100%;
-  max-width: 760px;
-  margin: var(--stack-gap) auto calc(var(--stack-gap) * 0.8);
+.contact-directory {
+  padding: clamp(46px, 7vw, 84px) 0;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
+  grid-template-columns: minmax(220px, 0.55fr) minmax(0, 1.45fr);
+  gap: clamp(40px, 8vw, 120px);
 }
 
-.social-card {
-  border-radius: 16px;
-  border: 1px solid rgba(130, 168, 255, 0.22);
-  background:
-    radial-gradient(circle at 12% 12%, rgba(98, 213, 255, 0.1), transparent 38%),
-    linear-gradient(150deg, rgba(27, 33, 70, 0.86), rgba(17, 22, 52, 0.88));
-  box-shadow: 0 16px 34px rgba(7, 12, 36, 0.3);
-  color: #eef4ff;
-  padding: 16px 10px;
-  display: flex;
-  flex-direction: column;
+.contact-directory h2 {
+  margin: 16px 0 0;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 480;
+}
+
+.socials {
+  border-top: 1px solid var(--hairline);
+}
+
+.socials a {
+  padding: 20px 4px;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 20px;
   align-items: center;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  border-bottom: 1px solid var(--hairline);
+  color: var(--ink);
+  text-decoration: none;
+  transition: padding-left 0.22s var(--ease-out), background-color 0.22s ease;
 }
 
-.social-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(126, 232, 255, 0.48);
-}
+.socials a:hover { padding-left: 12px; background: var(--accent-faint); }
+.socials span { font-size: 1.08rem; }
+.socials small { color: var(--muted); font-family: var(--mono); }
+.socials b { color: var(--accent); font-weight: 400; }
 
-.social-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(126, 232, 255, 0.16);
-  border: 1px solid rgba(126, 232, 255, 0.38);
-}
-
-.social-icon img {
-  width: 30px;
-  height: 30px;
-}
-
-.social-text {
-  margin-top: 10px;
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #e6f4ff;
-}
-
-.socials-bottom {
-  margin-top: var(--stack-gap);
-  padding-bottom: 10px;
-}
-
-.btn {
-  margin-top: 18px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: 11px 20px;
-  border-radius: 11px;
-  border: 1px solid rgba(126, 232, 255, 0.5);
-  background: rgba(98, 213, 255, 0.18);
-  color: #a5f3ff;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  transition: transform 0.2s ease, background-color 0.2s ease;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-  background: rgba(98, 213, 255, 0.24);
-}
-
-@media (max-width: 860px) {
-  .socials {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 560px) {
-  .contact-container {
-    padding: 24px 10px 36px;
-  }
-
-  p {
-    font-size: 0.98rem;
-  }
-
-  .socials {
-    grid-template-columns: 1fr;
-  }
-
-  .social-card {
-    padding: 14px;
-  }
+@media (max-width: 720px) {
+  .contact-hero { min-height: auto; }
+  .contact-directory { grid-template-columns: 1fr; }
+  .socials a { grid-template-columns: 1fr auto; }
+  .socials small { grid-column: 1; grid-row: 2; }
+  .socials b { grid-column: 2; grid-row: 1 / span 2; }
 }
 </style>
+

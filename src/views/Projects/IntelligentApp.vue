@@ -64,6 +64,8 @@
     <p>
       Learn more about Habitat GTA: <a href="https://habitatgta.ca">Habitat for Humanity GTA</a>
     </p> 
+
+    <img src="../../assets/habitatgta.jpeg" alt="Habitat for Humanity GTA Hard Hat" class="logo">
       
     <h2>Skills Developed</h2> 
       <div class="skills-container"> 

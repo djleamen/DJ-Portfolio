@@ -13,33 +13,31 @@
       </div>
     </div>
     <footer class="footer">
-      <p>© 2026 DJ Leamen</p>
-      <div class="socials">
-        <a href="https://linkedin.com/in/djleamen" class="social-icon" aria-label="LinkedIn">
-          <img src="@/assets/linkedin-icon.png" alt="LinkedIn" />
-        </a>
-        <a href="https://github.com/djleamen" class="social-icon" aria-label="GitHub">
-          <img src="@/assets/github-icon.png" alt="GitHub" />
-        </a>
-        <a href="https://www.instagram.com/dejjos/" class="social-icon" aria-label="Instagram">
-          <img src="@/assets/instagram-icon.png" alt="Instagram" />
-        </a>
-        <a href="mailto:dilara_leamen@icloud.com" class="social-icon" aria-label="Email">
-          <img src="@/assets/email-icon.png" alt="Email" />
-        </a>
-        <a href="https://sessionize.com/djleamen/" class="social-icon" aria-label="Sessionize">
-          <img src="@/assets/sessionize-icon.png" alt="Sessionize" />
-        </a>
-        <a href="https://bsky.app/profile/dejjo.bsky.social" class="social-icon" aria-label="Bluesky">
-          <img src="@/assets/bluesky-icon.png" alt="Bluesky" />
-        </a>
-      </div>
-      <div class="webring" aria-label="OTU Webring navigation">
-        <a :href="webringPrevHref" class="webring-nav" title="Previous site">←</a>
-        <a href="https://otu-ring.com" target="_blank" rel="noopener noreferrer" class="webring-center" title="OTU Webring">
-          <img src="https://otu-ring.com/assets/ontariotech.svg" alt="OTU Webring" />
-        </a>
-        <a :href="webringNextHref" class="webring-nav" title="Next site">→</a>
+      <div class="footer-inner">
+        <div class="footer-intro">
+          <p class="eyebrow">One more thing</p>
+          <p class="footer-statement">Check out my projects and feel free to contribute.</p>
+        </div>
+        <div class="footer-directory">
+          <p class="footer-label">Elsewhere</p>
+          <div class="footer-links">
+            <a href="https://linkedin.com/in/djleamen">LinkedIn <span aria-hidden="true">↗</span></a>
+            <a href="https://github.com/djleamen">GitHub <span aria-hidden="true">↗</span></a>
+            <a href="https://sessionize.com/djleamen/">Sessionize <span aria-hidden="true">↗</span></a>
+            <a href="mailto:dilara_leamen@icloud.com">Email <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <div class="footer-base">
+          <p>© 2026 DJ Leamen</p>
+          <div class="webring" aria-label="OTU Webring navigation">
+            <a :href="webringPrevHref" class="webring-nav" title="Previous site" aria-label="Previous site">←</a>
+            <a href="https://otu-ring.com" target="_blank" rel="noopener noreferrer" class="webring-center" title="OTU Webring">
+              OTU Webring
+            </a>
+            <a :href="webringNextHref" class="webring-nav" title="Next site" aria-label="Next site">→</a>
+          </div>
+          <a href="#app" class="back-to-top">Back to top ↑</a>
+        </div>
       </div>
     </footer>
   </div>
@@ -65,34 +63,20 @@ onMounted(() => {
 </script>
 
 <style>
-:root {
-  --site-bg: #0e1228;
-  --site-bg-soft: #171c3c;
-  --site-surface: rgba(25, 31, 68, 0.72);
-  --site-border: rgba(131, 173, 255, 0.24);
-  --site-text: #edf4ff;
-  --site-muted: rgba(219, 230, 255, 0.72);
-  --site-brand: #68dbff;
-  --site-brand-strong: #40bdf5;
-}
-
 html,
 body {
-  height: 100%;
+  min-height: 100%;
   margin: 0;
   padding: 0;
   width: 100%;
-  color: var(--site-text);
-  font-family: 'Raleway', sans-serif;
-  line-height: 1.6;
+  color: var(--body);
+  font-family: var(--sans);
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
   overflow-x: hidden;
-  background:
-    radial-gradient(circle at 14% 12%, rgba(63, 174, 255, 0.22), transparent 30%),
-    radial-gradient(circle at 84% 8%, rgba(109, 87, 255, 0.16), transparent 26%),
-    linear-gradient(180deg, #0f1330 0%, #14183a 52%, #0d1229 100%);
+  background: var(--bg);
 }
 
 body {
@@ -118,147 +102,157 @@ body {
 }
 
 .content {
-  max-width: 1240px;
+  max-width: var(--page-width);
   margin: 0 auto;
   width: 100%;
-  padding: 98px 20px 0;
+  padding: 116px var(--page-gutter) 0;
   box-sizing: border-box;
 }
 
 .footer {
-  margin-top: 64px;
+  margin-top: clamp(38px, 5.5vw, 72px);
   width: 100vw;
   position: relative;
   left: 50%;
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  text-align: center;
-  padding: 1.65rem 1rem 1.5rem;
-  border-top: 1px solid rgba(140, 178, 255, 0.2);
-  background: linear-gradient(180deg, rgba(17, 21, 48, 0.92), rgba(12, 16, 38, 0.96));
-  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--hairline);
+  background: var(--bg-2);
 }
 
-.footer p {
-  margin: 0.35rem 0;
-  font-size: 0.9rem;
-  color: var(--site-muted);
+.page-wrapper:has(.home) .footer {
+  margin-top: 0;
 }
 
-.socials {
+.footer-inner {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: clamp(44px, 6.5vw, 82px) var(--page-gutter) 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(240px, 0.7fr);
+  gap: clamp(52px, 9vw, 140px);
+}
+
+.footer-intro .eyebrow {
+  margin: 0 0 20px;
+  color: var(--accent);
+}
+
+.footer-statement {
+  max-width: 17ch;
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.3vw, 3.4rem);
+  font-weight: 480;
+  line-height: 1.03;
+}
+
+.footer-label,
+.footer-base p {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.footer-links {
+  margin-top: 18px;
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin: 0.7rem auto 0.8rem;
-  max-width: 560px;
+  flex-direction: column;
 }
 
-.social-icon {
-  width: 40px;
-  height: 40px;
-  display: inline-flex;
+.footer-links a {
+  min-height: 52px;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-  background: rgba(124, 170, 255, 0.14);
-  border: 1px solid rgba(132, 177, 255, 0.28);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.26);
-  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--hairline);
+  color: var(--body);
+  transition: color 0.2s ease, padding-left 0.2s var(--ease-out);
 }
 
-.social-icon:hover {
-  transform: translateY(-2px);
-  border-color: rgba(104, 219, 255, 0.7);
-  background: rgba(104, 219, 255, 0.2);
+.footer-links a:hover {
+  padding-left: 8px;
+  color: var(--accent-bright);
 }
 
-.social-icon img {
-  width: 18px;
-  height: 18px;
+.footer-base {
+  grid-column: 1 / -1;
+  padding-top: 26px;
+  border-top: 1px solid var(--hairline);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 20px;
 }
 
 .webring {
-  margin: 0.1rem auto 0;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(131, 173, 255, 0.22);
-  background: rgba(27, 33, 70, 0.48);
+  gap: 8px;
+  color: var(--muted);
 }
 
 .webring-nav {
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
-  color: rgba(219, 230, 255, 0.76);
+  border-radius: 3px;
+  color: var(--muted);
   text-decoration: none;
-  transition: color 0.2s ease, background-color 0.2s ease;
+  transition: color 0.18s ease, background-color 0.18s ease;
 }
 
 .webring-nav:hover {
-  color: #dff5ff;
-  background: rgba(104, 219, 255, 0.18);
+  color: var(--accent-bright);
+  background: var(--surface);
 }
 
 .webring-center {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.76rem;
 }
 
-.webring-center img {
-  height: 16px;
-  width: auto;
-  opacity: 0.75;
-  transition: opacity 0.2s ease;
+.back-to-top {
+  justify-self: end;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.8rem;
 }
 
-.webring-center:hover img {
-  opacity: 1;
-}
+.back-to-top:hover { color: var(--accent-bright); }
 
 .page-enter-active,
 .page-leave-active {
-  transition: all 0.35s ease;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .page-enter-from {
   opacity: 0;
-  transform: translateY(18px);
+  transform: translateY(14px);
 }
 
 .page-leave-to {
   opacity: 0;
-  transform: translateY(-12px);
+  transform: translateY(-8px);
 }
 
-.elevation-1 {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-}
-
-.elevation-2 {
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-}
-
-.elevation-3 {
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-}
-
-.elevation-4 {
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-}
-
-.elevation-5 {
-  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
-}
+/* Subtle elevation — restrained, not material-design heavy */
+.elevation-1 { box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); }
+.elevation-2 { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); }
+.elevation-3 { box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45); }
+.elevation-4 { box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5); }
+.elevation-5 { box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55); }
 
 .md-transition {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -266,18 +260,21 @@ body {
 
 @media (max-width: 768px) {
   .content {
-    padding-top: 88px;
-    padding-left: 14px;
-    padding-right: 14px;
+    padding: 92px var(--page-gutter) 0;
   }
 
-  .footer {
-    margin-top: 36px;
-    padding: 1.4rem 0.8rem 1.3rem;
+  .footer-inner {
+    grid-template-columns: 1fr;
   }
 
-  .webring {
-    margin-top: 0.3rem;
+  .footer-base {
+    grid-column: 1;
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+
+  .back-to-top {
+    justify-self: start;
   }
 }
 </style>

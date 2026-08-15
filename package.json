@@ -36,10 +36,10 @@
     "@vue/tsconfig": "^0.5.1",
     "constructs": "10.1.161",
     "esbuild": "^0.28.1",
-    "npm-run-all2": "^9.0.3",
+    "npm-run-all2": "^6.1.2",
     "tsx": "^4.22.4",
     "typescript": "^5.4.5",
     "vite": "^8.0.16",
-    "vue-tsc": "^3.3.9"
+    "vue-tsc": "^2.0.11"
   }
 }

@@ -1,14 +1,42 @@
 :root {
-  --primary: #68dbff;
-  --primary-hover: #40bdf5;
-  --surface: rgba(25, 31, 68, 0.72);
-  --surface-strong: rgba(32, 40, 84, 0.85);
-  --text-light: #eef4ff;
-  --text-muted: rgba(219, 230, 255, 0.72);
-  --text-dark: #10142f;
-  --border-radius: 14px;
-  --border-color: rgba(131, 173, 255, 0.24);
-  --box-shadow: 0 14px 28px rgba(7, 12, 36, 0.35);
+  /* Palette */
+  --bg: #0a0c11;
+  --bg-2: #0e1117;
+  --surface: #12151d;
+  --surface-2: #161a23;
+  --hairline: rgba(233, 238, 248, 0.09);
+  --hairline-strong: rgba(233, 238, 248, 0.18);
+
+  --ink: #f4f6fa;            /* headings */
+  --body: #c6ccd6;           /* body copy — real contrast, not muted-to-death */
+  --muted: #878fa0;          /* meta / captions */
+
+  --accent: #4f9dff;         /* gem-blue signature */
+  --accent-bright: #82b6ff;  /* links / hover on dark */
+  --accent-dim: rgba(79, 157, 255, 0.14);
+  --accent-faint: rgba(79, 157, 255, 0.06);
+
+  /* Type */
+  --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Layout */
+  --page-width: 1320px;
+  --page-gutter: clamp(20px, 4vw, 56px);
+  --gap: clamp(52px, 7vw, 104px);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Legacy aliases still referenced by some components */
+  --primary: var(--accent);
+  --primary-hover: var(--accent-bright);
+  --surface-strong: var(--surface-2);
+  --text-light: var(--ink);
+  --text-muted: var(--muted);
+  --text-dark: #0a0c11;
+  --border-radius: 6px;
+  --border-color: var(--hairline);
+  --box-shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
 }
 
 *,
@@ -25,21 +53,108 @@ body,
   min-height: 100%;
 }
 
+html {
+  font-size: 14px;
+}
+
 body {
-  color: var(--text-light);
+  position: relative;
+  color: var(--body);
+  font-family: var(--sans);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background:
+    linear-gradient(122deg, transparent 0 58%, var(--accent-faint) 77%, transparent 92%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 46%, var(--bg) 100%);
+  background-attachment: fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent 0 7%, var(--hairline) 7% calc(7% + 1px), transparent calc(7% + 1px));
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+}
+
+#app {
+  isolation: isolate;
 }
 
 body.no-scroll {
   overflow: hidden;
 }
 
+h1, h2, h3, h4 {
+  font-family: var(--serif);
+  color: var(--ink);
+  font-weight: 500;
+  font-variation-settings: "opsz" 144;
+  letter-spacing: 0;
+}
+
 a {
-  color: var(--primary);
+  color: var(--accent-bright);
+  text-decoration: none;
 }
 
 a:hover {
-  color: #a3eeff;
+  color: #a9cdff;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-bright);
+  outline-offset: 4px;
+}
+
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible) {
+  outline: none;
+}
+
+::selection {
+  background: rgba(79, 157, 255, 0.3);
+  color: #ffffff;
+}
+
+/* Small mono eyebrow used as a section index — editorial, used sparingly */
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 760px) {
+  body::before {
+    background: none;
+  }
 }

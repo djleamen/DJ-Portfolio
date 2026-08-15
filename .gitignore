@@ -39,6 +39,8 @@ api/local.settings.json
 api/node_modules
 api/.vscode
 
+.playwright-mcp
+
 devcontainer
 
 setup.sh

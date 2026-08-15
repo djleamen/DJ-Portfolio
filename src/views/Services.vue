@@ -1,42 +1,51 @@
 <template>
   <div class="services-container">
-    <h1>My Services</h1>
-    <p>
-      I develop efficient, user-focused software solutions with expertise in web and application development, 
-      AI & cloud solutions, and database management. Using Agile methodologies, I ensure iterative progress, 
-      continuous feedback, and adaptability. My approach blends technical excellence with UX design, 
-      accessibility, and structured development sprints to deliver functional, business-aligned solutions. 
-      Let's connect to bring your vision to life!
-    </p>
-    <h3>Services Provided</h3>
-    <p class="p1">(Click on a service for more details)</p>
+    <header class="services-hero">
+      <p class="eyebrow">Services / 04</p>
+      <h1>Here’s what I can help with.</h1>
+      <p class="services-intro">
+        I like starting with a conversation, getting clear on the problem, and then working
+        with a team to research, design, and build the right thing.
+      </p>
+    </header>
+
+    <section class="services-section" aria-labelledby="capabilities-title">
+      <div class="section-heading">
+        <p class="eyebrow">Capabilities</p>
+        <h2 id="capabilities-title">Ways I can help</h2>
+      </div>
       <ul class="services-list">
-        <li @click="showPopup('AI Development')"><i class="icon">✔</i> AI Development</li>
-        <li @click="showPopup('Cloud Application Development')"><i class="icon">✔</i> Cloud Application Development</li>
-        <li @click="showPopup('Custom Software Development')"><i class="icon">✔</i> Custom Software Development</li>
-        <li @click="showPopup('Database Development')"><i class="icon">✔</i> Database Development</li>
-        <li @click="showPopup('Software Testing')"><i class="icon">✔</i> Software Testing</li>
-        <li @click="showPopup('Web Design')"><i class="icon">✔</i> Web Design</li>
-        <li @click="showPopup('Web Development')"><i class="icon">✔</i> Web Development</li>
-        <li @click="showPopup('User Experience Design (UED)')"><i class="icon">✔</i> User Experience Design (UED)</li>
-        <li @click="showPopup('Data Entry')"><i class="icon">✔</i> Data Entry</li>
-        <li @click="showPopup('Research')"><i class="icon">✔</i> Research</li>
+        <li v-for="(service, index) in services" :key="service">
+          <button type="button" @click="showPopup(service)">
+            <span>{{ String(index + 1).padStart(2, '0') }}</span>
+            <strong>{{ service }}</strong>
+            <span class="service-arrow">↗</span>
+          </button>
+        </li>
       </ul>
       <div v-if="popupVisible" class="popup-overlay" @click="closePopup">
-        <div class="popup-content" @click.stop>
-          <button class="close-button" @click="closePopup">&times;</button>
-          <h2>{{ popupTitle }}</h2>
+        <div class="popup-content" role="dialog" aria-modal="true" :aria-labelledby="`service-title`" @click.stop>
+          <button class="close-button" type="button" aria-label="Close service details" @click="closePopup">&times;</button>
+          <h2 id="service-title">{{ popupTitle }}</h2>
           <p class="popup-copy">{{ popupContent }}</p>
           <div class="popup-buttons">
             <router-link to="/contact" class="btn">Contact</router-link>
           </div>
         </div>
       </div>
-    <h3>Availability</h3>
-    <p>Remote or in person (Whitby, ON)</p>
-    <h3>Pricing</h3>
-    <p>Contact for pricing</p>
-    <router-link to="/contact" class="btn">Contact</router-link>
+    </section>
+
+    <section class="service-brief">
+      <div>
+        <p class="eyebrow">Availability</p>
+        <p>Remote worldwide or in person around Whitby, Ontario.</p>
+      </div>
+      <div>
+        <p class="eyebrow">Engagements</p>
+        <p>Scoped by project, with pricing shaped around the problem and timeline.</p>
+      </div>
+      <router-link to="/contact" class="btn">Start a conversation →</router-link>
+    </section>
   </div>
 </template>
 
@@ -47,6 +56,18 @@ export default {
       popupVisible: false,
       popupTitle: '',
       popupContent: '',
+      services: [
+        'AI Development',
+        'Cloud Application Development',
+        'Custom Software Development',
+        'Database Development',
+        'Software Testing',
+        'Web Design',
+        'Web Development',
+        'User Experience Design (UED)',
+        'Data Entry',
+        'Research',
+      ],
     };
   },
   methods: {
@@ -81,102 +102,146 @@ export default {
 
 <style scoped>
 .services-container {
-  --stack-gap: clamp(30px, 4.2vw, 46px);
-  max-width: 1120px;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: clamp(34px, 4.8vw, 62px) 16px clamp(64px, 8vw, 110px);
-  text-align: center;
-  color: #eef4ff;
+  padding: clamp(6px, 1.5vw, 18px) 0 var(--gap);
+  color: var(--body);
+}
+
+.services-hero {
+  padding: clamp(28px, 4vw, 48px) 0 clamp(32px, 4.5vw, 54px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.72fr);
+  gap: 18px clamp(48px, 9vw, 132px);
+  align-items: end;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.services-hero > .eyebrow {
+  grid-column: 1 / -1;
+  margin: 0;
 }
 
 .services-container h1 {
-  margin: 0 0 clamp(18px, 2.4vw, 26px);
-  font-size: clamp(2rem, 4.2vw, 3.2rem);
-  line-height: 1.08;
-  font-weight: 800;
-  background: linear-gradient(90deg, #70e2ff, #44bff5);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  max-width: 12ch;
+  margin: 0;
+  font-size: clamp(2.6rem, 4.1vw, 4.4rem);
+  line-height: 1;
+  font-weight: 480;
+  letter-spacing: 0;
 }
 
-.services-container h3 {
-  margin: var(--stack-gap) 0 8px;
-  font-size: 2rem;
-  color: #f5f9ff;
+.services-container h2 {
+  margin: 16px 0 0;
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  font-weight: 480;
+  letter-spacing: 0;
 }
 
 .services-container p {
-  margin: 0 auto var(--stack-gap);
-  max-width: 920px;
-  font-size: 1.05rem;
+  margin: 0 0 16px;
+  max-width: 66ch;
+  font-size: clamp(1.02rem, 1.2vw, 1.14rem);
   line-height: 1.72;
-  color: rgba(230, 240, 255, 0.92);
+  color: var(--body);
 }
 
-.p1 {
-  margin-bottom: calc(var(--stack-gap) * 0.72);
-  color: rgba(219, 230, 255, 0.74);
-  font-style: italic;
+.services-intro {
+  max-width: 46ch !important;
+  margin: 0 0 2px !important;
+  font-size: clamp(1.02rem, 1.25vw, 1.18rem) !important;
+  line-height: 1.62 !important;
+}
+
+.services-section {
+  padding: clamp(44px, 7vw, 84px) 0;
+  display: grid;
+  grid-template-columns: minmax(220px, 0.55fr) minmax(0, 1.45fr);
+  gap: clamp(40px, 8vw, 120px);
 }
 
 .services-list {
   list-style: none;
-  margin: 0 auto calc(var(--stack-gap) + 4px);
+  margin: 0;
   padding: 0;
-  width: 100%;
-  max-width: 940px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  border-top: 1px solid var(--hairline);
 }
 
 .services-container ul li {
   margin: 0;
-  border-radius: 16px;
-  border: 1px solid rgba(130, 168, 255, 0.22);
-  background:
-    radial-gradient(circle at 12% 12%, rgba(98, 213, 255, 0.1), transparent 38%),
-    linear-gradient(150deg, rgba(27, 33, 70, 0.86), rgba(17, 22, 52, 0.88));
-  box-shadow: 0 16px 34px rgba(7, 12, 36, 0.3);
-  cursor: pointer;
-  padding: 16px 18px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.services-container ul button {
+  width: 100%;
+  padding: 22px 4px;
+  display: grid;
+  grid-template-columns: 46px 1fr 24px;
+  gap: 16px;
+  align-items: center;
+  border: 0;
+  background: transparent;
+  color: var(--body);
   text-align: left;
-  font-size: 1.03rem;
-  color: rgba(230, 240, 255, 0.95);
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+  transition: padding-left 0.22s var(--ease-out), background-color 0.22s ease;
 }
 
-.services-container ul li:hover {
-  transform: translateY(-2px);
-  border-color: rgba(126, 232, 255, 0.5);
+.services-container ul button:hover {
+  padding-left: 12px;
+  background: var(--accent-faint);
 }
 
-.services-container ul li .icon {
-  color: #7ee8ff;
-  margin-right: 8px;
-  font-size: 1rem;
+.services-container ul button > span:first-child,
+.service-arrow {
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+}
+
+.services-container ul strong {
+  color: var(--ink);
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  font-weight: 480;
+}
+
+.service-brief {
+  padding: clamp(28px, 4.5vw, 54px) 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
+  gap: clamp(28px, 5vw, 70px);
+  align-items: end;
+  border-top: 1px solid var(--hairline);
+}
+
+.service-brief p { font-size: 1rem; }
+.service-brief .eyebrow { margin-bottom: 10px; }
+
+.service-brief .btn {
+  white-space: nowrap;
 }
 
 .btn {
-  margin-top: 8px;
+  margin-top: 10px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: 11px 18px;
-  border-radius: 11px;
-  border: 1px solid rgba(126, 232, 255, 0.5);
-  background: rgba(98, 213, 255, 0.18);
-  color: #a5f3ff;
+  padding: 12px 22px;
+  border-radius: 4px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #06080d;
   text-decoration: none;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .btn:hover {
+  background: var(--accent-bright);
+  border-color: var(--accent-bright);
   transform: translateY(-2px);
-  background: rgba(98, 213, 255, 0.24);
+  box-shadow: 0 10px 26px rgba(79, 157, 255, 0.28);
 }
 
 .popup-overlay {
@@ -187,75 +252,79 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(6, 8, 22, 0.74);
-  backdrop-filter: blur(8px);
+  background: rgba(4, 5, 8, 0.78);
+  backdrop-filter: blur(6px);
 }
 
 .popup-content {
   position: relative;
-  width: min(760px, 100%);
-  max-height: min(82vh, 760px);
+  width: min(720px, 100%);
+  max-height: min(82vh, 720px);
   overflow-y: auto;
-  border-radius: 18px;
-  padding: 24px;
+  border-radius: 8px;
+  padding: 28px;
   text-align: left;
-  border: 1px solid rgba(130, 168, 255, 0.24);
-  background: linear-gradient(150deg, rgba(27, 33, 70, 0.98), rgba(17, 22, 52, 0.98));
-  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.45);
+  border: 1px solid var(--hairline-strong);
+  background: var(--surface);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
 }
 
 .popup-content h2 {
-  margin: 0 0 8px;
-  color: #7ee8ff;
-  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  margin: 0 0 10px;
+  color: var(--ink);
+  font-size: clamp(1.35rem, 2vw, 1.7rem);
+  font-weight: 480;
 }
 
 .popup-copy {
   margin: 0;
-  color: rgba(230, 240, 255, 0.92);
-  line-height: 1.68;
+  color: var(--body);
+  line-height: 1.7;
 }
 
-.popup-buttons {
-  margin-top: 16px;
-}
+.popup-buttons { margin-top: 18px; }
 
 .close-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 32px;
-  height: 32px;
-  border: 0;
-  border-radius: 999px;
-  background: rgba(126, 232, 255, 0.16);
-  color: #d7f9ff;
-  font-size: 1.3rem;
+  top: 12px;
+  right: 12px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  background: var(--surface-2);
+  color: var(--ink);
+  font-size: 1.2rem;
   line-height: 1;
   cursor: pointer;
+  transition: border-color 0.18s ease, color 0.18s ease;
 }
 
-@media (max-width: 860px) {
-  .services-list {
+.close-button:hover { border-color: var(--accent); color: var(--accent-bright); }
+
+@media (max-width: 720px) {
+  .services-hero {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 700px) {
-  .services-container {
-    padding: 26px 10px 44px;
+    gap: 14px;
+    padding: 24px 0 34px;
   }
 
-  .services-container h3 {
-    font-size: 1.65rem;
+  .services-hero > .eyebrow {
+    grid-column: 1;
+    margin-bottom: 4px;
   }
 
-  .services-container p {
-    font-size: 0.98rem;
+  .services-container h1 {
+    font-size: clamp(2.35rem, 12vw, 3rem);
   }
 
-  .services-container ul li {
-    padding: 14px;
+  .services-intro {
+    max-width: 38ch !important;
+    margin-top: 4px !important;
   }
+
+  .services-section { grid-template-columns: 1fr; }
+  .service-brief { grid-template-columns: 1fr; align-items: start; }
 }
 </style>
+

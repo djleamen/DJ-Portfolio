@@ -1,6 +1,17 @@
 <template>
   <div class="about-container">
-    <h1>About Me</h1>
+    <header class="profile-hero">
+      <div class="profile-heading">
+        <p class="eyebrow">Profile / 02</p>
+        <h1>I like building things with people, for people.</h1>
+      </div>
+      <div class="profile-intro">
+        <p>
+          {{ bio }}
+        </p>
+        <p class="profile-note">Developer · Researcher · Speaker</p>
+      </div>
+    </header>
     
     <!-- Loading State -->
     <div v-if="loading" class="loading-state">
@@ -15,31 +26,36 @@
 
     <!-- Main Content -->
     <template v-else>
-      <p>I'm a Computer Science student at Ontario Tech University with a passion for learning new technologies and building innovative projects. My interests include: full-stack software development, AI, and cloud computing.
-        See below and click for more details about my skills, education, and courses I've taken.
-      </p>
-
       <!-- Tab Navigation -->
-    <div class="tab-container">
+    <div class="tab-container" role="tablist" aria-label="Profile details">
       <button 
         v-for="tab in tabs" 
         :key="tab.id"
         @click="activeTab = tab.id"
         :class="['tab-button', { active: activeTab === tab.id }]"
+        role="tab"
+        :aria-selected="activeTab === tab.id"
       >
         {{ tab.label }}
       </button>
     </div>
 
     <!-- Tab Content -->
-    <div class="tab-content">
+    <div class="tab-content" role="tabpanel">
       <!-- Education Tab -->
       <div v-if="activeTab === 'education'" class="tab-panel">
         <h2>Education</h2>
         <div class="education-card">
-          <p><strong>{{ education.degree }}</strong></p>
-          <p>{{ education.institution }}</p>
-          <p>{{ education.duration }} - {{ education.location }}</p>
+          <div class="job-header">
+            <div v-if="education.logo && logoUrl(education.logo)" class="job-logo" aria-hidden="true">
+              <img :src="logoUrl(education.logo)" :alt="`${education.institution} logo`" />
+            </div>
+            <div class="job-header-text">
+              <p><strong>{{ education.degree }}</strong></p>
+              <p>{{ education.institution }}</p>
+              <p>{{ education.duration }} - {{ education.location }}</p>
+            </div>
+          </div>
         </div>
         <h3>Courses I've Taken</h3>
         <div class="courses-grid">
@@ -56,9 +72,16 @@
       <div v-if="activeTab === 'work'" class="tab-panel">
         <h2>Work Experience</h2>
         <div v-for="job in workExperience" :key="job.position" class="job-card">
-          <h3 class="job-title">{{ job.position }}</h3>
-          <p class="company-name">{{ job.company }} - {{ job.location }}</p>
-          <p class="job-duration">{{ job.duration }}</p>
+          <div class="job-header">
+            <div v-if="job.logo && logoUrl(job.logo)" class="job-logo" aria-hidden="true">
+              <img :src="logoUrl(job.logo)" :alt="`${job.company} logo`" />
+            </div>
+            <div class="job-header-text">
+              <h3 class="job-title">{{ job.position }}</h3>
+              <p class="company-name">{{ job.company }} - {{ job.location }}</p>
+              <p class="job-duration">{{ job.duration }}</p>
+            </div>
+          </div>
           <p class="job-description">{{ job.description }}</p>
         </div>
       </div>
@@ -87,6 +110,7 @@
       <!-- Skills Tab -->
       <div v-if="activeTab === 'skills'" class="tab-panel">
         <h2>Skills</h2>
+        <p>Psst.. try clicking on a skill bubble!</p>
         <div class="filter-container">
           <label for="skill-filter">Filter by type:</label>
           <select id="skill-filter" v-model="selectedType" @change="filterSkills">
@@ -120,7 +144,6 @@
           <p>{{ activeCourse.description }}</p>
         </div>
       </div>
-      <p class="p2">{{ bio }}</p>
     </template>
   </div>
 </template>
@@ -130,7 +153,15 @@ import { reactive, ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { apiService } from '../services/api';
 
-const bio = "DJ is experienced in software development, data analysis, cybersecurity, NLP, cloud computing, and system optimization. She is a strong collaborator with a proven track record in research, public speaking, operational improvements, peer mentoring, and delivering impactful projects in fast-paced environments. She is passionate about innovation and driving team success.";
+const logoModules = import.meta.glob('@/assets/*.{png,jpg,jpeg,svg,webp}', { eager: true, query: '?url', import: 'default' });
+const logoIndex = Object.fromEntries(
+  Object.entries(logoModules).map(([key, url]) => [key.split('/').pop(), url])
+);
+function logoUrl(filename) {
+  return logoIndex[filename] || '';
+}
+
+const bio = "I’m focused on software development, AI, cloud computing, and system optimization. I learn best by building, sharing the work, and talking with the people a system is meant to help.";
 
 const education = reactive({ courses: [] });
 const certs = ref([]);
@@ -269,54 +300,76 @@ function filterSkills() {
 
 <style scoped>
 .about-container {
-  max-width: 1120px;
+  max-width: 1160px;
   margin: 0 auto;
-  padding: clamp(34px, 4.8vw, 62px) 16px clamp(40px, 6vw, 72px);
-  text-align: center;
-  color: #eef4ff;
+  padding: clamp(10px, 3vw, 38px) 0 var(--gap);
+  color: var(--body);
 }
 
+.profile-hero {
+  padding: clamp(36px, 5vw, 64px) 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  gap: clamp(36px, 9vw, 140px);
+  align-items: end;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.profile-heading .eyebrow { margin: 0 0 24px; }
+
 h1 {
-  margin: 0 0 clamp(16px, 2.2vw, 24px);
-  font-size: clamp(2rem, 4.2vw, 3.2rem);
-  line-height: 1.08;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-  background: linear-gradient(90deg, #70e2ff, #44bff5);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  max-width: 11ch;
+  margin: 0;
+  font-size: clamp(2.6rem, 4.1vw, 4.4rem);
+  line-height: 0.94;
+  font-weight: 480;
+  letter-spacing: 0;
+  text-wrap: balance;
 }
 
 p {
-  margin: 0 auto 16px;
-  max-width: 860px;
-  font-size: 1.08rem;
+  margin: 0 0 16px;
+  max-width: 64ch;
+  font-size: clamp(1.02rem, 1.2vw, 1.14rem);
   line-height: 1.72;
-  color: rgba(230, 240, 255, 0.92);
+  color: var(--body);
+}
+
+.profile-intro > p:first-child {
+  font-size: clamp(1.08rem, 1.4vw, 1.28rem);
+  line-height: 1.65;
+}
+
+.profile-note {
+  margin-top: 10px;
+  color: var(--accent-bright);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
 }
 
 .p2 {
-  margin-top: 14px;
-  font-size: 0.92rem;
-  color: rgba(214, 228, 255, 0.74);
+  margin-top: 18px;
+  font-size: 0.96rem;
+  color: var(--muted);
 }
 
 h2 {
-  margin: 8px 0 16px;
-  font-size: clamp(1.5rem, 3.2vw, 2.3rem);
-  color: #7ee8ff;
+  margin: 0 0 18px;
+  font-size: clamp(1.45rem, 2.2vw, 1.8rem);
+  font-weight: 480;
+  letter-spacing: 0;
 }
 
 h3 {
-  margin: 18px 0 12px;
-  font-size: 1.45rem;
-  color: #f5f9ff;
+  margin: 22px 0 12px;
+  font-size: 1.3rem;
+  font-weight: 500;
 }
 
 .loading-state,
 .error-state {
-  min-height: 260px;
+  min-height: 240px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -324,85 +377,93 @@ h3 {
 }
 
 .loading-spinner {
-  width: 44px;
-  height: 44px;
+  width: 38px;
+  height: 38px;
   margin-bottom: 14px;
   border-radius: 50%;
-  border: 3px solid rgba(126, 232, 255, 0.22);
-  border-top-color: #7ee8ff;
+  border: 2px solid var(--hairline-strong);
+  border-top-color: var(--accent);
   animation: spin 0.75s linear infinite;
 }
 
 .error-state p {
   max-width: 620px;
   padding: 14px 16px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 118, 118, 0.4);
-  background: rgba(255, 118, 118, 0.1);
-  color: #ffd8d8;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 120, 120, 0.35);
+  background: rgba(255, 120, 120, 0.08);
+  color: #ffc9c9;
 }
 
+/* Tabs — editorial underline row, not a filled pill bar */
 .tab-container {
-  max-width: 720px;
-  margin: 28px auto 24px;
-  padding: 6px;
-  border-radius: 16px;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 4px;
-  background: rgba(22, 29, 65, 0.75);
-  border: 1px solid rgba(130, 168, 255, 0.22);
-  box-shadow: 0 12px 28px rgba(7, 12, 36, 0.34);
+  position: sticky;
+  top: 78px;
+  z-index: 20;
+  margin: 0 0 clamp(38px, 6vw, 68px);
+  padding-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(18px, 3vw, 38px);
+  border-bottom: 1px solid var(--hairline);
+  background: rgba(10, 12, 17, 0.94);
+  backdrop-filter: blur(12px);
 }
 
 .tab-button {
+  position: relative;
   border: 0;
-  border-radius: 12px;
   background: transparent;
-  color: rgba(214, 228, 255, 0.75);
-  font-size: 0.98rem;
-  font-weight: 600;
-  padding: 12px 14px;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0 0 14px;
   cursor: pointer;
-  transition: color 0.2s ease, background-color 0.2s ease;
+  transition: color 0.18s ease;
+}
+
+.tab-button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: var(--accent);
+  transition: transform 0.2s ease;
 }
 
 .tab-button:hover {
-  color: #dff5ff;
-  background: rgba(98, 213, 255, 0.12);
+  color: var(--ink);
 }
 
 .tab-button.active {
-  color: #92f0ff;
-  background: rgba(98, 213, 255, 0.22);
-  box-shadow: inset 0 0 0 1px rgba(126, 232, 255, 0.4);
+  color: var(--ink);
 }
 
-.tab-content {
-  width: 100%;
+.tab-button.active::after {
+  transform: scaleX(1);
 }
 
 .tab-panel {
-  animation: fadeIn 0.28s ease;
+  min-height: 420px;
+  animation: fadeIn 0.3s ease;
 }
 
+/* Cards — flat, hairline, restrained */
 .education-card,
-.job-card,
-.filter-container,
-.course-card,
-.certification-card {
-  border-radius: 18px;
-  border: 1px solid rgba(130, 168, 255, 0.22);
-  background:
-    radial-gradient(circle at 12% 12%, rgba(98, 213, 255, 0.1), transparent 38%),
-    linear-gradient(150deg, rgba(27, 33, 70, 0.86), rgba(17, 22, 52, 0.88));
-  box-shadow: 0 16px 34px rgba(7, 12, 36, 0.3);
-}
-
-.education-card {
-  max-width: 740px;
-  margin: 0 auto 22px;
-  padding: 22px 24px;
+.job-card {
+  max-width: 900px;
+  margin: 0 0 16px;
+  padding: 24px 0 28px;
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid var(--hairline);
+  background: transparent;
 }
 
 .education-card p {
@@ -410,148 +471,179 @@ h3 {
 }
 
 .job-card {
-  max-width: 760px;
-  margin: 0 auto 16px;
-  padding: 20px 22px;
-  text-align: center;
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+
+.job-card:hover {
+  border-color: var(--accent);
+  transform: translateX(6px);
+}
+
+.job-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.job-logo {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  background: #fff;
+  border: 1px solid var(--hairline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.job-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.job-header-text {
+  flex: 1;
+  min-width: 0;
 }
 
 .job-title {
-  margin: 0 0 8px;
-  color: #7ee8ff;
-  font-size: 1.95rem;
+  margin: 0 0 6px;
+  color: var(--ink);
+  font-size: 1.5rem;
+  font-weight: 500;
 }
 
 .company-name {
   margin: 0;
-  color: #eef4ff;
-  font-size: 1.18rem;
+  color: var(--body);
+  font-size: 1.05rem;
 }
 
 .job-duration {
-  margin: 4px 0 10px;
-  color: rgba(214, 228, 255, 0.74);
-  font-style: italic;
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.85rem;
 }
 
 .job-description {
   margin: 0;
-  font-size: 1.03rem;
+  font-size: 1rem;
 }
 
 .filter-container {
   max-width: 760px;
-  margin: 0 auto 20px;
-  padding: 16px 18px;
+  margin: 0 0 22px;
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 12px;
 }
 
 .filter-container label {
-  color: rgba(227, 239, 255, 0.86);
-  font-weight: 600;
+  color: var(--body);
+  font-size: 0.95rem;
 }
 
 .filter-container select {
   min-width: 210px;
   padding: 10px 14px;
-  border-radius: 12px;
-  border: 1px solid rgba(130, 168, 255, 0.35);
-  background: rgba(15, 20, 47, 0.9);
-  color: #eef4ff;
-  font-size: 0.98rem;
+  border-radius: 4px;
+  border: 1px solid var(--hairline-strong);
+  background: var(--bg-2);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 0.95rem;
 }
 
 .filter-container select:focus {
   outline: none;
-  border-color: rgba(126, 232, 255, 0.65);
-  box-shadow: 0 0 0 3px rgba(126, 232, 255, 0.2);
-}
-
-.skills-section,
-.skills-container {
-  width: 100%;
+  border-color: var(--accent);
 }
 
 .skills-container,
 .cert-skills {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 8px;
 }
 
 .skills-container {
-  max-width: 960px;
-  margin: 0 auto 24px;
+  max-width: 880px;
+  margin: 0 0 24px;
 }
 
 .skill-bubble,
 .cert-skills .skill-tag,
 .more-skills {
-  border-radius: 999px;
-  padding: 7px 12px;
-  font-size: 0.84rem;
-  border: 1px solid rgba(126, 232, 255, 0.22);
-  background: rgba(67, 95, 164, 0.48);
-  color: #e5f3ff;
+  border-radius: 4px;
+  padding: 6px 11px;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  border: 1px solid var(--hairline);
+  background: var(--surface);
+  color: var(--body);
 }
 
 .skill-bubble {
   cursor: pointer;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: color 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
 }
 
 .skill-bubble:hover,
 .cert-skills .skill-tag:hover {
-  transform: translateY(-1px);
-  border-color: rgba(126, 232, 255, 0.52);
+  border-color: var(--accent);
+  color: var(--accent-bright);
+  background: var(--accent-dim);
 }
 
-.courses-grid {
-  max-width: 960px;
-  margin: 0 auto 18px;
+.courses-grid,
+.certifications-grid {
+  max-width: 1050px;
+  margin: 0 0 18px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
 }
 
-.course-card {
-  padding: 12px;
+.course-card,
+.certification-card {
+  padding: 16px 0;
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid var(--hairline);
+  background: transparent;
+  transition: border-color 0.18s ease;
 }
 
-.course-header {
-  display: flex;
-  align-items: center;
+.course-card:hover,
+.certification-card:hover {
+  border-color: var(--hairline-strong);
+}
+
+.certification-card {
+  text-align: left;
 }
 
 .course-name {
   margin: 0;
-  width: 100%;
-  color: #90efff;
-  font-size: 0.93rem;
-  line-height: 1.32;
+  color: var(--accent-bright);
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.34;
   cursor: pointer;
-  transition: color 0.2s ease;
+  transition: color 0.18s ease;
 }
 
 .course-name:hover {
-  color: #d6f8ff;
-}
-
-.certifications-grid {
-  max-width: 960px;
-  margin: 0 auto 22px;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.certification-card {
-  padding: 14px;
-  text-align: left;
+  color: #a9cdff;
 }
 
 .cert-header {
@@ -564,20 +656,26 @@ h3 {
 
 .cert-name {
   margin: 0;
-  color: #90efff;
+  color: var(--ink);
+  font-family: var(--sans);
   font-size: 0.94rem;
+  font-weight: 500;
   line-height: 1.3;
 }
 
 .cert-link {
-  color: rgba(214, 228, 255, 0.66);
-  text-decoration: none;
+  color: var(--muted);
 }
 
 .cert-link:hover {
-  color: #c8f8ff;
+  color: var(--accent-bright);
 }
 
+.more-skills {
+  color: var(--accent-bright);
+}
+
+/* Popup */
 .popup-overlay {
   position: fixed;
   inset: 0;
@@ -586,72 +684,65 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(6, 8, 22, 0.74);
-  backdrop-filter: blur(8px);
+  background: rgba(4, 5, 8, 0.78);
+  backdrop-filter: blur(6px);
 }
 
 .popup-content {
   position: relative;
-  width: min(760px, 100%);
-  max-height: min(82vh, 760px);
+  width: min(720px, 100%);
+  max-height: min(82vh, 720px);
   overflow-y: auto;
-  border-radius: 18px;
-  padding: 24px;
+  border-radius: 8px;
+  padding: 28px;
   text-align: left;
-  border: 1px solid rgba(130, 168, 255, 0.24);
-  background: linear-gradient(150deg, rgba(27, 33, 70, 0.98), rgba(17, 22, 52, 0.98));
-  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.45);
+  border: 1px solid var(--hairline-strong);
+  background: var(--surface);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
 }
 
 .popup-content h3 {
-  margin: 0 0 8px;
-  color: #7ee8ff;
+  margin: 0 0 10px;
+  color: var(--ink);
+  font-size: 1.4rem;
 }
 
 .popup-content p {
   margin: 0;
-  color: rgba(230, 240, 255, 0.92);
+  color: var(--body);
 }
 
 .close-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 32px;
-  height: 32px;
-  border: 0;
-  border-radius: 999px;
-  background: rgba(126, 232, 255, 0.16);
-  color: #d7f9ff;
-  font-size: 1.3rem;
+  top: 12px;
+  right: 12px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  background: var(--surface-2);
+  color: var(--ink);
+  font-size: 1.2rem;
   line-height: 1;
   cursor: pointer;
+  transition: border-color 0.18s ease, color 0.18s ease;
 }
 
-.no-scroll {
-  overflow: hidden;
+.close-button:hover {
+  border-color: var(--accent);
+  color: var(--accent-bright);
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
+@keyframes spin { to { transform: rotate(360deg); } }
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
 }
 
-@media (max-width: 960px) {
-  .tab-container {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+@media (max-width: 860px) {
+  .profile-hero {
+    min-height: auto;
+    grid-template-columns: 1fr;
   }
 
   .courses-grid,
@@ -660,43 +751,19 @@ h3 {
   }
 }
 
-@media (max-width: 700px) {
-  .about-container {
-    padding: 24px 10px 36px;
-  }
-
-  p {
-    font-size: 1rem;
-  }
-
+@media (max-width: 600px) {
+  .profile-hero { padding-top: 18px; }
   .tab-container {
-    grid-template-columns: 1fr;
+    top: 78px;
+    gap: 18px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
   }
-
-  .tab-button {
-    font-size: 0.92rem;
-  }
-
+  .tab-button { flex: 0 0 auto; }
   .courses-grid,
-  .certifications-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .filter-container {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .filter-container select {
-    width: 100%;
-  }
-
-  .job-title {
-    font-size: 1.7rem;
-  }
-
-  .company-name {
-    font-size: 1.05rem;
-  }
+  .certifications-grid { grid-template-columns: 1fr; }
+  .filter-container { flex-direction: column; align-items: stretch; }
+  .filter-container select { width: 100%; }
 }
 </style>
+

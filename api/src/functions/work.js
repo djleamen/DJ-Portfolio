@@ -24,7 +24,7 @@ app.http('GetWork', {
                 
                 // Within same type, sort by start date (most recent first)
                 const getYear = (duration) => {
-                    const match = duration.match(/(\w+) (\d{4})/);
+                    const match = duration.match(/([A-Za-z]{1,9}) (\d{4})/);
                     if (!match) return 0;
                     const month = match[1];
                     const year = parseInt(match[2]);

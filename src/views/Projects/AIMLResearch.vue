@@ -12,19 +12,19 @@
     <p>
         Throughout the program, I acquired a solid foundation in AI & ML principles and techniques,
         including:
-      <ul>
-        <li>Explored foundational concepts of AI & ML, including supervised and unsupervised 
+    </p>
+    <ul>
+        <li>Explored foundational concepts of AI & ML, including supervised and unsupervised
             learning, neural networks, and deep learning.</li>
-        <li>Gained proficiency in Python programming for AI & ML applications, utilizing 
+        <li>Gained proficiency in Python programming for AI & ML applications, utilizing
             libraries such as TensorFlow, Keras, and Scikit-learn.</li>
-        <li>Learned to preprocess and analyze data effectively, implementing techniques 
+        <li>Learned to preprocess and analyze data effectively, implementing techniques
             for data cleaning, feature engineering, and visualization.</li>
-        <li>Developed skills in building, training, and evaluating machine learning models, 
+        <li>Developed skills in building, training, and evaluating machine learning models,
             focusing on performance optimization and hyperparameter tuning.</li>
-        <li>Acquired knowledge in deploying AI & ML models to production environments 
+        <li>Acquired knowledge in deploying AI & ML models to production environments
             using cloud services like Microsoft Azure.</li>
-      </ul> 
-      </p>
+    </ul>
 
       <h2>Capstone Project</h2>
     <p>
@@ -41,14 +41,12 @@
     <h2>Links</h2>
     <p>View my certificate here: <a href="https://coursera.org/share/6e2db80cea5ea0fb7f416fec2f65b79a" target="_blank" rel="noopener noreferrer">Microsoft AI & ML Engineering Professional Certificate</a></p>
 
-    <p>
-        View my GitHub repositories for projects completed during the certificate here:
-        <ul>
-          <li><a href="https://github.com/djleamen/ml_project" target="_blank" rel="noopener noreferrer">AI and Machine Learning Algorithms and Techniques</a></li>
-          <li><a href="https://github.com/djleamen/troubleshoot-agent" target="_blank" rel="noopener noreferrer">Building Intelligent Troubleshooting Agents</a></li>
-          <li><a href="https://github.com/djleamen/azure-for-ai-ml" target="_blank" rel="noopener noreferrer">Microsoft Azure for AI and Machine Learning</a></li>
-        </ul>
-    </p>
+    <p>View my GitHub repositories for projects completed during the certificate here:</p>
+    <ul>
+        <li><a href="https://github.com/djleamen/ml_project" target="_blank" rel="noopener noreferrer">AI and Machine Learning Algorithms and Techniques</a></li>
+        <li><a href="https://github.com/djleamen/troubleshoot-agent" target="_blank" rel="noopener noreferrer">Building Intelligent Troubleshooting Agents</a></li>
+        <li><a href="https://github.com/djleamen/azure-for-ai-ml" target="_blank" rel="noopener noreferrer">Microsoft Azure for AI and Machine Learning</a></li>
+    </ul>
     
     <h2>Skills Developed</h2>
     <div class="skills-container">
