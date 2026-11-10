@@ -1,8 +1,8 @@
 ## DJ Leamen's Personal Portfolio
 
 ![Status](https://img.shields.io/badge/status-online-brightgreen?style=flat-square)
-![GitHub last commit](https://img.shields.io/github/last-commit/djleamen/portfolio?style=flat-square)
-![GitHub license](https://img.shields.io/github/license/djleamen/portfolio?style=flat-square)
+![GitHub last commit](https://img.shields.io/github/last-commit/djleamen/DJ-Portfolio?style=flat-square)
+![GitHub license](https://img.shields.io/github/license/djleamen/DJ-Portfolio?style=flat-square)
 ![Vue.js](https://img.shields.io/badge/built%20with-Vue.js-42b883?logo=vue.js&logoColor=white&style=flat-square)
 ![Deployed on Azure](https://img.shields.io/badge/deployed%20on-Azure-0078D4?logo=microsoft-azure&logoColor=white&style=flat-square)
 
