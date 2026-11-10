@@ -70,8 +70,7 @@
     </p>
 
     <h2>Limitations and Recommendations</h2>
-    <p>
-        <ul>
+    <ul>
         <li>Class imbalance: Even after SMOTE, models may still under-predict strokes 
             in the real world. A lower classification threshold (e.g., 0.3 instead of 0.5) 
             could improve sensitivity at the cost of specificity.</li>
@@ -79,15 +78,12 @@
         <li>Causality: This is a predictive model, not a causal one. Feature importance reflects predictive correlation, not clinical causation.</li>
         <li>External validation: The model should be validated on an independent, prospective dataset before clinical deployment.</li>
         <li>Next steps: Consider integrating additional clinical features (e.g., LDL cholesterol, family history), and calibrate the model’s probability outputs for clinical use.</li>
-        </ul>
-    </p>
-    <p>
-        View it on RPubs or GitHub:
-        <ul>
+    </ul>
+    <p>View it on RPubs or GitHub:</p>
+    <ul>
             <li><a href="https://rpubs.com/djleamen/stroke-prediction" target="_blank" rel="noopener noreferrer">Build and deploy a stroke prediction model using R</a></li>
           <li><a href="https://github.com/djleamen/stroke-prediction" target="_blank" rel="noopener noreferrer">Social Media Performance Analysis</a></li>
-        </ul>
-    </p>
+    </ul>
     
     <h2>Skills Developed</h2>
     <div class="skills-container">

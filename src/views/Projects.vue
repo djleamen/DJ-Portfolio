@@ -1,22 +1,24 @@
 <template>
   <div class="projects-container">
     <div v-if="selectedSkill" class="back-row">
-      <button @click="goBack" class="back-btn" aria-label="Back to About">
-        <i class="fas fa-arrow-left"></i> Back to About
+      <button @click="goBack" class="back-btn chip bevel" aria-label="Back to About">
+        <span aria-hidden="true">←</span> Back to About
       </button>
     </div>
-    <header class="work-header">
-      <p class="eyebrow">Work / 03</p>
+    <header class="page-head">
+      <div class="section-marker">
+        <span class="title-plate bevel">03</span>
+        <p class="eyebrow">Work</p>
+      </div>
       <h1>{{ headerTitle }}</h1>
-      <p v-if="!selectedSkill" class="work-intro">
+      <p v-if="!selectedSkill" class="page-intro">
         Products, prototypes, research, and experiments across intelligent systems,
         cloud infrastructure, and full-stack engineering.
       </p>
     </header>
     
     <div v-if="loading" class="loading-state">
-      <div class="loading-spinner"></div>
-      <p>Loading projects...</p>
+      <p>Loading projects</p>
     </div>
     <div v-else-if="error" class="error-state">
       <p>{{ error }}</p>
@@ -29,19 +31,19 @@
           type="text" 
           v-model="searchQuery" 
           placeholder="Search projects..." 
-          class="search-input" 
+          class="search-input field bevel" 
           aria-label="Search projects"
         />
         <button v-if="searchQuery" @click="searchQuery = ''" class="clear-btn" aria-label="Clear search">
           <i class="fas fa-times"></i>
         </button>
       </div>
-      <select v-model="sortOption" class="sort-select" aria-label="Sort projects">
+      <span class="select-wrap"><select v-model="sortOption" class="sort-select field bevel" aria-label="Sort projects">
         <option value="newest">Newest First</option>
         <option value="oldest">Oldest First</option>
         <option value="az">A-Z</option>
         <option value="za">Z-A</option>
-      </select>
+      </select></span>
     </div>
     
     <div v-if="!loading && !error && filteredProjects.length > 0" class="result-count">
@@ -49,7 +51,7 @@
       <span>Case study / source</span>
     </div>
 
-    <transition-group name="fade" tag="div" class="project-list" v-if="filteredProjects.length > 0">
+    <transition-group name="fade" tag="div" class="project-list bevel panel" v-if="filteredProjects.length > 0">
       <article
         v-for="(project, index) in displayedProjects"
         :key="project.id"
@@ -65,24 +67,22 @@
           <p>{{ truncatedDescription(project.description) }}</p>
         </div>
         <div class="project-tags">
-          <span v-for="tag in project.tags.slice(0, 4)" :key="tag" class="project-tag">{{ tag }}</span>
+          <span v-for="tag in project.tags.slice(0, 4)" :key="tag" class="project-tag chip bevel">{{ tag }}</span>
           <span v-if="project.tags.length > 4" class="more-tags">+{{ project.tags.length - 4 }}</span>
         </div>
         <div class="project-actions">
-          <span class="case-study">Case study →</span>
+          <span class="case-study">Case study <span aria-hidden="true">→</span></span>
           <a :href="project.link" target="_blank" rel="noopener noreferrer" @click.stop>
-            Source ↗
+            Source <span aria-hidden="true">↗</span>
           </a>
         </div>
       </article>
     </transition-group>
     
-    <div v-if="filteredProjects.length === 0 && selectedSkill" class="empty-state">
-      <div class="empty-icon">
-        <i class="fas fa-search"></i>
-      </div>
+    <div v-if="!loading && !error && filteredProjects.length === 0" class="empty-state bevel panel">
       <h3>No projects found</h3>
-      <p>No projects use {{ selectedSkill }} yet.</p>
+      <p v-if="!selectedSkill">Nothing matches “{{ searchQuery }}”. Try a shorter search.</p>
+      <p v-else>No projects use {{ selectedSkill }} yet.</p>
     </div>
 
     <div v-if="selectedSkill" class="related-content">
@@ -91,7 +91,7 @@
         <div class="work-container">
           <transition-group name="list" tag="div" class="bubble-container">
             <div v-for="position in filteredWorkPositions" :key="`${position.position}-${position.company}`" 
-                 class="work-position-card">
+                 class="work-position-card bevel">
               <h3>{{ position.position }}</h3>
               <p class="company">{{ position.company }}</p>
               <p class="duration">{{ position.duration }}</p>
@@ -105,7 +105,7 @@
         <h2>Courses using {{ selectedSkill }}</h2>
         <div class="courses-container">
           <transition-group name="list" tag="div" class="bubble-container">
-            <div v-for="course in filteredCourses" :key="course.name" class="skill-bubble course-bubble" @click="openCoursePopup(course)">{{ course.name }}</div>
+            <button v-for="course in filteredCourses" :key="course.name" type="button" class="skill-bubble course-bubble chip bevel" @click="openCoursePopup(course)">{{ course.name }}</button>
           </transition-group>
         </div>
       </div>
@@ -115,7 +115,7 @@
         <div class="certs-container">
           <transition-group name="list" tag="div" class="bubble-container">
             <a v-for="cert in filteredCerts" :key="cert.name" :href="cert.link" target="_blank" rel="noopener noreferrer" 
-               class="skill-bubble cert-bubble">
+               class="skill-bubble cert-bubble chip bevel">
               {{ cert.name }}
             </a>
           </transition-group>
@@ -126,8 +126,8 @@
     <!-- Move popup outside the container to avoid positioning constraints -->
     <teleport to="body">
       <div v-if="activeCourse" class="popup-overlay" @click="closeCoursePopup">
-        <div class="popup-content" @click.stop>
-          <button class="close-button" @click="closeCoursePopup">&times;</button>
+        <div class="popup-content bevel" role="dialog" aria-modal="true" @click.stop>
+          <button class="close-button bevel" type="button" aria-label="Close course details" @click="closeCoursePopup">&times;</button>
           <h3>{{ activeCourse.name }}</h3>
           <p>{{ activeCourse.description || 'No description available' }}</p>
         </div>
@@ -353,108 +353,88 @@ export default {
 
 <style scoped>
 .projects-container {
-  max-width: 1180px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: clamp(6px, 1.5vw, 18px) 0 var(--gap);
+  padding: 0 0 var(--gap);
   color: var(--body);
 }
+
+.section-marker {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.page-head {
+  padding: clamp(14px, 2.4vw, 28px) 0 clamp(26px, 3.6vw, 40px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.7fr);
+  gap: 18px clamp(32px, 7vw, 96px);
+  align-items: end;
+}
+
+.page-head .section-marker { grid-column: 1 / -1; }
 
 h1 {
-  max-width: 12ch;
+  max-width: 16ch;
   margin: 0;
-  font-size: clamp(2.6rem, 4.1vw, 4.4rem);
-  line-height: 1;
-  font-weight: 480;
-  letter-spacing: 0;
+  font-size: clamp(3.3rem, 6.4vw, 6.2rem);
+  line-height: 0.9;
+  text-wrap: balance;
 }
 
-.work-header {
-  padding: clamp(28px, 4vw, 48px) 0 clamp(32px, 4.5vw, 54px);
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.72fr);
-  gap: 18px clamp(48px, 9vw, 132px);
-  align-items: end;
-  border-bottom: 1px solid var(--hairline);
-}
-
-.work-header > .eyebrow {
-  grid-column: 1 / -1;
-  margin: 0;
-}
-
-.work-intro {
+.page-intro {
   max-width: 46ch;
-  margin: 0 0 2px;
+  margin: 0 0 6px;
   color: var(--body);
-  font-size: clamp(1.02rem, 1.25vw, 1.18rem);
-  line-height: 1.62;
+  font-size: clamp(1.04rem, 1.25vw, 1.18rem);
+  line-height: 1.6;
 }
 
 .back-row {
-  margin-bottom: 18px;
-}
-
-.back-btn {
-  border: 1px solid var(--hairline-strong);
-  background: transparent;
-  color: var(--accent-bright);
-  font-family: var(--mono);
-  font-size: 0.82rem;
-  border-radius: 4px;
-  padding: 8px 14px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
-}
-
-.back-btn:hover {
-  background: var(--surface);
-  border-color: var(--accent);
-  transform: translateX(-2px);
+  margin: 8px 0 6px;
 }
 
 /* Search + sort */
 .filter-container {
-  margin: 0;
-  padding: 24px 0;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 190px;
-  gap: 12px;
-  border-bottom: 1px solid var(--hairline);
+  grid-template-columns: minmax(0, 1fr) 200px;
+  gap: 8px;
 }
 
-.search-box { position: relative; }
+.search-box,
+.select-wrap { position: relative; }
 
 .search-icon {
   position: absolute;
+  z-index: 1;
   top: 50%;
-  left: 14px;
+  left: 16px;
   transform: translateY(-50%);
   color: var(--muted);
-  font-size: 0.85rem;
+  font-size: 0.86rem;
+  pointer-events: none;
 }
 
-.search-input,
+.search-input { padding-left: 42px; padding-right: 40px; }
+
 .sort-select {
-  width: 100%;
-  padding: 12px 14px;
-  border-radius: 4px;
-  border: 1px solid var(--hairline-strong);
-  background: transparent;
-  color: var(--ink);
-  font-family: var(--sans);
-  font-size: 0.95rem;
+  appearance: none;
+  padding-right: 40px;
+  cursor: pointer;
 }
 
-.search-input { padding-left: 40px; padding-right: 36px; }
-.search-input::placeholder { color: var(--muted); }
-
-.search-input:focus,
-.sort-select:focus {
-  outline: none;
-  border-color: var(--accent);
+.select-wrap::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  width: 8px;
+  height: 8px;
+  border: solid var(--body);
+  border-width: 0 1.5px 1.5px 0;
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
 }
 
 .clear-btn {
@@ -462,160 +442,132 @@ h1 {
   top: 50%;
   right: 8px;
   transform: translateY(-50%);
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border: 0;
-  border-radius: 4px;
   background: transparent;
   color: var(--muted);
   cursor: pointer;
 }
 
-.clear-btn:hover { color: var(--accent-bright); background: var(--surface); }
-
-.loading-state,
-.error-state {
-  min-height: 240px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.loading-spinner {
-  width: 38px;
-  height: 38px;
-  margin-bottom: 12px;
-  border-radius: 50%;
-  border: 2px solid var(--hairline-strong);
-  border-top-color: var(--accent);
-  animation: spin 0.75s linear infinite;
-}
-
-.error-state p {
-  max-width: 620px;
-  padding: 14px 16px;
-  border-radius: 6px;
-  border: 1px solid rgba(255, 120, 120, 0.35);
-  background: rgba(255, 120, 120, 0.08);
-  color: #ffc9c9;
-}
+.clear-btn:hover { color: var(--accent); }
 
 .result-count {
-  padding: 18px 0;
+  padding: 22px 2px 10px;
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  color: var(--muted);
+  color: var(--body);
   font-family: var(--mono);
-  font-size: 0.66rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .project-list {
-  border-top: 1px solid var(--hairline);
+  padding-block: 6px;
 }
 
 .project-card {
-  position: relative;
   text-align: left;
-  min-height: 190px;
-  padding: 28px 10px;
+  padding: 24px 0;
   display: grid;
-  grid-template-columns: 48px minmax(240px, 1.2fr) minmax(200px, 0.8fr) 118px;
-  gap: clamp(16px, 3vw, 42px);
+  grid-template-columns: 40px minmax(240px, 1.15fr) minmax(200px, 0.85fr) 110px;
+  gap: clamp(14px, 2.4vw, 32px);
   align-items: start;
   border-bottom: 1px solid var(--hairline);
-  background: transparent;
   cursor: pointer;
-  transition: background-color 0.25s ease, padding-left 0.25s var(--ease-out);
 }
 
-.project-card:hover {
-  background: var(--accent-faint);
-  padding-left: 18px;
-}
+.project-card:last-child { border-bottom: 0; }
 
 .project-index {
+  padding-top: 7px;
   color: var(--accent);
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: 0.8rem;
+  font-weight: 500;
 }
 
 .project-main h2 {
-  margin: 0 0 12px;
-  color: var(--ink);
-  font-size: clamp(1.6rem, 2.2vw, 2.2rem);
-  font-weight: 480;
+  margin: 0 0 8px;
+  font-size: clamp(1.9rem, 2.6vw, 2.3rem);
   line-height: 1;
-  letter-spacing: 0;
-  transition: color 0.18s ease;
+  transition: color 0.15s ease;
 }
 
-.project-card:hover h2 { color: var(--accent-bright); }
+.project-card:hover h2,
+.project-card:focus-visible h2 { color: var(--accent); }
 
 .project-main p {
   margin: 0;
   max-width: 55ch;
-  color: var(--muted);
-  line-height: 1.62;
+  color: var(--body);
+  line-height: 1.55;
 }
 
 .project-tags {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 6px;
-  margin: 2px 0 0;
+  padding-top: 4px;
 }
 
-.project-tag,
+.project-tags .chip {
+  min-height: 28px;
+  padding: 4px 11px;
+  font-size: 0.86rem;
+}
+
 .more-tags {
-  border-radius: 4px;
-  padding: 0;
+  padding-left: 4px;
+  color: var(--body);
   font-family: var(--mono);
-  font-size: 0.68rem;
-  border: 0;
-  background: transparent;
-  color: var(--muted);
-  text-transform: uppercase;
+  font-size: 0.8rem;
 }
-
-.more-tags { color: var(--accent-bright); border-color: var(--accent-dim); }
 
 .project-actions {
+  padding-top: 7px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 12px;
+  gap: 10px;
   white-space: nowrap;
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: 0.8rem;
+  font-weight: 500;
 }
 
-.case-study,
-.project-actions a {
-  color: var(--accent-bright);
-}
+.case-study { color: var(--ink); }
+.case-study span { color: var(--accent); }
+.project-actions a { color: var(--body); }
+.project-actions a:hover { color: var(--accent); }
 
 .empty-state {
-  padding: 40px 12px;
-  color: var(--muted);
+  margin-top: 12px;
 }
 
-.empty-icon { font-size: 2rem; margin-bottom: 8px; }
+.empty-state h3 {
+  margin: 0 0 6px;
+  font-size: 1.9rem;
+  line-height: 1;
+}
 
-.related-content { margin-top: 30px; }
+.empty-state p { margin: 0; }
+
+.related-content { margin-top: 34px; }
 
 .related-content h2 {
-  margin: 0 0 16px;
-  font-size: clamp(1.35rem, 2vw, 1.7rem);
-  font-weight: 480;
-  letter-spacing: -0.02em;
+  margin: 0 0 14px;
+  font-size: 1.9rem;
+  line-height: 1;
 }
 
 .work-container,
 .courses-container,
-.certs-container { margin-bottom: 26px; }
+.certs-container { margin-bottom: 30px; }
 
 .bubble-container {
   display: flex;
@@ -623,109 +575,35 @@ h1 {
   gap: 8px;
 }
 
-.skill-bubble {
-  border-radius: 4px;
-  padding: 6px 11px;
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  border: 1px solid var(--hairline);
-  background: var(--surface);
-  color: var(--body);
-  text-decoration: none;
-  transition: color 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
-}
-
-.course-bubble {
-  cursor: pointer;
-  color: var(--accent-bright);
-  border-color: var(--accent-dim);
-}
-
-.cert-bubble:hover,
-.course-bubble:hover {
-  border-color: var(--accent);
-  color: var(--accent-bright);
-  background: var(--accent-dim);
-}
-
 .work-position-card {
+  --cut: 10px;
   width: min(360px, 100%);
   text-align: left;
-  border-radius: 6px;
-  border: 1px solid var(--hairline);
-  background: var(--surface);
-  padding: 18px 18px;
+  padding: 18px 20px;
 }
 
 .work-position-card h3 {
   margin: 0 0 6px;
-  color: var(--ink);
-  font-size: 1.15rem;
-  font-weight: 500;
-}
-
-.work-position-card .company,
-.work-position-card .duration,
-.work-position-card .location {
-  margin: 2px 0;
-  font-size: 0.9rem;
-}
-
-.work-position-card .duration { color: var(--muted); font-family: var(--mono); }
-.work-position-card .location { color: var(--muted); }
-
-/* Popup */
-.popup-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  padding: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(4, 5, 8, 0.78);
-  backdrop-filter: blur(6px);
-}
-
-.popup-content {
-  position: relative;
-  width: min(720px, 100%);
-  max-height: min(82vh, 720px);
-  overflow-y: auto;
-  border-radius: 8px;
-  padding: 28px;
-  text-align: left;
-  border: 1px solid var(--hairline-strong);
-  background: var(--surface);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
-}
-
-.popup-content h3 { margin: 0 0 10px; color: var(--ink); font-size: 1.4rem; }
-.popup-content p { margin: 0; color: var(--body); }
-
-.close-button {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 30px;
-  height: 30px;
-  border: 1px solid var(--hairline);
-  border-radius: 4px;
-  background: var(--surface-2);
-  color: var(--ink);
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   line-height: 1;
-  cursor: pointer;
-  transition: border-color 0.18s ease, color 0.18s ease;
 }
 
-.close-button:hover { border-color: var(--accent); color: var(--accent-bright); }
+.work-position-card p {
+  margin: 2px 0;
+  font-size: 0.96rem;
+}
 
-@keyframes spin { to { transform: rotate(360deg); } }
+.work-position-card .company { color: var(--ink); font-weight: 500; }
+.work-position-card .duration { font-family: var(--mono); font-size: 0.86rem; }
+
+.fade-enter-active,
+.fade-leave-active { transition: opacity 0.2s ease; }
+.fade-enter-from,
+.fade-leave-to { opacity: 0; }
 
 @media (max-width: 980px) {
   .project-card {
-    grid-template-columns: 36px minmax(0, 1fr) 110px;
+    grid-template-columns: 34px minmax(0, 1fr) 110px;
   }
 
   .project-tags { grid-column: 2; }
@@ -733,24 +611,15 @@ h1 {
 }
 
 @media (max-width: 640px) {
+  .page-head { grid-template-columns: 1fr; }
   .filter-container { grid-template-columns: 1fr; }
-  .work-header {
-    grid-template-columns: 1fr;
-    gap: 14px;
-    padding: 24px 0 34px;
-  }
-  .work-header > .eyebrow { grid-column: 1; margin-bottom: 4px; }
-  h1 { font-size: clamp(2.35rem, 12vw, 3rem); }
-  .work-intro { max-width: 38ch; margin-top: 4px; }
   .project-card {
-    min-height: 0;
     grid-template-columns: 28px minmax(0, 1fr);
-    padding: 24px 4px;
+    padding: 20px 0;
   }
   .project-main,
   .project-tags,
   .project-actions { grid-column: 2; }
-  .project-actions { grid-row: auto; align-items: flex-start; flex-direction: row; }
+  .project-actions { grid-row: auto; align-items: flex-start; flex-direction: row; gap: 18px; }
 }
 </style>
-

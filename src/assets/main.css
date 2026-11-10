@@ -1,42 +1,86 @@
 :root {
-  /* Palette */
-  --bg: #0a0c11;
-  --bg-2: #0e1117;
-  --surface: #12151d;
-  --surface-2: #161a23;
-  --hairline: rgba(233, 238, 248, 0.09);
-  --hairline-strong: rgba(233, 238, 248, 0.18);
+  color-scheme: light dark;
 
-  --ink: #f4f6fa;            /* headings */
-  --body: #c6ccd6;           /* body copy — real contrast, not muted-to-death */
-  --muted: #878fa0;          /* meta / captions */
+  /* Surfaces */
+  --bg: #e8ebed;              /* surface */
+  --bg-2: #f0f3f4;            /* surfaceContainer */
+  --surface: #f7f8f9;         /* surfaceContainerLow — panel fill */
+  --surface-2: #e0e5e8;       /* surfaceContainerHigh — plates */
+  --surface-3: #cfd7dc;       /* surfaceContainerHighest */
+  --hairline: #a8b5bd;        /* outlineVariant */
+  --hairline-strong: #637580; /* outline */
 
-  --accent: #4f9dff;         /* gem-blue signature */
-  --accent-bright: #82b6ff;  /* links / hover on dark */
-  --accent-dim: rgba(79, 157, 255, 0.14);
-  --accent-faint: rgba(79, 157, 255, 0.06);
+  /* Text */
+  --ink: #14191c;             /* onSurface */
+  --body: #45535c;            /* onSurfaceVariant */
+  --muted: #566670;
+
+  /* Accent (tertiary) */
+  --accent: #245e68;
+  --accent-bright: #163c44;
+  --accent-dim: #d3edf0;
+  --accent-faint: rgba(36, 94, 104, 0.06);
+
+  /* Filled + tonal plates */
+  --fill: #28363e;            /* primary */
+  --on-fill: #ffffff;
+  --fill-hover: #162c36;
+  --tonal: #dbe2e6;           /* secondaryContainer */
+  --on-tonal: #27363e;
+
+  --danger: #ba1a1a;
+  --danger-dim: #ffdad6;
+  --scrim: rgba(20, 25, 28, 0.55);
+  --metal: linear-gradient(135deg, #637580, #14191c 42%, #a8b5bd 52%, #28363e);
 
   /* Type */
-  --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
-  --sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --display: 'Barlow Condensed', 'Arial Narrow', 'Roboto Condensed', sans-serif;
+  --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --serif: var(--display); /* legacy alias */
 
   /* Layout */
-  --page-width: 1320px;
-  --page-gutter: clamp(20px, 4vw, 56px);
-  --gap: clamp(52px, 7vw, 104px);
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --page-width: 1240px;
+  --page-gutter: clamp(16px, 4vw, 48px);
+  --gap: clamp(44px, 6vw, 84px);
+  --pad: clamp(20px, 3vw, 32px);
+  --nav-h: 68px;
+  --ease-out: cubic-bezier(0.05, 0.7, 0.1, 1);
 
-  /* Legacy aliases still referenced by some components */
-  --primary: var(--accent);
-  --primary-hover: var(--accent-bright);
-  --surface-strong: var(--surface-2);
-  --text-light: var(--ink);
-  --text-muted: var(--muted);
-  --text-dark: #0a0c11;
-  --border-radius: 6px;
-  --border-color: var(--hairline);
-  --box-shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
+  /* The lance ornament, as a mask */
+  --lance: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-100 -100 200 200'%3E%3Cpath d='M0 -100C4 -35 7 -12 15 -15L48 -48L22 -8C35 -4 62 -2 100 0C62 2 35 4 22 8L48 48L15 15C7 12 4 35 0 100C-4 35 -7 12 -15 15L-48 48L-22 8C-35 4 -62 2 -100 0C-62 -2 -35 -4 -22 -8L-48 -48L-15 -15C-7 -12 -4 -35 0 -100Z'/%3E%3C/svg%3E");
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #090b0d;
+    --bg-2: #14181b;
+    --surface: #101316;
+    --surface-2: #1b2024;
+    --surface-3: #262c31;
+    --hairline: #3d4951;
+    --hairline-strong: #7a8993;
+
+    --ink: #f0f3f5;
+    --body: #b1bdc5;
+    --muted: #8d9aa3;
+
+    --accent: #a5e3eb;
+    --accent-bright: #c6f2f6;
+    --accent-dim: #19363e;
+    --accent-faint: rgba(165, 227, 235, 0.05);
+
+    --fill: #dce4e8;
+    --on-fill: #101619;
+    --fill-hover: #ffffff;
+    --tonal: #232b30;
+    --on-tonal: #d9e3e8;
+
+    --danger: #ffb4ab;
+    --danger-dim: #3a1512;
+    --scrim: rgba(0, 0, 0, 0.7);
+    --metal: linear-gradient(135deg, #7a8993, #f0f3f5 42%, #3d4951 52%, #dce4e8);
+  }
 }
 
 *,
@@ -54,31 +98,16 @@ body,
 }
 
 html {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 body {
-  position: relative;
   color: var(--body);
   font-family: var(--sans);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background:
-    linear-gradient(122deg, transparent 0 58%, var(--accent-faint) 77%, transparent 92%),
-    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 46%, var(--bg) 100%);
-  background-attachment: fixed;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: linear-gradient(90deg, transparent 0 7%, var(--hairline) 7% calc(7% + 1px), transparent calc(7% + 1px));
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
-  mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+  background: var(--bg);
 }
 
 #app {
@@ -90,20 +119,25 @@ body.no-scroll {
 }
 
 h1, h2, h3, h4 {
-  font-family: var(--serif);
+  font-family: var(--display);
   color: var(--ink);
-  font-weight: 500;
-  font-variation-settings: "opsz" 144;
+  font-weight: 700;
   letter-spacing: 0;
 }
 
+h1 em,
+h2 em {
+  font-style: normal;
+  color: var(--accent);
+}
+
 a {
-  color: var(--accent-bright);
+  color: var(--accent);
   text-decoration: none;
 }
 
 a:hover {
-  color: #a9cdff;
+  color: var(--accent-bright);
 }
 
 button,
@@ -114,8 +148,8 @@ textarea {
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent-bright);
-  outline-offset: 4px;
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 button:focus:not(:focus-visible),
@@ -124,18 +158,316 @@ a:focus:not(:focus-visible) {
 }
 
 ::selection {
-  background: rgba(79, 157, 255, 0.3);
-  color: #ffffff;
+  background: var(--accent-dim);
+  color: var(--ink);
 }
 
-/* Small mono eyebrow used as a section index — editorial, used sparingly */
+/* ---------- Plate geometry ----------
+ * A rectangle with the top-left and bottom-right corners cut, 1px stroke.
+ * The diagonal strokes are painted as corner gradients so no pseudo-element
+ * is needed (which keeps this usable on scroll containers and inputs).
+ */
+.bevel {
+  --cut: 12px;
+  --stroke: var(--hairline);
+  --plate: var(--surface);
+  border: 1px solid var(--stroke);
+  border-radius: 0;
+  background:
+    linear-gradient(to bottom right, transparent 50%, var(--stroke) 50% calc(50% + 1px), transparent calc(50% + 1px)) top left / var(--cut) var(--cut) no-repeat border-box,
+    linear-gradient(to top left, transparent 50%, var(--stroke) 50% calc(50% + 1px), transparent calc(50% + 1px)) bottom right / var(--cut) var(--cut) no-repeat border-box,
+    var(--plate);
+  clip-path: polygon(var(--cut) 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%, 0 var(--cut));
+}
+
+/* Panel: an 18px-cut plate with the two 2px accent runs on its long edges */
+.panel {
+  --cut: 18px;
+  position: relative;
+  padding: var(--pad);
+}
+
+.panel::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--hairline-strong) 0 0) 24px 0 / 64px 2px no-repeat,
+    linear-gradient(var(--hairline-strong) 0 0) right 24px bottom 0 / 64px 2px no-repeat;
+}
+
+/* Lance ornament — inherits currentColor */
+.lance {
+  display: inline-block;
+  flex: none;
+  width: 28px;
+  aspect-ratio: 1;
+  background: currentColor;
+  -webkit-mask: var(--lance) center / contain no-repeat;
+  mask: var(--lance) center / contain no-repeat;
+}
+
+/* Divider: ruled line, end ticks, lance in the gap */
+.rule-lance {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  height: 28px;
+  color: var(--fill);
+}
+
+.rule-lance::before,
+.rule-lance::after {
+  content: "";
+  flex: 1;
+  height: 9px;
+  border: solid var(--hairline);
+  border-width: 0;
+  background: linear-gradient(var(--hairline-strong) 0 0) center / 100% 1px no-repeat;
+}
+
+.rule-lance::before { border-left-width: 1px; }
+.rule-lance::after { border-right-width: 1px; }
+
+/* Mono label — group titles, indices, metadata */
 .eyebrow {
+  margin: 0;
   font-family: var(--mono);
-  font-size: 0.76rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  color: var(--body);
+}
+
+/* Section title: small plate + display heading, as in the README blocks */
+.title-plate {
+  --cut: 8px;
+  --plate: var(--surface-2);
+  flex: none;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 8px;
+  display: inline-grid;
+  place-items: center;
   color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  font-weight: 500;
+}
+
+/* Chips */
+.chip {
+  --cut: 6px;
+  min-height: 34px;
+  padding: 6px 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--body);
+  font-family: var(--sans);
+  font-size: 0.94rem;
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+button.chip,
+a.chip,
+.chip[role="button"],
+.chip.is-action {
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+button.chip:hover,
+a.chip:hover,
+.chip.is-action:hover {
+  --stroke: var(--hairline-strong);
+  color: var(--ink);
+}
+
+/* Buttons */
+.btn {
+  --cut: 10px;
+  --stroke: var(--hairline-strong);
+  --plate: var(--fill);
+  min-height: 52px;
+  padding: 12px 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--on-fill);
+  font-family: var(--sans);
+  font-size: 1.06rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.btn:hover {
+  --plate: var(--fill-hover);
+  color: var(--on-fill);
+}
+
+.btn.tonal {
+  --plate: var(--tonal);
+  color: var(--on-tonal);
+}
+
+.btn.tonal:hover {
+  --plate: var(--surface-3);
+  color: var(--ink);
+}
+
+/* Inline arrow links */
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.text-link span {
+  color: var(--accent);
+  transition: transform 0.2s var(--ease-out);
+}
+
+.text-link:hover { color: var(--ink); }
+.text-link:hover span { transform: translateX(5px); }
+
+/* Form controls */
+.field {
+  --cut: 8px;
+  --plate: var(--surface);
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 14px;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1rem;
+}
+
+.field::placeholder { color: var(--muted); }
+
+.field:focus,
+.field:focus-visible {
+  --stroke: var(--accent);
+  outline: none;
+}
+
+/* Loading / error */
+.loading-state,
+.error-state {
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-state p {
+  margin: 0;
+  color: var(--body);
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.loading-state p::after {
+  content: "";
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  margin-left: 6px;
+  vertical-align: text-bottom;
+  background: var(--accent);
+  animation: blink 1s step-end infinite;
+}
+
+.loading-spinner { display: none; }
+
+.error-state p {
+  max-width: 620px;
+  margin: 0;
+  padding: 14px 18px;
+  border-left: 2px solid var(--danger);
+  background: var(--danger-dim);
+  color: var(--ink);
+}
+
+/* Dialog */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--scrim);
+}
+
+.popup-content {
+  --cut: 18px;
+  --stroke: var(--hairline-strong);
+  position: relative;
+  width: min(680px, 100%);
+  max-height: min(82vh, 720px);
+  overflow-y: auto;
+  padding: 30px 30px 34px;
+  text-align: left;
+}
+
+.popup-content h2,
+.popup-content h3 {
+  margin: 0 44px 12px 0;
+  font-size: 1.9rem;
+  line-height: 1.05;
+}
+
+.popup-content p {
+  margin: 0;
+  max-width: none;
+  color: var(--body);
+  font-size: 1.04rem;
+  line-height: 1.65;
+}
+
+.close-button {
+  --cut: 6px;
+  --plate: var(--surface-2);
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  color: var(--ink);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  --stroke: var(--accent);
+  color: var(--accent);
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -153,8 +485,7 @@ a:focus:not(:focus-visible) {
   }
 }
 
-@media (max-width: 760px) {
-  body::before {
-    background: none;
-  }
+@media (max-width: 600px) {
+  .panel { --cut: 14px; }
+  .rule-lance { gap: 20px; }
 }

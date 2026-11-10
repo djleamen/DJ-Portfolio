@@ -30,11 +30,11 @@
         <div class="footer-base">
           <p>© 2026 DJ Leamen</p>
           <div class="webring" aria-label="OTU Webring navigation">
-            <a :href="webringPrevHref" class="webring-nav" title="Previous site" aria-label="Previous site">←</a>
+            <a :href="webringPrevHref" class="webring-nav bevel" title="Previous site" aria-label="Previous site">←</a>
             <a href="https://otu-ring.com" target="_blank" rel="noopener noreferrer" class="webring-center" title="OTU Webring">
               OTU Webring
             </a>
-            <a :href="webringNextHref" class="webring-nav" title="Next site" aria-label="Next site">→</a>
+            <a :href="webringNextHref" class="webring-nav bevel" title="Next site" aria-label="Next site">→</a>
           </div>
           <a href="#app" class="back-to-top">Back to top ↑</a>
         </div>
@@ -65,23 +65,9 @@ onMounted(() => {
 <style>
 html,
 body {
-  min-height: 100%;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  color: var(--body);
-  font-family: var(--sans);
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
   scroll-behavior: smooth;
   overflow-x: hidden;
-  background: var(--bg);
-}
-
-body {
-  display: flex;
-  flex-direction: column;
 }
 
 .page-wrapper {
@@ -105,84 +91,76 @@ body {
   max-width: var(--page-width);
   margin: 0 auto;
   width: 100%;
-  padding: 116px var(--page-gutter) 0;
-  box-sizing: border-box;
+  padding: calc(var(--nav-h) + 28px) var(--page-gutter) 0;
 }
 
 .footer {
   margin-top: clamp(38px, 5.5vw, 72px);
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
   border-top: 1px solid var(--hairline);
-  background: var(--bg-2);
-}
-
-.page-wrapper:has(.home) .footer {
-  margin-top: 0;
+  background: var(--surface);
 }
 
 .footer-inner {
   max-width: var(--page-width);
   margin: 0 auto;
-  padding: clamp(44px, 6.5vw, 82px) var(--page-gutter) 24px;
+  padding: clamp(40px, 6vw, 72px) var(--page-gutter) 24px;
   display: grid;
   grid-template-columns: minmax(0, 1.5fr) minmax(240px, 0.7fr);
-  gap: clamp(52px, 9vw, 140px);
+  gap: clamp(40px, 8vw, 120px);
 }
 
 .footer-intro .eyebrow {
-  margin: 0 0 20px;
-  color: var(--accent);
+  margin: 0 0 14px;
 }
 
 .footer-statement {
-  max-width: 17ch;
+  max-width: 20ch;
   margin: 0;
   color: var(--ink);
-  font-family: var(--serif);
-  font-size: clamp(1.8rem, 3.3vw, 3.4rem);
-  font-weight: 480;
-  line-height: 1.03;
+  font-family: var(--display);
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1;
 }
 
 .footer-label,
 .footer-base p {
   margin: 0;
   font-family: var(--mono);
-  font-size: 0.82rem;
-  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--body);
 }
 
 .footer-links {
-  margin-top: 18px;
+  margin-top: 12px;
   display: flex;
   flex-direction: column;
 }
 
 .footer-links a {
-  min-height: 52px;
+  min-height: 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--hairline);
-  color: var(--body);
-  transition: color 0.2s ease, padding-left 0.2s var(--ease-out);
+  color: var(--ink);
+  font-weight: 500;
+  transition: color 0.15s ease;
 }
 
-.footer-links a:hover {
-  padding-left: 8px;
-  color: var(--accent-bright);
+.footer-links a span { color: var(--muted); }
+
+.footer-links a:hover,
+.footer-links a:hover span {
+  color: var(--accent);
 }
 
 .footer-base {
   grid-column: 1 / -1;
-  padding-top: 26px;
+  padding-top: 22px;
   border-top: 1px solid var(--hairline);
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -194,73 +172,46 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: var(--muted);
 }
 
 .webring-nav {
-  width: 24px;
-  height: 24px;
+  --cut: 5px;
+  --plate: transparent;
+  width: 28px;
+  height: 28px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 3px;
-  color: var(--muted);
-  text-decoration: none;
-  transition: color 0.18s ease, background-color 0.18s ease;
+  color: var(--body);
 }
 
 .webring-nav:hover {
-  color: var(--accent-bright);
-  background: var(--surface);
+  --stroke: var(--accent);
+  color: var(--accent);
 }
 
-.webring-center {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: 0.76rem;
-}
-
+.webring-center,
 .back-to-top {
-  justify-self: end;
-  color: var(--muted);
+  color: var(--body);
   font-family: var(--mono);
   font-size: 0.8rem;
 }
 
-.back-to-top:hover { color: var(--accent-bright); }
+.back-to-top { justify-self: end; }
 
 .page-enter-active,
 .page-leave-active {
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition: opacity 0.25s ease;
 }
 
-.page-enter-from {
-  opacity: 0;
-  transform: translateY(14px);
-}
-
+.page-enter-from,
 .page-leave-to {
   opacity: 0;
-  transform: translateY(-8px);
-}
-
-/* Subtle elevation — restrained, not material-design heavy */
-.elevation-1 { box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); }
-.elevation-2 { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); }
-.elevation-3 { box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45); }
-.elevation-4 { box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5); }
-.elevation-5 { box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55); }
-
-.md-transition {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media (max-width: 768px) {
   .content {
-    padding: 92px var(--page-gutter) 0;
+    padding-top: calc(var(--nav-h) + 16px);
   }
 
   .footer-inner {

@@ -1,25 +1,28 @@
 <template>
   <div class="contact-container">
-    <header class="contact-hero">
-      <p class="eyebrow">Contact / 05</p>
+    <header class="contact-hero bevel panel">
+      <div class="section-marker">
+        <span class="title-plate bevel">05</span>
+        <p class="eyebrow">Contact</p>
+      </div>
       <h1>Want to talk about what you’re building?</h1>
-      <a href="mailto:dilara_leamen@icloud.com" class="email-link">
-        dilara_leamen@icloud.com <span>↗</span>
+      <a href="mailto:dilara_leamen@icloud.com" class="btn bevel email-link">
+        Email me! <span aria-hidden="true">↗</span>
       </a>
     </header>
 
-    <section class="contact-directory" aria-labelledby="elsewhere-title">
-      <div>
-        <p class="eyebrow">Elsewhere</p>
+    <section class="contact-directory bevel panel" aria-labelledby="elsewhere-title">
+      <div class="section-marker">
+        <span class="title-plate bevel" aria-hidden="true">@</span>
         <h2 id="elsewhere-title">Find me online</h2>
       </div>
       <div class="socials">
-        <a href="https://linkedin.com/in/djleamen" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span><small>Work / connect</small><b>↗</b></a>
-        <a href="https://github.com/djleamen" target="_blank" rel="noopener noreferrer"><span>GitHub</span><small>Code / projects</small><b>↗</b></a>
-        <a href="https://www.instagram.com/dejjos/" target="_blank" rel="noopener noreferrer"><span>Instagram</span><small>Life / process</small><b>↗</b></a>
-        <a href="https://sessionize.com/djleamen" target="_blank" rel="noopener noreferrer"><span>Sessionize</span><small>Speaking / sessions</small><b>↗</b></a>
-        <a href="https://bsky.app/profile/djleamen.substack.com" target="_blank" rel="noopener noreferrer"><span>Bluesky</span><small>Notes / conversation</small><b>↗</b></a>
-        <a href="https://linktr.ee/djleamen" target="_blank" rel="noopener noreferrer"><span>Linktree</span><small>Everything else</small><b>↗</b></a>
+        <a href="https://linkedin.com/in/djleamen" target="_blank" rel="noopener noreferrer"><span class="name">LinkedIn</span><span class="note">Work / connect</span><span class="arrow" aria-hidden="true">↗</span></a>
+        <a href="https://github.com/djleamen" target="_blank" rel="noopener noreferrer"><span class="name">GitHub</span><span class="note">Code / projects</span><span class="arrow" aria-hidden="true">↗</span></a>
+        <a href="https://www.instagram.com/dejjos/" target="_blank" rel="noopener noreferrer"><span class="name">Instagram</span><span class="note">Life / process</span><span class="arrow" aria-hidden="true">↗</span></a>
+        <a href="https://sessionize.com/djleamen" target="_blank" rel="noopener noreferrer"><span class="name">Sessionize</span><span class="note">Speaking / sessions</span><span class="arrow" aria-hidden="true">↗</span></a>
+        <a href="https://bsky.app/profile/djleamen.substack.com" target="_blank" rel="noopener noreferrer"><span class="name">Bluesky</span><span class="note">Notes / conversation</span><span class="arrow" aria-hidden="true">↗</span></a>
+        <a href="https://linktr.ee/djleamen" target="_blank" rel="noopener noreferrer"><span class="name">Linktree</span><span class="note">Everything else</span><span class="arrow" aria-hidden="true">↗</span></a>
       </div>
     </section>
   </div>
@@ -27,89 +30,73 @@
 
 <style scoped>
 .contact-container {
-  max-width: 1160px;
+  max-width: 1040px;
   margin: 0 auto;
-  padding: clamp(10px, 3vw, 38px) 0 var(--gap);
-  color: var(--body);
+  padding: 0 0 var(--gap);
+  display: grid;
+  gap: 12px;
+}
+
+.section-marker {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
 .contact-hero {
-  padding: clamp(36px, 5vw, 64px) 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  border-bottom: 1px solid var(--hairline);
+  padding: clamp(24px, 4vw, 48px) var(--pad);
 }
 
 h1 {
-  max-width: 10ch;
-  margin: 22px 0 clamp(28px, 4vw, 48px);
-  font-size: clamp(2.6rem, 4.2vw, 4.6rem);
-  line-height: 0.94;
-  font-weight: 480;
-  letter-spacing: 0;
-}
-
-p {
-  margin: 0;
-  max-width: 60ch;
-  font-size: clamp(1.02rem, 1.25vw, 1.18rem);
-  line-height: 1.7;
-  color: var(--body);
+  max-width: 13ch;
+  margin: 22px 0 clamp(24px, 3.4vw, 36px);
+  font-size: clamp(3.3rem, 6.4vw, 6.2rem);
+  line-height: 0.9;
+  text-wrap: balance;
 }
 
 .email-link {
-  padding-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  border-bottom: 1px solid var(--accent);
-  color: var(--accent-bright);
+  max-width: 100%;
   font-family: var(--mono);
-  font-size: clamp(0.88rem, 1.5vw, 1.15rem);
-  text-decoration: none;
-}
-
-.contact-directory {
-  padding: clamp(46px, 7vw, 84px) 0;
-  display: grid;
-  grid-template-columns: minmax(220px, 0.55fr) minmax(0, 1.45fr);
-  gap: clamp(40px, 8vw, 120px);
+  font-size: clamp(0.86rem, 1.5vw, 1.06rem);
+  font-weight: 500;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .contact-directory h2 {
-  margin: 16px 0 0;
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
-  font-weight: 480;
+  margin: 0;
+  font-size: 1.9rem;
+  line-height: 1;
 }
 
 .socials {
-  border-top: 1px solid var(--hairline);
+  margin-top: 14px;
 }
 
+/* Ruled rows, like the README's About block */
 .socials a {
-  padding: 20px 4px;
+  min-height: 54px;
+  padding: 10px 4px;
   display: grid;
-  grid-template-columns: 1fr 1fr auto;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr) auto;
   gap: 20px;
   align-items: center;
   border-bottom: 1px solid var(--hairline);
   color: var(--ink);
   text-decoration: none;
-  transition: padding-left 0.22s var(--ease-out), background-color 0.22s ease;
 }
 
-.socials a:hover { padding-left: 12px; background: var(--accent-faint); }
-.socials span { font-size: 1.08rem; }
-.socials small { color: var(--muted); font-family: var(--mono); }
-.socials b { color: var(--accent); font-weight: 400; }
+.socials a:last-child { border-bottom: 0; }
+.socials .name { font-size: 1.12rem; font-weight: 500; }
+.socials .note { color: var(--body); font-family: var(--mono); font-size: 0.86rem; }
+.socials .arrow { color: var(--muted); font-weight: 400; transition: transform 0.2s var(--ease-out), color 0.15s ease; }
+.socials a:hover .name { color: var(--accent); }
+.socials a:hover .arrow { color: var(--accent); transform: translate(3px, -3px); }
 
 @media (max-width: 720px) {
-  .contact-hero { min-height: auto; }
-  .contact-directory { grid-template-columns: 1fr; }
-  .socials a { grid-template-columns: 1fr auto; }
-  .socials small { grid-column: 1; grid-row: 2; }
-  .socials b { grid-column: 2; grid-row: 1 / span 2; }
+  .socials a { grid-template-columns: 1fr auto; gap: 2px 20px; }
+  .socials .note { grid-column: 1; grid-row: 2; }
+  .socials .arrow { grid-column: 2; grid-row: 1 / span 2; }
 }
 </style>
-

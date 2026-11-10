@@ -123,8 +123,8 @@ export default {
 
 <style scoped>
 .more-skills {
-  background-color: #4fa3d1 !important;
-  color: white !important;
+  background: var(--tonal) !important;
+  color: var(--on-tonal) !important;
   font-weight: bold;
 }
 

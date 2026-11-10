@@ -1,12 +1,12 @@
 ## DJ Leamen's Personal Portfolio
 
 ![Status](https://img.shields.io/badge/status-online-brightgreen?style=flat-square)
-![GitHub last commit](https://img.shields.io/github/last-commit/djleamen/DJ-Portfolio?style=flat-square)
-![GitHub license](https://img.shields.io/github/license/djleamen/DJ-Portfolio?style=flat-square)
+![GitHub last commit](https://img.shields.io/github/last-commit/djleamen/portfolio?style=flat-square)
+![GitHub license](https://img.shields.io/github/license/djleamen/portfolio?style=flat-square)
 ![Vue.js](https://img.shields.io/badge/built%20with-Vue.js-42b883?logo=vue.js&logoColor=white&style=flat-square)
 ![Deployed on Azure](https://img.shields.io/badge/deployed%20on-Azure-0078D4?logo=microsoft-azure&logoColor=white&style=flat-square)
 
-This repository contains the source code for my personal portfolio, built using Vue.js and AWS Amplify, and deployed on Azure. The portfolio showcases my projects, experience, links to my social media, information about the classes I've taken, what I'm currently learning, and more.
+This repository contains the source code for my personal portfolio, built with Vue 3 and TypeScript, backed by Azure Functions and MongoDB Atlas, and deployed on Azure Static Web Apps. The portfolio showcases my projects, experience, links to my social media, information about the classes I've taken, what I'm currently learning, and more.
 
 ## Overview
 
@@ -68,16 +68,19 @@ Frontend (Vue.js) → Azure Functions API → MongoDB Atlas
    ```
 
 4. **Configure MongoDB**
-   - Follow the [MIGRATION_GUIDE.md](./MIGRATION_GUIDE.md) to set up MongoDB Atlas
-   - Update `api/local.settings.json` with your MongoDB connection string
+   - Create a free MongoDB Atlas cluster and a database named `portfolio`
+   - Copy `api/local.settings.json.example` to `api/local.settings.json` and set `MONGODB_URI`
 
-5. **Migrate data to MongoDB**
-   ```bash
-   cd scripts
-   npm install
-   npm run migrate
-   cd ..
-   ```
+5. **Seed the database**
+
+   The API reads one collection per endpoint: `projects`, `skills`, `work`,
+   `courses`, `certs`, and `education`. Populate them in Atlas (import a JSON
+   array per collection, or insert through the Atlas UI) before starting the
+   API — every endpoint returns an empty result until its collection exists.
+
+   > Note: `scripts/` declares an `npm run migrate` task pointing at
+   > `migrate-to-mongodb.js`, but that script is not committed to this
+   > repository, so the task will fail.
 
 6. **Start the API (Terminal 1)**
    ```bash
@@ -120,7 +123,6 @@ portfolio/
 │   ├── services/          # API client service
 │   └── views/             # Page components
 ├── scripts/               # Migration and utility scripts
-└── MIGRATION_GUIDE.md    # Detailed migration instructions
 ```
 
 ## API Endpoints
@@ -133,7 +135,7 @@ portfolio/
 
 ## Migration from Hardcoded Data
 
-This project recently migrated from hardcoded JavaScript files to MongoDB. See [MIGRATION_GUIDE.md](./MIGRATION_GUIDE.md) for details.
+Portfolio content (projects, work, courses, certs, education, skills) has moved from hardcoded files under `src/data/` to MongoDB Atlas, read at runtime through the Azure Functions API. The one-off migration script referenced by `scripts/package.json` is not committed here; seed the collections directly in Atlas (see step 5 above).
 
 ## Troubleshooting
 
@@ -142,7 +144,7 @@ If you encounter TypeScript config issues:
 npm install @vue/tsconfig --save-dev
 ```
 
-For MongoDB connection issues, see the [MIGRATION_GUIDE.md](./MIGRATION_GUIDE.md#-troubleshooting) troubleshooting section.
+For MongoDB connection issues, confirm `MONGODB_URI` is set (locally in `api/local.settings.json`, in production under the Static Web App's Configuration) and that the Atlas cluster allows connections from Azure.
 
 ## License
 
