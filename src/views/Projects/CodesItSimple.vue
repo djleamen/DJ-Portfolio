@@ -22,7 +22,7 @@
           <div class = "skill-bubble" v-for="skill in skills" :key="skill">{{ skill }}</div>
         </div>
         <h2>Link</h2>
-        <a href="https://github.com/djleamen/codes-it-simple" target="_blank">View on GitHub</a>
+        <a href="https://github.com/djleamen/codes-it-simple" target="_blank" rel="noopener noreferrer">View on GitHub</a>
     </ProjectPage>
 </template>
 

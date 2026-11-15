@@ -37,7 +37,7 @@
             <li>Front end: Displays the catalog and enables user interaction.</li>
         </ul>
         <h2>View on GitHub</h2>
-        <a href="https://github.com/DylanJReynolds/CSCI2040" target="_blank">NanoNest Repo</a>
+        <a href="https://github.com/DylanJReynolds/CSCI2040" target="_blank" rel="noopener noreferrer">NanoNest Repo</a>
     </ProjectPage>
 </template>
 

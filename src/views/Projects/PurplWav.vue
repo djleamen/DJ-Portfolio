@@ -30,7 +30,7 @@
             <li>Donation link</li>
         </ul>
         <h2>Visit the Site</h2>
-        <a href="https://purplwav.org" target="_blank">PurplWav</a>
+        <a href="https://purplwav.org" target="_blank" rel="noopener noreferrer">PurplWav</a>
     </ProjectPage>
 </template>
 

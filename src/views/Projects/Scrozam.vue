@@ -55,7 +55,7 @@
       <li><strong>testing/</strong>: Contains scripts and configuration files for testing.</li>
     </ul>
     <h2>View on GitHub</h2>
-  <a href="https://github.com/djleamen/Scrozam" target="_blank">Scrozam!</a>
+  <a href="https://github.com/djleamen/Scrozam" target="_blank" rel="noopener noreferrer">Scrozam!</a>
     <section>
       <h2>Screenshots</h2>
       <div class="screenshots-container">

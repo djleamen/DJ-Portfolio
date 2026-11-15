@@ -33,7 +33,7 @@
           <img src="../../assets/cc-chat.png" alt="Screenshot of Chat" class="screenshot">
       </div>
       /* fix this line
-      <p>See the full demo here: <a href="https://www.youtube.com/watch?v=ccrG1b7ZdB0" target="_blank">Youtube</a></p>
+      <p>See the full demo here: <a href="https://www.youtube.com/watch?v=ccrG1b7ZdB0" target="_blank" rel="noopener noreferrer">Youtube</a></p>
     </section>
     <p>
         <i>This project was originally submitted as coursework for CSCI2020U Software Systems Development & 
