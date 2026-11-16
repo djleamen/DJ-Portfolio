@@ -50,7 +50,7 @@
             <div class = "skill-bubble" v-for="skill in skills" :key="skill">{{ skill }}</div>
         </div>
         <p>Want to try it out for yourself? Download the project from my GitHub:</p>
-        <a href="https://github.com/djleamen/daily-journal" target="_blank">Daily Journal</a>
+        <a href="https://github.com/djleamen/daily-journal" target="_blank" rel="noopener noreferrer">Daily Journal</a>
     </ProjectPage>
 </template>
 

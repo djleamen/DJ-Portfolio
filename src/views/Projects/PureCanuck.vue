@@ -27,7 +27,7 @@
         </ul>
         <h2>View the Website</h2>
         <p>
-            <a href="https://purecanuck.ca" target="_blank">Visit Pure Canuck</a>
+            <a href="https://purecanuck.ca" target="_blank" rel="noopener noreferrer">Visit Pure Canuck</a>
         </p>
     </ProjectPage>
 </template>

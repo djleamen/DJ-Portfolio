@@ -32,7 +32,7 @@
           <img src="../../assets/cc-threads.png" alt="Screenshot of Threads" class="screenshot">
           <img src="../../assets/cc-chat.png" alt="Screenshot of Chat" class="screenshot">
       </div>
-      <p>See the full demo here: <a href="https://www.youtube.com/watch?v=ccrG1b7ZdB0" target="_blank">Youtube</a></p>
+      <p>See the full demo here: <a href="https://www.youtube.com/watch?v=ccrG1b7ZdB0" target="_blank" rel="noopener noreferrer">Youtube</a></p>
       <p>View the code here: <a href="https://github.com/djleamen/old-snippets/tree/main/java/academia/uni-postsecondary/softwaresystems/ChillChat" target="_blank" rel="noopener noreferrer">GitHub</a></p>
     </section>
     <p>

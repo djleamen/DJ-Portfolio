@@ -38,7 +38,7 @@
         </ul>
         <h2>View the Website</h2>
         <p>
-            <a href="https://celinacc.ca/tali/" target="_blank">Visit TALI</a>
+            <a href="https://celinacc.ca/tali/" target="_blank" rel="noopener noreferrer">Visit TALI</a>
         </p>
     </ProjectPage>
 </template>
