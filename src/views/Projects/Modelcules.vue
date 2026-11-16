@@ -39,8 +39,7 @@
         <li>React</li>
         <li>Three.js</li>
         <li>TypeScript</li>
-        <li>Node.js</li>
-        <li>Express.js</li>
+        <li>Vite</li>
         <li>RESTful APIs</li>
         <li>WebGL</li>
     </ul>
@@ -87,7 +86,7 @@ export default {
       const project = this.projects.find(p => p.id === '21');
       if (project && project.date) {
         const date = new Date(project.date);
-        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
       }
       return '';
     }
@@ -96,13 +95,12 @@ export default {
     return {
       projects: [],
       skills: [
-        "React", "Typescript", "Node.js", "Three.js", 
-        "Express.js", "JavaScript", "HTML", "CSS", "Visual Studio Code",
-        "Git", "npm", "APIs", "WebGL", "Software Development", 
-        "Software Engineering", "Web Development", "Problem Solving",
-        "Data Visualization", "Data Analysis", "Data Structures & Algorithms",
-        "Science", "Physics", "Programming Languages", "Algorithms",
-        "UX/UI", "Creativity", "Research", "Data Entry", "Attention to Detail"
+        "React", "TypeScript", "Node.js", "Three.js", "Vite", "JavaScript", "HTML", "CSS",
+        "Visual Studio Code", "Git", "npm", "APIs", "WebGL", "Software Engineering",
+        "Web Development", "Problem Solving", "Data Visualization", "Data Analysis",
+        "Data Structures & Algorithms", "Science", "Physics", "Programming Languages", "UI/UX",
+        "Research", "Data Entry", "Attention to Detail", "Tailwind CSS", "3D Graphics", "CI/CD",
+        "Version Control", "Adaptability"
       ]
     };
   }

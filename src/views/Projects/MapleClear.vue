@@ -69,7 +69,7 @@ export default {
       const project = this.projects.find(p => p.id === '24');
       if (project && project.date) {
         const date = new Date(project.date);
-        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
       }
       return '';
     }
@@ -78,34 +78,17 @@ export default {
     return {
       projects: [],
       skills: [
-        'Python',
-        'JavaScript',
-        'TypeScript',
-        'HTML',
-        'CSS',
-        'FastAPI',
-        'Generative AI',
-        'Natural Language Processing (NLP)',
-        'Large Language Models (LLM)',
-        'Artificial Intelligence (AI)',
-        'Prompt Engineering',
-        'Visual Studio Code',
-        'APIs',
-        'Git',
-        'npm',
-        'pip',
-        'Version Control',
-        'Web Development',
-        'Accessibility',
-        'Testing',
-        'Open-Source Software',
-        'Debugging',
-        'Problem Solving',
-        'Critical Thinking',
-        'Attention to Detail',
-        'SQLite',
-        'Hugging Face',
-        'SQL'
+        'Python', 'JavaScript', 'TypeScript', 'HTML', 'CSS', 'FastAPI', 'Generative AI',
+        'Natural Language Processing (NLP)', 'Large Language Models (LLM)',
+        'Artificial Intelligence (AI)', 'Prompt Engineering', 'Visual Studio Code', 'APIs',
+        'Git', 'npm', 'pip', 'Version Control', 'Web Development', 'Accessibility', 'Testing',
+        'Open-Source Software', 'Debugging', 'Problem Solving', 'Critical Thinking',
+        'Attention to Detail', 'SQLite', 'Hugging Face', 'SQL', 'Pydantic', 'Uvicorn', 'PyTorch',
+        'Vite', 'Quantization', 'Shell', 'CI/CD', 'Deep Learning', 'Relational Databases',
+        'Communication', 'Creativity', 'Adaptability', 'Analytical Skills',
+        'Professional Development', 'Research', 'Time Management', 'Written Communication',
+        'Decision Making', 'Innovation', 'Presentation', 'Advocacy', 'Professional Networking',
+        'Data Entry', 'Stress Management', 'Mental Health Advocacy'
       ]
     };
   }

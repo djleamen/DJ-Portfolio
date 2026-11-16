@@ -17,6 +17,11 @@
         <li>Cloud-ready architecture (Azure target)</li>
     </ul>
 
+    <h2>Screenshots</h2>
+    <div class="screenshots-container">
+      <img src="@/assets/search-ad-learning.png" alt="Search Ad Learning word cloud and predicted audience segments" class="screenshot" loading="lazy" />
+    </div>
+
     <h2>Architecture</h2>
     <p>
       The system is designed to demonstrate a full-stack machine learning workflow, 
@@ -69,7 +74,7 @@ export default {
       const project = this.projects.find(p => p.id === '29');
       if (project && project.date) {
         const date = new Date(project.date);
-        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
       }
       return '';
     }
@@ -78,20 +83,20 @@ export default {
     return {
       projects: [],
       skills: [
-    "Python", "JavaScript", "HTML", "CSS", "SQL", "Shell", "YAML", "FastAPI",
-    "Uvicorn", "NumPy", "Scikit-learn", "Hugging Face", "Machine Learning",
-    "ML/AI", "Artificial Intelligence (AI)", "Natural Language Processing (NLP)",
-    "Embeddings", "Neural Architectures", "Supervised Learning", "Deep Learning",
-    "Transfer learning", "Recommendation Systems", "Data Preprocessing",
-    "Microsoft Azure", "Cloud Computing", "Docker", "Containerization", "CI/CD",
-    "DevOps", "Infrastructure as Code (IaC)","Serverless", "APIs", "PostgreSQL",
-    "SQLite", "Relational Databases","Database Management", "Data Management",
-    "Data Visualization", "Data Analysis", "Data Pipelines", "MLOps",
-    "Data Governance", "Cybersecurity", "Defensive Programming", "Software Engineering",
-    "Software Development", "Software Architecture", "Web Development",
-    "Data Structures & Algorithms", "Scalability", "UX/UI", "Git", "Version Control",
-    "SQLAlchemy", "Pydantic", "JWT auth",  "Sentence Transformers","OIDC federated auth"
-    ]
+        "Python", "JavaScript", "HTML", "CSS", "SQL", "Shell", "YAML", "FastAPI", "Uvicorn",
+        "NumPy", "Scikit-learn", "Hugging Face", "Machine Learning",
+        "Artificial Intelligence (AI)", "Natural Language Processing (NLP)", "Embeddings",
+        "Neural Architectures", "Supervised Learning", "Deep Learning", "Transfer Learning",
+        "Recommendation Systems", "Data Preprocessing", "Microsoft Azure", "Cloud Computing",
+        "Docker", "Containerization", "CI/CD", "DevOps", "Infrastructure as Code (IaC)",
+        "Serverless", "APIs", "PostgreSQL", "SQLite", "Relational Databases",
+        "Database Management", "Data Management", "Data Visualization", "Data Analysis",
+        "Data Pipelines", "MLOps", "Data Governance", "Cybersecurity", "Defensive Programming",
+        "Software Engineering", "Software Architecture", "Web Development",
+        "Data Structures & Algorithms", "Scalability", "UI/UX", "Git", "Version Control",
+        "SQLAlchemy", "Pydantic", "JWT auth", "Sentence Transformers", "OIDC federated auth",
+        "Testing", "joblib", "Visual Studio Code", "Analytical Skills", "Research", "Data Entry"
+      ]
     };
   }
 };

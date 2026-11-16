@@ -1,3 +1,9 @@
+/*
+ * Chrome skin — the same palette, type, and plate geometry as the
+ * expressive-profile "chrome" skin used on the GitHub profile README.
+ * Light is the base; dark follows the system, exactly like the README's
+ * <picture> sources do.
+ */
 :root {
   color-scheme: light dark;
 
@@ -81,6 +87,14 @@
     --scrim: rgba(0, 0, 0, 0.7);
     --metal: linear-gradient(135deg, #7a8993, #f0f3f5 42%, #3d4951 52%, #dce4e8);
   }
+}
+
+/*
+ * The Re:amaze chat widget renders a light document. Without this, its iframes
+ * inherit `light dark` and Chrome paints an opaque backdrop in dark mode.
+ */
+#reamaze-widget-container iframe {
+  color-scheme: light;
 }
 
 *,

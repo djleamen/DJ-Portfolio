@@ -44,6 +44,9 @@
     <a href="https://devpost.com/software/devduck-t3dqzc" target="_blank" rel="noopener noreferrer">
       Visit DevPost <i class="fas fa-external-link-alt"></i>
     </a>
+    <a href="https://github.com/djleamen/DevDuck" target="_blank" rel="noopener noreferrer">
+      Visit DevDuck <i class="fas fa-external-link-alt"></i>
+    </a>
   </ProjectPage>
 </template>
 
@@ -67,7 +70,7 @@ export default {
       const project = this.projects.find(p => p.id === '25');
       if (project && project.date) {
         const date = new Date(project.date);
-        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
       }
       return '';
     }
@@ -76,45 +79,16 @@ export default {
     return {
       projects: [],
       skills: [
-        'Python',
-        'Electron',
-        'JavaScript',
-        'Shell',
-        'CSS',
-        'HTML',
-        'Arduino',
-        'Git',
-        'APIs',
-        'Debugging',
-        'Natural Language Processing (NLP)',
-        'Generative AI',
-        'Large Language Models (LLM)',
-        'Machine Learning',
-        'Artificial Intelligence (AI)',
-        'ML/AI',
-        'Computer Hardware',
-        'FastAPI',
-        'pip',
-        'Software Development',
-        'Software Engineering',
-        'Attention to Detail',
-        'Algorithms',
-        'Problem Solving',
-        'Creativity',
-        'Adaptability',
-        'Time Management',
-        'Sentiment Analysis',
-        'Visual Studio Code',
-        'Programming Languages',
-        'Testing',
-        'Information Technology',
-        'Communication',
-        'Collaboration',
-        'Innovation',
-        'Resilience',
-        'ngrok',
-        'WebSockets',
-        'C++'
+        'Python', 'Electron', 'JavaScript', 'Shell', 'CSS', 'HTML', 'Arduino', 'Git', 'APIs',
+        'Debugging', 'Natural Language Processing (NLP)', 'Generative AI',
+        'Large Language Models (LLM)', 'Machine Learning', 'Artificial Intelligence (AI)',
+        'Computer Hardware', 'FastAPI', 'pip', 'Software Engineering', 'Attention to Detail',
+        'Data Structures & Algorithms', 'Problem Solving', 'Creativity', 'Adaptability',
+        'Time Management', 'Sentiment Analysis', 'Visual Studio Code', 'Programming Languages',
+        'Testing', 'Information Technology', 'Communication', 'Collaboration', 'Innovation',
+        'Resilience', 'ngrok', 'C++', 'TTS/STT', 'Uvicorn', 'Teamwork', 'Sensors',
+        'Embedded Systems', 'Multi-threading', 'Pydantic', 'Version Control', 'Presentation',
+        'Stress Management'
       ]
     };
   }

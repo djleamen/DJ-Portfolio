@@ -8,6 +8,7 @@
             writing, editing, and deleting journal entries. Users can also view their entries in a 
             list format, making it easy to navigate through past entries.
         </p>
+        <img src="@/assets/dailyjournal.png" alt="Daily Journal application interface" class="project-image" loading="lazy" />
 
         <h2>Features</h2>
         <ul>
@@ -73,7 +74,7 @@ export default {
       const project = this.projects.find(p => p.id === '14');
       if (project && project.date) {
         const date = new Date(project.date);
-        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
       }
       return '';
     }
@@ -81,7 +82,11 @@ export default {
   data() {
     return {
       projects: [],
-      skills: ["Java", "Swing", "Software Development", "Software Engineering", "Git", "Visual Studio Code"],
+      skills: [
+        "Java", "Swing", "Software Engineering", "Git", "Visual Studio Code", "Maven", "Testing",
+        "Object-Oriented Programming (OOP)", "CI/CD", "Cybersecurity", "Version Control",
+        "Data Entry", "Organization"
+      ],
     };
   }
 };

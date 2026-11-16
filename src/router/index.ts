@@ -8,18 +8,9 @@ import Contact from '../views/Contact.vue';
 import SustainProject from '../views/Projects/SUSTAIN.vue';
 import ScrozamProject from '../views/Projects/Scrozam.vue';
 import PurplWavProject from '../views/Projects/PurplWav.vue';
-import NanoNestProject from '../views/Projects/NanoNest.vue';
-import CodesItSimpleProject from '../views/Projects/CodesItSimple.vue';
-import PortfolioProject from '../views/Projects/Portfolio.vue';
 import TALIProject from '../views/Projects/TALI.vue';
 import PureCanuckProject from '../views/Projects/PureCanuck.vue';
-import WolvesSheepProject from '../views/Projects/WolvesAndSheep.vue';
-import BunniesProject from '../views/Projects/Bunnies.vue';
-import SpamDetectorProject from '../views/Projects/SpamDetector.vue';
-import ScreecherProject from '../views/Projects/Screecher.vue';
-import FileSharingProject from '../views/Projects/FileSharing.vue';
 import DailyJournalProject from '../views/Projects/DailyJournal.vue';
-import ChessBotProject from '../views/Projects/ChessBot.vue';
 import ChillChatProject from '../views/Projects/ChillChat.vue';
 import StatsJamProject from '../views/Projects/StatsJam.vue';
 import MusicMoodMatcher from '../views/Projects/MusicMoodMatcher.vue';
@@ -31,11 +22,18 @@ import FastTrack from '../views/Projects/FastTrack.vue';
 import MapleClear from '../views/Projects/MapleClear.vue';
 import DevDuck from '../views/Projects/DevDuck.vue';
 import IntelligentApp from '../views/Projects/IntelligentApp.vue';
-import MsftAIResearch from '../views/Projects/AIMLResearch.vue';
-import SocialMediaAnalysis from '../views/Projects/SocialMediaAnalysis.vue';
 import SearchAdLearning from '../views/Projects/SearchAdLearning.vue';
-import StrokePrediction from '../views/Projects/StrokePrediction.vue';
 import BetterVisualizer from '../views/Projects/BetterVisualizer.vue';
+import OpportunityEngine from '../views/Projects/OpportunityEngine.vue';
+import KAFTeradataFabric from '../views/Projects/KAFTeradataFabric.vue';
+import Twinventory from '../views/Projects/Twinventory.vue';
+import Blockgame from '../views/Projects/Blockgame.vue';
+import BuildYourOwnX from '../views/Projects/BuildYourOwnX.vue';
+import WorkWithMe from '../views/Projects/WorkWithMe.vue';
+import TextClustering from '../views/Projects/TextClustering.vue';
+import NeuralNetworkPlayground from '../views/Projects/NeuralNetworkPlayground.vue';
+import AsciiVideo from '../views/Projects/AsciiVideo.vue';
+import UniverseBadgeApps from '../views/Projects/UniverseBadgeApps.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -83,24 +81,6 @@ const routes: RouteRecordRaw[] = [
     meta: { projectId: 3 }
   },
   {
-    path: '/projects/nanonest',
-    name: 'NanoNestProject',
-    component: NanoNestProject,
-    meta: { projectId: 4 }
-  },
-  {
-    path: '/projects/codes-it-simple',
-    name: 'CodesItSimpleProject',
-    component: CodesItSimpleProject,
-    meta: { projectId: 5 }
-  },
-  { 
-    path: '/projects/portfolio',
-    name: 'PortfolioProject',
-    component: PortfolioProject,
-    meta: { projectId: 6 }
-  },
-  {
     path: '/projects/tali',
     name: 'TALIProject',
     component: TALIProject,
@@ -113,46 +93,10 @@ const routes: RouteRecordRaw[] = [
     meta: { projectId: 8 }
   },
   {
-    path: '/projects/wolves-and-sheep',
-    name: 'WolvesSheepProject',
-    component: WolvesSheepProject,
-    meta: { projectId: 9 }
-  },
-  {
-    path: '/projects/bunnies',
-    name: 'BunniesProject',
-    component: BunniesProject,
-    meta: { projectId: 10 }
-  },
-  {
-    path: '/projects/spam-detector',
-    name: 'SpamDetectorProject',
-    component: SpamDetectorProject,
-    meta: { projectId: 11 }
-  },
-  {
-    path: '/projects/screecher',
-    name: 'ScreecherProject',
-    component: ScreecherProject,
-    meta: { projectId: 12 }
-  },
-  {
-    path: '/projects/file-sharing',
-    name: 'FileSharingProject',
-    component: FileSharingProject,
-    meta: { projectId: 13 }
-  },
-  {
     path: '/projects/daily-journal',
     name: 'DailyJournalProject',
     component: DailyJournalProject,
     meta: { projectId: 14 }
-  },
-  {
-    path: '/projects/chess-bot',
-    name: 'ChessBotProject',
-    component: ChessBotProject,
-    meta: { projectId: 15 }
   },
   {
     path: '/projects/chill-chat',
@@ -221,34 +165,82 @@ const routes: RouteRecordRaw[] = [
     meta: { projectId: 26 }
   },
   {
-    path: '/projects/msft-ai-research',
-    name: 'MsftAIResearch',
-    component: MsftAIResearch,
-    meta: { projectId: 27 }
-  },
-  {
-    path: '/projects/social-media-performance-analysis',
-    name: 'SocialMediaAnalysis',
-    component: SocialMediaAnalysis,
-    meta: { projectId: 28 }
-  },
-  {
     path: '/projects/search-ad-learning',
     name: 'SearchAdLearning',
     component: SearchAdLearning,
     meta: { projectId: 29 }
   },
   {
-    path: '/projects/stroke-prediction',
-    name: 'StrokePrediction',
-    component: StrokePrediction,
-    meta: { projectId: 30 }
-  },
-  {
     path: '/projects/better-visualizer',
     name: 'BetterVisualizer',
     component: BetterVisualizer,
     meta: { projectId: 31 }
+  },
+  {
+    path: '/projects/opportunity-engine',
+    name: 'OpportunityEngine',
+    component: OpportunityEngine,
+    meta: { projectId: 32 }
+  },
+  {
+    path: '/projects/kaf-teradata-fabric',
+    name: 'KAFTeradataFabric',
+    component: KAFTeradataFabric,
+    meta: { projectId: 33 }
+  },
+  {
+    path: '/projects/twinventory',
+    name: 'Twinventory',
+    component: Twinventory,
+    meta: { projectId: 34 }
+  },
+  {
+    path: '/projects/blockgame',
+    name: 'Blockgame',
+    component: Blockgame,
+    meta: { projectId: 36 }
+  },
+  {
+    path: '/projects/build-your-own-x',
+    name: 'BuildYourOwnX',
+    component: BuildYourOwnX,
+    meta: { projectId: 37 }
+  },
+  {
+    path: '/projects/work-with-me',
+    name: 'WorkWithMe',
+    component: WorkWithMe,
+    meta: { projectId: 38 }
+  },
+  {
+    path: '/projects/text-clustering',
+    name: 'TextClustering',
+    component: TextClustering,
+    meta: { projectId: 39 }
+  },
+  {
+    path: '/projects/neural-network-playground',
+    name: 'NeuralNetworkPlayground',
+    component: NeuralNetworkPlayground,
+    meta: { projectId: 40 }
+  },
+  {
+    path: '/projects/ascii-video',
+    name: 'AsciiVideo',
+    component: AsciiVideo,
+    meta: { projectId: 41 }
+  },
+  {
+    path: '/projects/universe-badge-apps',
+    name: 'UniverseBadgeApps',
+    component: UniverseBadgeApps,
+    meta: { projectId: 43 }
+  },
+
+  // Retired project pages
+  {
+    path: '/projects/:retired(wolves-and-sheep|bunnies|chess-bot|screecher|spam-detector|file-sharing|nanonest|portfolio|stroke-prediction|social-media-performance-analysis|msft-ai-research|codes-it-simple)',
+    redirect: '/projects'
   },
 
   // Legacy route support
@@ -259,18 +251,9 @@ const routes: RouteRecordRaw[] = [
         '1': '/projects/sustain',
         '2': '/projects/scrozam',
         '3': '/projects/purplwav',
-        '4': '/projects/nanonest',
-        '5': '/projects/codes-it-simple',
-        '6': '/projects/portfolio',
         '7': '/projects/tali',
         '8': '/projects/pure-canuck',
-        '9': '/projects/wolves-and-sheep',
-        '10': '/projects/bunnies',
-        '11': '/projects/spam-detector',
-        '12': '/projects/screecher',
-        '13': '/projects/file-sharing',
         '14': '/projects/daily-journal',
-        '15': '/projects/chess-bot',
         '16': '/projects/chill-chat',
         '17': '/projects/statsjam',
         '18': '/projects/doc-reader',
@@ -282,11 +265,18 @@ const routes: RouteRecordRaw[] = [
         '24': '/projects/mapleclear',
         '25': '/projects/devduck',
         '26': '/projects/intelligent-app',
-        '27': '/projects/msft-ai-research',
-        '28': '/projects/social-media-performance-analysis',
         '29': '/projects/search-ad-learning',
-        '30': '/projects/stroke-prediction',
-        '31': '/projects/better-visualizer'
+        '31': '/projects/better-visualizer',
+        '32': '/projects/opportunity-engine',
+        '33': '/projects/kaf-teradata-fabric',
+        '34': '/projects/twinventory',
+        '36': '/projects/blockgame',
+        '37': '/projects/build-your-own-x',
+        '38': '/projects/work-with-me',
+        '39': '/projects/text-clustering',
+        '40': '/projects/neural-network-playground',
+        '41': '/projects/ascii-video',
+        '43': '/projects/universe-badge-apps'
       };
       return idToPathMap[to.params.id as string] || '/projects';
     }
@@ -301,18 +291,9 @@ const routes: RouteRecordRaw[] = [
         '1': '/projects/sustain',
         '2': '/projects/scrozam',
         '3': '/projects/purplwav',
-        '4': '/projects/nanonest',
-        '5': '/projects/codes-it-simple',
-        '6': '/projects/portfolio',
         '7': '/projects/tali',
         '8': '/projects/pure-canuck',
-        '9': '/projects/wolves-and-sheep',
-        '10': '/projects/bunnies',
-        '11': '/projects/spam-detector',
-        '12': '/projects/screecher',
-        '13': '/projects/file-sharing',
         '14': '/projects/daily-journal',
-        '15': '/projects/chess-bot',
         '16': '/projects/chill-chat',
         '17': '/projects/statsjam',
         '18': '/projects/doc-reader',
@@ -324,11 +305,18 @@ const routes: RouteRecordRaw[] = [
         '24': '/projects/mapleclear',
         '25': '/projects/devduck',
         '26': '/projects/intelligent-app',
-        '27': '/projects/msft-ai-research',
-        '28': '/projects/social-media-performance-analysis',
         '29': '/projects/search-ad-learning',
-        '30': '/projects/stroke-prediction',
-        '31': '/projects/better-visualizer'
+        '31': '/projects/better-visualizer',
+        '32': '/projects/opportunity-engine',
+        '33': '/projects/kaf-teradata-fabric',
+        '34': '/projects/twinventory',
+        '36': '/projects/blockgame',
+        '37': '/projects/build-your-own-x',
+        '38': '/projects/work-with-me',
+        '39': '/projects/text-clustering',
+        '40': '/projects/neural-network-playground',
+        '41': '/projects/ascii-video',
+        '43': '/projects/universe-badge-apps'
       };
 
       return idToPathMap[id] || '/projects';

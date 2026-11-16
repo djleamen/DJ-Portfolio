@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "func start",
+    "admin": "node tools/admin/server.js",
     "test": "echo \"No tests yet\""
   },
   "dependencies": {

@@ -54,7 +54,7 @@ export default {
       const project = this.projects.find(p => p.id === '3');
       if (project && project.date) {
         const date = new Date(project.date);
-        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
       }
       return '';
     }
@@ -63,11 +63,12 @@ export default {
     return {
       projects: [],
       skills: [
-        "Vue.js", "AWS", "Shell", "JavaScript", "HTML", "CSS", "Git", 
-        "Cloud Computing", "Software Development", "Software Engineering",
-        "Web Development", "Problem Solving", "Creativity", "Advocacy",
-        "Public Speaking", "Presentation", "Writing", "Research", "Leadership",
-        "npm", "Node.js", "Agile", "Microsoft 365", "Professional Development", "Visual Studio Code"
+        "Vue.js", "AWS", "Shell", "JavaScript", "HTML", "CSS", "Git", "Cloud Computing",
+        "Software Engineering", "Web Development", "Problem Solving", "Creativity", "Advocacy",
+        "Public Speaking", "Written Communication", "Research", "Leadership", "npm", "Node.js",
+        "Microsoft 365", "Professional Development", "Visual Studio Code", "TypeScript", "Vite",
+        "CI/CD", "SEO", "Community Outreach", "Social Media", "Version Control", "Collaboration",
+        "Communication", "Mental Health Advocacy", "Teaching", "Marketing", "Accessibility"
       ]
     };
   }

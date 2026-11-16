@@ -67,7 +67,7 @@
         <p class="eyebrow group-label">Courses I've taken</p>
         <div class="courses-grid">
           <button
-            v-for="course in education.courses"
+            v-for="course in sortedCourses"
             :key="course.name"
             type="button"
             class="chip bevel"
@@ -128,7 +128,7 @@
           <span class="title-plate bevel" aria-hidden="true">{{ String(filteredSkills.length).padStart(2, '0') }}</span>
           <h2>Skills</h2>
         </div>
-        <p class="hint">Psst.. try clicking on a skill bubble!</p>
+        <p class="hint">Psst.. try clicking on a skill bubble! The bigger the bubble, the more of my work it shows up in.</p>
         <div class="filter-container">
           <label for="skill-filter" class="eyebrow">Filter by type</label>
           <span class="select-wrap"><select id="skill-filter" class="field bevel" v-model="selectedType" @change="filterSkills">
@@ -147,9 +147,7 @@
           </select></span>
         </div>
         <div class="skills-section">
-          <div class="skills-container">
-            <button type="button" class="skill-bubble chip bevel" @click="filterProjects(skill)" v-for="skill in filteredSkills" :key="skill">{{ skill }}</button>
-          </div>
+          <SkillField :skills="filteredSkills" :usage="skillUsage" @select="filterProjects" />
         </div>
       </div>
     </div>
@@ -167,9 +165,10 @@
 </template>
 
 <script setup>
-import { reactive, ref, onMounted } from 'vue';
+import { computed, reactive, ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { apiService } from '../services/api';
+import SkillField from '../components/SkillField.vue';
 
 const logoModules = import.meta.glob('@/assets/*.{png,jpg,jpeg,svg,webp}', { eager: true, query: '?url', import: 'default' });
 const logoIndex = Object.fromEntries(
@@ -184,6 +183,7 @@ const bio = "I’m focused on software development, AI, cloud computing, and sys
 const education = reactive({ courses: [] });
 const certs = ref([]);
 const workExperience = ref([]);
+const projects = ref([]);
 const skillsData = ref({});
 const skills = ref([]);
 const languages = ref([]);
@@ -212,12 +212,15 @@ const activeTab = ref('work');
 onMounted(async () => {
   try {
     // Fetch all data in parallel
-    const [coursesData, certsData, workData, skillsDataResponse] = await Promise.all([
+    const [coursesData, certsData, workData, skillsDataResponse, projectsData] = await Promise.all([
       apiService.getCourses(),
       apiService.getCerts(),
       apiService.getWork(),
-      apiService.getSkills()
+      apiService.getSkills(),
+      // only used to size the skill bubbles, so a failure here shouldn't blank the page
+      apiService.getProjects().catch(() => [])
     ]);
+    projects.value = projectsData;
 
     // Set education (from courses endpoint which now contains education details)
     if (coursesData.length > 0) {
@@ -252,6 +255,27 @@ onMounted(async () => {
     error.value = 'Failed to load data. Please try again later.';
     loading.value = false;
   }
+});
+
+const sortedCourses = computed(() =>
+  [...education.courses].sort((a, b) => a.name.localeCompare(b.name))
+);
+
+// How many projects, positions, courses and certifications use each skill.
+const skillUsage = computed(() => {
+  const usage = {};
+  const tally = (list, kind) => {
+    for (const name of new Set(list || [])) {
+      const entry = (usage[name] ??= { total: 0, projects: 0, positions: 0, courses: 0, certs: 0 });
+      entry[kind]++;
+      entry.total++;
+    }
+  };
+  projects.value.forEach(project => tally(project.tags, 'projects'));
+  workExperience.value.forEach(job => tally(job.skills, 'positions'));
+  education.courses.forEach(course => tally(course.skills, 'courses'));
+  certs.value.forEach(cert => tally(cert.skills, 'certs'));
+  return usage;
 });
 
 const tabs = [
@@ -545,7 +569,6 @@ h2 {
   pointer-events: none;
 }
 
-.skills-container,
 .cert-skills,
 .courses-grid {
   display: flex;

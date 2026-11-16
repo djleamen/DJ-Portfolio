@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio data console</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #e8ebed; --panel: #f7f8f9; --panel-2: #eef1f3; --line: #a8b5bd; --line-2: #637580;
+    --ink: #14191c; --body: #45535c; --muted: #66767f; --accent: #245e68;
+    --fill: #28363e; --on-fill: #fff; --tonal: #dbe2e6;
+    --good: #1c7048; --bad: #b3261e; --warn: #875600; --add: #d6efe0; --del: #f9d9d5; --pend: #f6e7b8;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #090b0d; --panel: #101316; --panel-2: #171c20; --line: #3d4951; --line-2: #7a8993;
+      --ink: #f0f3f5; --body: #b1bdc5; --muted: #8796a0; --accent: #a5e3eb;
+      --fill: #dce4e8; --on-fill: #101619; --tonal: #232b30;
+      --good: #6fd6a0; --bad: #ffb4ab; --warn: #f2c46b; --add: #12382a; --del: #4a1d1a; --pend: #4a3d12;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--body); font: 14px/1.45 var(--sans); }
+  h1, h2, h3 { margin: 0; color: var(--ink); font-weight: 600; }
+  h2 { font-size: 15px; } h3 { font-size: 13px; }
+  .mono, .eyebrow { font-family: var(--mono); }
+  .eyebrow { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .muted { color: var(--muted); }
+  .cut { clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px); }
+
+  header { display: flex; align-items: center; gap: 16px; padding: 12px 20px; border-bottom: 1px solid var(--line); background: var(--panel); position: sticky; top: 0; z-index: 5; }
+  header h1 { font-size: 16px; }
+  header .spacer { flex: 1; }
+  nav { display: flex; gap: 6px; padding: 12px 20px 0; flex-wrap: wrap; }
+  nav button.on { background: var(--fill); color: var(--on-fill); border-color: var(--fill); }
+  main { padding: 16px 20px 80px; }
+
+  button, select, input, textarea { font: inherit; color: var(--ink); }
+  button { background: var(--panel); border: 1px solid var(--line); padding: 6px 12px; cursor: pointer; clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px); }
+  button:hover:not(:disabled) { border-color: var(--line-2); }
+  button:disabled { opacity: .45; cursor: default; }
+  button.primary { background: var(--fill); color: var(--on-fill); border-color: var(--fill); font-weight: 600; }
+  button.danger { color: var(--bad); }
+  button.small { padding: 2px 8px; font-size: 12px; }
+  button.link { border: 0; background: none; padding: 0; color: var(--accent); clip-path: none; text-align: left; }
+  button.link:hover { text-decoration: underline; }
+  input[type=text], input[type=search], select, textarea { background: var(--panel); border: 1px solid var(--line); padding: 6px 9px; min-width: 0; }
+  textarea { width: 100%; resize: vertical; font-family: var(--mono); font-size: 13px; }
+  input:focus, select:focus, textarea:focus, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); padding: 14px 16px; }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .grid { display: grid; gap: 14px; }
+  .split { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(320px, 1fr); gap: 14px; align-items: start; }
+  .split.narrow { grid-template-columns: minmax(260px, 340px) minmax(0, 1fr); }
+  .sticky { position: sticky; top: 64px; max-height: calc(100vh - 84px); overflow: auto; }
+  @media (max-width: 900px) { .split, .split.narrow { grid-template-columns: 1fr; } .sticky { position: static; max-height: none; } }
+
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
+  .tile { background: var(--panel); border: 1px solid var(--line); padding: 12px 14px; }
+  .tile b { display: block; font: 600 26px/1.1 var(--mono); color: var(--ink); }
+  .check { display: grid; grid-template-columns: 22px 1fr; gap: 4px 8px; padding: 9px 0; border-top: 1px solid var(--line); }
+  .check:first-child { border-top: 0; }
+  .check .mark { font-family: var(--mono); font-weight: 700; }
+  .check.ok .mark { color: var(--good); } .check.no .mark { color: var(--bad); } .check.info .mark { color: var(--muted); }
+  .check ul { grid-column: 2; margin: 4px 0 0; padding: 0; list-style: none; display: grid; gap: 4px; }
+  .check li { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 13px; }
+
+  table { width: 100%; border-collapse: collapse; }
+  th, td { text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  thead th { font: 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); position: sticky; top: 0; background: var(--panel); }
+  td.num, th.num { text-align: right; font-family: var(--mono); width: 44px; }
+  tr.pick { cursor: pointer; } tr.pick:hover td { background: var(--panel-2); } tr.sel td { background: var(--tonal); color: var(--ink); }
+  .bar { height: 8px; background: var(--accent); min-width: 1px; }
+  .tag { display: inline-block; font: 11px var(--mono); padding: 1px 6px; border: 1px solid var(--line); margin: 0 3px 2px 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 5px; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 4px 3px 9px; border: 1px solid var(--line); background: var(--panel-2); font-size: 13px; color: var(--ink); }
+  .chip.stray { border-color: var(--bad); color: var(--bad); }
+  .chip.new { background: var(--add); }
+  .chip button { border: 0; background: none; padding: 0 4px; clip-path: none; color: var(--muted); }
+  .chip button:hover { color: var(--bad); }
+  .list { display: grid; }
+  .list button { text-align: left; border: 0; border-bottom: 1px solid var(--line); clip-path: none; background: none; padding: 7px 8px; display: grid; gap: 1px; }
+  .list button:hover { background: var(--panel-2); } .list button.sel { background: var(--tonal); }
+  .list small { color: var(--muted); }
+  label.field { display: grid; gap: 3px; font-size: 12px; color: var(--muted); }
+  label.field input, label.field textarea, label.field select { color: var(--ink); font-size: 14px; width: 100%; }
+  label.field textarea { font-family: var(--sans); }
+  .group-title { margin: 12px 0 5px; }
+
+  .matrix-wrap { overflow: auto; max-height: calc(100vh - 210px); border: 1px solid var(--line); background: var(--panel); }
+  table.matrix { width: auto; border-collapse: separate; border-spacing: 0; }
+  table.matrix th, table.matrix td { border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); padding: 0; }
+  table.matrix thead th { height: 150px; min-width: 24px; vertical-align: bottom; z-index: 2; text-transform: none; letter-spacing: 0; }
+  table.matrix thead th button { writing-mode: vertical-rl; transform: rotate(180deg); padding: 6px 3px; white-space: nowrap; font: 12px var(--sans); color: var(--ink); }
+  table.matrix tbody th { position: sticky; left: 0; background: var(--panel); z-index: 1; padding: 3px 10px; white-space: nowrap; max-width: 300px; overflow: hidden; text-overflow: ellipsis; font-weight: 400; }
+  table.matrix thead th.corner { left: 0; z-index: 3; }
+  table.matrix tr.kind th { background: var(--tonal); font: 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink); }
+  table.matrix td { width: 24px; height: 24px; cursor: pointer; }
+  table.matrix td:hover { outline: 2px solid var(--accent); outline-offset: -2px; }
+  table.matrix td.on { background: var(--fill); }
+  table.matrix td.add { background: var(--good); } table.matrix td.del { background: var(--bad); opacity: .55; }
+  table.matrix tfoot td, table.matrix tfoot th { position: sticky; bottom: 0; background: var(--panel-2); font: 11px var(--mono); text-align: center; cursor: default; padding: 3px 0; }
+  .pending { position: fixed; left: 20px; right: 20px; bottom: 14px; background: var(--pend); color: var(--ink); border: 1px solid var(--line-2); padding: 9px 14px; display: flex; gap: 10px; align-items: center; z-index: 6; }
+
+  #modal { position: fixed; inset: 0; background: rgba(0, 0, 0, .5); display: grid; place-items: start center; padding: 6vh 16px; z-index: 20; overflow: auto; }
+  #modal[hidden], #toast[hidden], .pending[hidden] { display: none; }
+  .dialog { background: var(--panel); border: 1px solid var(--line-2); width: min(760px, 100%); padding: 18px 20px; display: grid; gap: 12px; }
+  .diff { max-height: 52vh; overflow: auto; border: 1px solid var(--line); padding: 4px 12px; background: var(--bg); }
+  .diff section { padding: 8px 0; border-top: 1px solid var(--line); } .diff section:first-child { border-top: 0; }
+  .plus { background: var(--add); } .minus { background: var(--del); text-decoration: line-through; }
+  .plus, .minus { display: inline-block; padding: 0 6px; margin: 2px 4px 2px 0; color: var(--ink); font-size: 13px; }
+  #toast { position: fixed; left: 50%; bottom: 60px; transform: translateX(-50%); background: var(--fill); color: var(--on-fill); padding: 9px 14px; display: flex; gap: 12px; align-items: center; z-index: 30; max-width: 90vw; }
+  #toast.bad { background: var(--bad); color: #fff; }
+  #toast button { background: none; border-color: currentColor; color: inherit; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Portfolio data console</h1>
+  <span class="eyebrow" id="where"></span>
+  <span class="spacer"></span>
+  <button id="undo" type="button">Undo last change</button>
+  <button id="reload" type="button">Reload</button>
+</header>
+<nav id="tabs"></nav>
+<main id="view"><p class="muted">Loading…</p></main>
+<div id="modal" hidden></div>
+<div id="toast" hidden role="status"></div>
+<datalist id="all-skills"></datalist>
+
+<script>
+'use strict';
+const TOKEN = '__ADMIN_TOKEN__';
+const KINDS = { project: 'Projects', position: 'Positions', course: 'Courses', cert: 'Certifications' };
+const KIND_ONE = { project: 'project', position: 'position', course: 'course', cert: 'certification' };
+const CATS = { languages: 'Languages', frameworks: 'Frameworks', ml_ai: 'ML / AI', cloud: 'Cloud', databases: 'Databases', ides: 'IDEs', platformstools: 'Platforms & tools', devTools: 'Dev tools', methodologies: 'Methodologies', coreConcepts: 'Core concepts', soft: 'Soft skills' };
+const TABS = [['overview', 'Overview'], ['skills', 'Skills'], ['items', 'Items'], ['matrix', 'Matrix'], ['bulk', 'Bulk edit'], ['cleanup', 'Cleanup'], ['history', 'History']];
+
+let S = null;                 // state from the server
+let USE = new Map();          // skill -> { items: [], by: { project, position, course, cert } }
+let CAT_OF = new Map();       // skill -> [category keys]
+const ui = {
+  tab: 'overview', skill: null, item: null, draft: null,
+  skillSearch: '', skillCat: 'all', skillUse: 'all', skillSort: 'uses',
+  itemKind: 'all', itemSearch: '', matrixCols: 'languages', matrixRows: 'all',
+  pending: new Map(), bulk: ''
+};
+
+/* ---------- small helpers ---------- */
+const $ = id => document.getElementById(id);
+const catLabel = key => CATS[key] || key;
+const plural = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`;
+
+function h(tag, attrs, ...kids) {
+  const el = document.createElement(tag);
+  for (const [key, value] of Object.entries(attrs || {})) {
+    if (value == null || value === false) continue;
+    if (key === 'class') el.className = value;
+    else if (key.startsWith('on')) el.addEventListener(key.slice(2), value);
+    else if (key in el && key !== 'list') el[key] = value;
+    else el.setAttribute(key, value);
+  }
+  for (const kid of kids.flat(Infinity)) if (kid != null && kid !== false) el.append(kid.nodeType ? kid : String(kid));
+  return el;
+}
+const btn = (label, onclick, cls) => h('button', { type: 'button', class: cls || 'small', onclick }, label);
+const link = (label, onclick) => h('button', { type: 'button', class: 'link', onclick }, label);
+
+async function call(path, body) {
+  const response = await fetch(path, {
+    method: body ? 'POST' : 'GET',
+    headers: { 'x-admin-token': TOKEN, 'Content-Type': 'application/json' },
+    body: body ? JSON.stringify(body) : undefined
+  });
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(data.error || `Request failed (${response.status})`);
+  return data;
+}
+
+let toastTimer = 0;
+function toast(message, tone, action) {
+  const el = $('toast');
+  el.className = tone === 'bad' ? 'bad cut' : 'cut';
+  el.replaceChildren(message, action ? btn(action[0], () => { el.hidden = true; action[1](); }) : '');
+  el.hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { el.hidden = true; }, action ? 9000 : 4500);
+}
+const oops = error => toast(error.message, 'bad');
+
+function closeModal() { $('modal').hidden = true; $('modal').replaceChildren(); }
+function openModal(...kids) {
+  const dialog = h('div', { class: 'dialog', role: 'dialog', 'aria-modal': 'true' }, kids);
+  $('modal').replaceChildren(dialog);
+  $('modal').hidden = false;
+  const first = dialog.querySelector('input, textarea, select, button.primary');
+  if (first) first.focus();
+}
+
+/* A small form dialog. Resolves with { name: value } or null if cancelled. */
+function ask(title, fields, submitLabel = 'Continue') {
+  return new Promise(resolve => {
+    const done = value => { closeModal(); resolve(value); };
+    const inputs = {};
+    const controls = fields.map(field => {
+      let input;
+      if (field.type === 'checks') {
+        input = h('div', { class: 'row' }, field.options.map(([value, label]) =>
+          h('label', {}, h('input', { type: 'checkbox', value, checked: (field.value || []).includes(value) }), ` ${label}`)));
+        inputs[field.name] = () => [...input.querySelectorAll('input:checked')].map(box => box.value);
+      } else if (field.type === 'select') {
+        input = h('select', {}, field.options.map(([value, label]) => h('option', { value, selected: value === field.value }, label)));
+        inputs[field.name] = () => input.value;
+      } else if (field.type === 'textarea') {
+        input = h('textarea', { rows: 5, value: field.value || '' });
+        inputs[field.name] = () => input.value;
+      } else {
+        input = h('input', { type: 'text', value: field.value || '' });
+        if (field.type === 'skill') input.setAttribute('list', 'all-skills');
+        inputs[field.name] = () => input.value;
+      }
+      return h('label', { class: 'field' }, field.label, input);
+    });
+    const form = h('form', { class: 'grid', onsubmit: event => {
+      event.preventDefault();
+      done(Object.fromEntries(Object.entries(inputs).map(([name, read]) => [name, read()])));
+    } }, controls, h('div', { class: 'row' },
+      h('button', { type: 'submit', class: 'primary' }, submitLabel), btn('Cancel', () => done(null), '')));
+    openModal(h('h2', {}, title), form);
+  });
+}
+
+/* ---------- data ---------- */
+function reindex() {
+  USE = new Map(S.master.skills.map(skill => [skill, { items: [], by: { project: 0, position: 0, course: 0, cert: 0 } }]));
+  for (const item of S.items) {
+    for (const skill of item.skills) {
+      const entry = USE.get(skill);
+      if (entry) { entry.items.push(item); entry.by[item.kind]++; }
+    }
+  }
+  CAT_OF = new Map(S.master.skills.map(skill => [skill, Object.keys(S.master.cats).filter(cat => S.master.cats[cat].includes(skill))]));
+  $('all-skills').replaceChildren(...S.master.skills.map(skill => h('option', { value: skill })));
+  $('where').textContent = `db: ${S.db}`;
+}
+const uses = skill => (USE.get(skill) ? USE.get(skill).items.length : 0);
+const itemByUid = uid => S.items.find(item => item.uid === uid);
+function findSkill(text) {
+  const wanted = text.trim().toLowerCase();
+  return S.master.skills.find(skill => skill.toLowerCase() === wanted) || null;
+}
+
+async function load() {
+  S = await call('/api/state');
+  reindex();
+  render();
+}
+
+/* Every change goes through here: preview first, then apply. */
+async function propose(op, label, after) {
+  try {
+    const result = await call('/api/preview', { op });
+    if (result.diff.empty) return toast('That would not change anything.');
+    showPreview(result.diff, result.summary, op, label, after);
+  } catch (error) { oops(error); }
+}
+
+function showPreview(diff, summary, op, label, after) {
+  const sections = [];
+  const m = diff.master;
+  if (m.added.length || m.removed.length || m.categories.length) {
+    sections.push(h('section', {}, h('h3', {}, 'Master skill list'),
+      m.added.map(skill => h('span', { class: 'plus' }, skill)),
+      m.removed.map(skill => h('span', { class: 'minus' }, skill)),
+      m.categories.map(change => h('div', {}, `${change.skill}: `,
+        h('span', { class: 'minus' }, change.from.map(catLabel).join(', ') || 'none'),
+        h('span', { class: 'plus' }, change.to.map(catLabel).join(', ') || 'none')))));
+  }
+  for (const item of diff.items) {
+    const head = item.change === 'added' ? 'New ' : item.change === 'removed' ? 'Delete ' : '';
+    sections.push(h('section', {},
+      h('h3', {}, `${head}${KIND_ONE[item.kind]}: ${item.name}`),
+      item.fields.map(change => h('div', {}, h('span', { class: 'eyebrow' }, change.field), ' ',
+        h('span', { class: 'minus' }, change.from || '(empty)'), h('span', { class: 'plus' }, change.to || '(empty)'))),
+      item.skillsAdded.map(skill => h('span', { class: 'plus' }, skill)),
+      item.change === 'removed' ? '' : item.skillsRemoved.map(skill => h('span', { class: 'minus' }, skill)),
+      item.reordered ? h('span', { class: 'muted' }, 'skills re-saved') : ''));
+  }
+  const go = h('button', { type: 'button', class: 'primary', onclick: async () => {
+    go.disabled = true;
+    try {
+      const result = await call('/api/apply', { op, label });
+      S = result.state; reindex();
+      ui.pending.clear(); ui.draft = null;
+      closeModal();
+      if (after) after();
+      render();
+      toast(`Applied: ${result.summary}`, 'good', ['Undo', undo]);
+    } catch (error) { go.disabled = false; oops(error); }
+  } }, 'Apply');
+  openModal(h('h2', {}, label || 'Review change'), h('p', { class: 'muted' }, `This will change: ${summary}. A backup is saved first.`),
+    h('div', { class: 'diff' }, sections), h('div', { class: 'row' }, go, btn('Cancel', closeModal, '')));
+}
+
+async function undo() {
+  try {
+    const result = await call('/api/undo', {});
+    S = result.state; reindex();
+    ui.draft = null; ui.pending.clear();
+    render();
+    toast(`Undone: ${result.undone}`);
+  } catch (error) { oops(error); }
+}
+
+function openSkill(skill) { ui.tab = 'skills'; ui.skill = skill; render(); }
+function openItem(uid) { ui.tab = 'items'; ui.item = uid; ui.draft = null; render(); }
+
+/* ---------- overview ---------- */
+function viewOverview() {
+  const H = S.health;
+  const count = kind => S.items.filter(item => item.kind === kind).length;
+  const links = S.items.reduce((total, item) => total + item.skills.length, 0);
+  const tile = (value, label) => h('div', { class: 'tile cut' }, h('b', {}, value), label);
+
+  const check = (title, list, renderRow, tone) => h('div', { class: `check ${list.length ? (tone || 'no') : 'ok'}` },
+    h('span', { class: 'mark' }, list.length ? (tone === 'info' ? 'i' : '!') : '✓'),
+    h('span', {}, title, list.length ? h('span', { class: 'muted' }, `  (${list.length})`) : ''),
+    list.length ? h('ul', {}, list.slice(0, 60).map(entry => h('li', {}, renderRow(entry)))) : '');
+
+  const checks = h('div', { class: 'panel' }, h('h2', {}, 'Health'),
+    check('Every skill on an item is on the master list', H.strays, s => [
+      link(s.name, () => openItem(s.uid)), ` uses “${s.skill}” `,
+      btn('Add to master', async () => {
+        const answer = await ask(`Add “${s.skill}” to the master list`, [{ name: 'categories', label: 'Categories', type: 'checks', options: Object.keys(S.master.cats).map(key => [key, catLabel(key)]) }], 'Preview');
+        if (answer) propose({ type: 'skill.add', name: s.skill, categories: answer.categories }, `Add ${s.skill}`);
+      }),
+      btn('Remove from item', () => propose({ type: 'item.removeSkills', uid: s.uid, skills: [s.skill] }, `Remove ${s.skill} from ${s.name}`))]),
+    check('Project pages and MongoDB list the same skills', H.pageDrift, d => [
+      link(d.name, () => openItem(d.uid)), h('span', { class: 'muted' }, ` ${d.page}`),
+      d.onlyPage.length ? ` page only: ${d.onlyPage.join(', ')}.` : '', d.onlyMongo.length ? ` MongoDB only: ${d.onlyMongo.join(', ')}.` : '',
+      !d.onlyPage.length && !d.onlyMongo.length ? ' same skills, different order.' : '',
+      btn('Use page version', () => propose({ type: 'project.fromPage', uid: d.uid }, `Sync ${d.name} from its page`))]),
+    check('Every MongoDB project has a page', H.noPage, d => [d.name, ' ',
+      btn('Delete from MongoDB', () => propose({ type: 'item.remove', uid: d.uid }, `Delete ${d.name}`), 'small danger')]),
+    check('Every project page has a MongoDB document', H.pageWithoutDoc, d => `${d.page} (projectId ${d.id}) has no document yet`),
+    check('Courses match in both stores', H.storeDrift, d => [link(d.name, () => openItem(d.uid)), ' ',
+      btn('Re-save', () => propose({ type: 'course.resync', uid: d.uid }, `Re-save ${d.name}`))]),
+    check('No course description without a course', H.orphanCourseDocs, name => name),
+    check('Every master skill has a category', H.uncategorised, skill => link(skill, () => openSkill(skill))),
+    check('No category lists a skill missing from master', H.categoryOnly, skill => skill),
+    check('No duplicates', [...H.duplicates.map(d => d.name), ...H.masterDuplicates], name => name),
+    check('Master skills that nothing uses', H.unused, skill => link(skill, () => openSkill(skill)), 'info'));
+
+  const catMax = Math.max(1, ...Object.values(S.master.cats).map(list => list.length));
+  const categories = h('div', { class: 'panel' }, h('h2', {}, 'Master list by category'),
+    h('table', {}, h('tbody', {}, Object.entries(S.master.cats).map(([key, list]) => h('tr', { class: 'pick', onclick: () => { ui.skillCat = key; ui.tab = 'skills'; render(); } },
+      h('td', {}, catLabel(key)), h('td', { class: 'num' }, list.length),
+      h('td', {}, h('div', { class: 'bar', style: `width:${(list.length / catMax) * 100}%` })))))));
+
+  const top = [...S.master.skills].sort((a, b) => uses(b) - uses(a)).slice(0, 15);
+  const topMax = Math.max(1, uses(top[0]));
+  const most = h('div', { class: 'panel' }, h('h2', {}, 'Most used skills'),
+    h('table', {}, h('tbody', {}, top.map(skill => h('tr', { class: 'pick', onclick: () => openSkill(skill) },
+      h('td', {}, skill), h('td', { class: 'num' }, uses(skill)),
+      h('td', {}, h('div', { class: 'bar', style: `width:${(uses(skill) / topMax) * 100}%` })))))));
+
+  return h('div', { class: 'grid' },
+    h('div', { class: 'tiles' }, tile(count('project'), 'Projects'), tile(count('position'), 'Positions'), tile(count('course'), 'Courses'),
+      tile(count('cert'), 'Certifications'), tile(S.master.skills.length, 'Master skills'), tile(links, 'Skill links')),
+    h('div', { class: 'split' }, checks, h('div', { class: 'grid' }, categories, most)));
+}
+
+/* ---------- skills ---------- */
+function viewSkills() {
+  const body = h('tbody');
+  const counter = h('span', { class: 'muted' });
+  const draw = () => {
+    const query = ui.skillSearch.trim().toLowerCase();
+    let rows = S.master.skills.filter(skill => {
+      if (query && !skill.toLowerCase().includes(query)) return false;
+      const cats = CAT_OF.get(skill);
+      if (ui.skillCat === 'none' ? cats.length : ui.skillCat !== 'all' && !cats.includes(ui.skillCat)) return false;
+      const n = uses(skill);
+      return ui.skillUse === 'all' || (ui.skillUse === 'unused' && n === 0) || (ui.skillUse === 'once' && n === 1) || (ui.skillUse === 'many' && n > 1);
+    });
+    rows.sort(ui.skillSort === 'name' ? (a, b) => a.localeCompare(b) : (a, b) => uses(b) - uses(a) || a.localeCompare(b));
+    const max = Math.max(1, ...rows.map(uses));
+    counter.textContent = `${rows.length} of ${S.master.skills.length}`;
+    body.replaceChildren(...rows.map(skill => {
+      const by = USE.get(skill).by;
+      return h('tr', { class: `pick${skill === ui.skill ? ' sel' : ''}`, onclick: () => { ui.skill = skill; render(); } },
+        h('td', {}, skill), h('td', {}, CAT_OF.get(skill).map(cat => h('span', { class: 'tag' }, catLabel(cat)))),
+        h('td', { class: 'num' }, by.project || ''), h('td', { class: 'num' }, by.position || ''), h('td', { class: 'num' }, by.course || ''), h('td', { class: 'num' }, by.cert || ''),
+        h('td', { class: 'num' }, uses(skill)), h('td', { style: 'width:90px' }, h('div', { class: 'bar', style: `width:${(uses(skill) / max) * 100}%` })));
+    }));
+  };
+  const select = (key, options) => h('select', { onchange: event => { ui[key] = event.target.value; draw(); } },
+    options.map(([value, label]) => h('option', { value, selected: ui[key] === value }, label)));
+  const toolbar = h('div', { class: 'row' },
+    h('input', { type: 'search', placeholder: 'Search skills', value: ui.skillSearch, oninput: event => { ui.skillSearch = event.target.value; draw(); } }),
+    select('skillCat', [['all', 'All categories'], ...Object.keys(S.master.cats).map(key => [key, catLabel(key)]), ['none', 'No category']]),
+    select('skillUse', [['all', 'Any usage'], ['unused', 'Unused'], ['once', 'Used once'], ['many', 'Used 2+ times']]),
+    select('skillSort', [['uses', 'Most used first'], ['name', 'A to Z']]),
+    counter, h('span', { style: 'flex:1' }),
+    btn('New skill', async () => {
+      const answer = await ask('New master skill', [{ name: 'name', label: 'Name' },
+        { name: 'categories', label: 'Categories', type: 'checks', options: Object.keys(S.master.cats).map(key => [key, catLabel(key)]) }], 'Preview');
+      if (answer) propose({ type: 'skill.add', name: answer.name, categories: answer.categories }, `Add ${answer.name}`, () => { ui.skill = answer.name.trim(); });
+    }, 'primary'));
+  draw();
+  const table = h('div', { class: 'panel' }, toolbar, h('table', { style: 'margin-top:10px' },
+    h('thead', {}, h('tr', {}, ['Skill', 'Categories'].map(t => h('th', {}, t)), ['Proj', 'Pos', 'Crs', 'Cert', 'All'].map(t => h('th', { class: 'num' }, t)), h('th'))), body));
+  return h('div', { class: 'split' }, table, h('div', { class: 'sticky' }, skillPanel()));
+}
+
+function skillPanel() {
+  const skill = ui.skill;
+  if (!skill || !USE.has(skill)) return h('div', { class: 'panel muted' }, 'Pick a skill to see everything that depends on it.');
+  const entry = USE.get(skill);
+  const current = CAT_OF.get(skill);
+  const boxes = Object.keys(S.master.cats).map(key => h('label', {}, h('input', { type: 'checkbox', value: key, checked: current.includes(key) }), ` ${catLabel(key)}`));
+  const catRow = h('div', { class: 'row' }, boxes);
+  const without = S.items.filter(item => !item.skills.includes(skill));
+
+  return h('div', { class: 'panel grid' },
+    h('div', {}, h('h2', {}, skill), h('span', { class: 'muted' }, `Used by ${plural(entry.items.length, 'item')}`)),
+    h('div', { class: 'row' },
+      btn('Rename', async () => {
+        const answer = await ask(`Rename “${skill}”`, [{ name: 'to', label: 'New name', value: skill }], 'Preview');
+        if (answer) propose({ type: 'skill.rename', from: skill, to: answer.to }, `Rename ${skill}`, () => { ui.skill = answer.to.trim(); });
+      }, ''),
+      btn('Merge into…', async () => {
+        const answer = await ask(`Merge “${skill}” into another skill`, [{ name: 'into', label: `Every item with “${skill}” gets this skill instead`, type: 'skill' }], 'Preview');
+        if (!answer) return;
+        const into = findSkill(answer.into);
+        if (!into) return toast(`“${answer.into}” is not on the master list.`, 'bad');
+        propose({ type: 'skill.merge', from: skill, into }, `Merge ${skill} into ${into}`, () => { ui.skill = into; });
+      }, ''),
+      btn('Add to items…', () => pickItems(skill, without), ''),
+      btn('Remove everywhere', () => propose({ type: 'skill.remove', name: skill }, `Remove ${skill} everywhere`, () => { ui.skill = null; }), 'danger')),
+    h('div', {}, h('div', { class: 'eyebrow group-title' }, 'Categories'), catRow,
+      h('div', { style: 'margin-top:6px' }, btn('Save categories', () => propose({ type: 'skill.categories', name: skill, categories: boxes.map(label => label.firstChild).filter(box => box.checked).map(box => box.value) }, `Recategorise ${skill}`)))),
+    Object.keys(KINDS).map(kind => {
+      const list = entry.items.filter(item => item.kind === kind);
+      if (!list.length) return '';
+      return h('div', {}, h('div', { class: 'eyebrow group-title' }, `${KINDS[kind]} (${list.length})`),
+        h('div', { class: 'chips' }, list.map(item => h('span', { class: 'chip' }, link(item.name, () => openItem(item.uid)),
+          h('button', { type: 'button', title: `Remove ${skill} from ${item.name}`, onclick: () => propose({ type: 'item.removeSkills', uid: item.uid, skills: [skill] }, `Remove ${skill} from ${item.name}`) }, '×')))));
+    }));
+}
+
+function pickItems(skill, candidates) {
+  const boxes = [];
+  const groups = Object.keys(KINDS).map(kind => {
+    const list = candidates.filter(item => item.kind === kind);
+    if (!list.length) return '';
+    return h('div', {}, h('div', { class: 'eyebrow group-title' }, KINDS[kind]), list.map(item => {
+      const box = h('input', { type: 'checkbox', value: item.uid });
+      boxes.push(box);
+      return h('label', { style: 'display:block' }, box, ` ${item.name}`, item.sub ? h('span', { class: 'muted' }, ` · ${item.sub}`) : '');
+    }));
+  });
+  openModal(h('h2', {}, `Add “${skill}” to…`), h('div', { class: 'diff' }, groups), h('div', { class: 'row' },
+    btn('Preview', () => {
+      const picked = boxes.filter(box => box.checked).map(box => box.value);
+      if (!picked.length) return toast('Tick at least one item.');
+      propose({ type: 'batch', ops: picked.map(uid => ({ type: 'item.addSkills', uid, skills: [skill] })) }, `Add ${skill} to ${plural(picked.length, 'item')}`);
+    }, 'primary'), btn('Cancel', closeModal, '')));
+}
+
+/* ---------- items ---------- */
+function viewItems() {
+  const list = h('div', { class: 'list' });
+  const draw = () => {
+    const query = ui.itemSearch.trim().toLowerCase();
+    const rows = S.items.filter(item => (ui.itemKind === 'all' || item.kind === ui.itemKind) && (!query || `${item.name} ${item.sub}`.toLowerCase().includes(query)));
+    list.replaceChildren(...rows.map(item => h('button', { type: 'button', class: item.uid === ui.item ? 'sel' : '', onclick: () => openItem(item.uid) },
+      h('span', {}, item.name), h('small', {}, `${KIND_ONE[item.kind]}${item.sub ? ` · ${item.sub}` : ''} · ${plural(item.skills.length, 'skill')}`))));
+  };
+  draw();
+  const left = h('div', { class: 'panel sticky' }, h('div', { class: 'row' },
+    h('select', { onchange: event => { ui.itemKind = event.target.value; draw(); } }, [['all', 'Everything'], ...Object.entries(KINDS)].map(([value, label]) => h('option', { value, selected: ui.itemKind === value }, label))),
+    h('input', { type: 'search', placeholder: 'Search', value: ui.itemSearch, style: 'flex:1', oninput: event => { ui.itemSearch = event.target.value; draw(); } }),
+    btn('New…', newItem, '')), list);
+  return h('div', { class: 'split narrow' }, left, itemPanel());
+}
+
+async function newItem() {
+  const pickKind = await ask('New item', [{ name: 'kind', label: 'Kind (projects are created by adding a page in src/views/Projects)', type: 'select', options: S.canAdd.map(kind => [kind, KIND_ONE[kind]]) }]);
+  if (!pickKind) return;
+  const answer = await ask(`New ${KIND_ONE[pickKind.kind]}`, S.fields[pickKind.kind].map(field => ({ name: field, label: field, type: field === 'description' ? 'textarea' : 'text' })), 'Preview');
+  if (answer) propose({ type: 'item.add', kind: pickKind.kind, fields: answer, skills: [] }, `Add ${KIND_ONE[pickKind.kind]}`);
+}
+
+function itemPanel() {
+  const item = ui.item && itemByUid(ui.item);
+  if (!item) return h('div', { class: 'panel muted' }, 'Pick an item to see and edit the skills it depends on.');
+  if (!ui.draft || ui.draft.uid !== item.uid) ui.draft = { uid: item.uid, fields: { ...item.fields }, skills: [...item.skills] };
+  const draft = ui.draft;
+  const chipsBox = h('div');
+  const review = h('button', { type: 'button', class: 'primary' }, 'Review changes');
+  const dirty = () => JSON.stringify(draft.fields) !== JSON.stringify(item.fields) || JSON.stringify(draft.skills) !== JSON.stringify(item.skills);
+  const refresh = () => { review.disabled = !dirty(); };
+
+  const drawChips = () => {
+    const groups = new Map();
+    for (const skill of draft.skills) {
+      const cat = (CAT_OF.get(skill) || [])[0] || (USE.has(skill) ? 'none' : 'stray');
+      if (!groups.has(cat)) groups.set(cat, []);
+      groups.get(cat).push(skill);
+    }
+    const order = [...Object.keys(S.master.cats), 'none', 'stray'].filter(key => groups.has(key));
+    chipsBox.replaceChildren(...order.map(cat => h('div', {},
+      h('div', { class: 'eyebrow group-title' }, cat === 'stray' ? 'Not on the master list' : cat === 'none' ? 'No category' : catLabel(cat)),
+      h('div', { class: 'chips' }, groups.get(cat).map(skill => h('span', { class: `chip${cat === 'stray' ? ' stray' : ''}${item.skills.includes(skill) ? '' : ' new'}` },
+        USE.has(skill) ? link(skill, () => openSkill(skill)) : skill,
+        h('button', { type: 'button', title: `Remove ${skill}`, onclick: () => { draft.skills = draft.skills.filter(s => s !== skill); drawChips(); refresh(); } }, '×')))))));
+    if (!draft.skills.length) chipsBox.append(h('p', { class: 'muted' }, 'No skills yet.'));
+  };
+
+  const adder = h('input', { type: 'text', placeholder: 'Add a skill from the master list', style: 'flex:1' });
+  adder.setAttribute('list', 'all-skills');
+  const add = () => {
+    const skill = findSkill(adder.value);
+    if (!adder.value.trim()) return;
+    if (!skill) return toast(`“${adder.value}” is not on the master list. Add it under Skills first.`, 'bad');
+    if (!draft.skills.includes(skill)) draft.skills.push(skill);
+    adder.value = '';
+    drawChips(); refresh();
+  };
+  adder.addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); add(); } });
+  adder.addEventListener('change', () => { if (findSkill(adder.value)) add(); });
+
+  review.onclick = () => {
+    const ops = [];
+    if (JSON.stringify(draft.fields) !== JSON.stringify(item.fields)) ops.push({ type: 'item.fields', uid: item.uid, fields: draft.fields });
+    if (JSON.stringify(draft.skills) !== JSON.stringify(item.skills)) ops.push({ type: 'item.skills', uid: item.uid, skills: draft.skills });
+    propose({ type: 'batch', ops }, `Edit ${item.name}`);
+  };
+  drawChips(); refresh();
+
+  const drift = S.health.pageDrift.find(entry => entry.uid === item.uid);
+  const canDelete = item.kind !== 'project' || !item.page;
+  return h('div', { class: 'panel grid' },
+    h('div', {}, h('div', { class: 'eyebrow' }, KIND_ONE[item.kind]), h('h2', {}, item.name),
+      item.kind === 'project' ? h('div', { class: 'muted' }, item.page ? `Page: src/views/Projects/${item.page}. Skill edits here update the page too.` : 'No page file for this project.') : '',
+      item.kind === 'course' ? h('div', { class: 'muted' }, 'Saved to both the education list and the course descriptions.') : '',
+      drift ? h('div', { style: 'color:var(--bad)' }, 'Its page and MongoDB list different skills. Resolve that on the Overview tab before editing skills.') : ''),
+    h('div', { class: 'grid', style: 'grid-template-columns:repeat(auto-fit,minmax(220px,1fr))' }, S.fields[item.kind].map(field => {
+      const input = field === 'description'
+        ? h('textarea', { rows: 4, value: draft.fields[field] || '' })
+        : h('input', { type: 'text', value: draft.fields[field] || '' });
+      input.addEventListener('input', () => { draft.fields[field] = input.value; refresh(); });
+      return h('label', { class: 'field', style: field === 'description' ? 'grid-column:1/-1' : '' }, field, input);
+    })),
+    h('div', {}, h('div', { class: 'row' }, h('h3', {}, `Skills (${draft.skills.length})`), adder, btn('Add', add, '')), chipsBox),
+    h('div', { class: 'row' }, review, btn('Reset', () => { ui.draft = null; render(); }, ''), h('span', { style: 'flex:1' }),
+      canDelete ? btn(`Delete this ${KIND_ONE[item.kind]}`, () => propose({ type: 'item.remove', uid: item.uid }, `Delete ${item.name}`, () => { ui.item = null; }), 'danger') : ''));
+}
+
+/* ---------- matrix ---------- */
+function viewMatrix() {
+  const top = [...S.master.skills].sort((a, b) => uses(b) - uses(a)).slice(0, 40);
+  const skills = ui.matrixCols === 'top' ? top : [...(S.master.cats[ui.matrixCols] || [])].sort((a, b) => uses(b) - uses(a) || a.localeCompare(b));
+  const kinds = Object.keys(KINDS).filter(kind => ui.matrixRows === 'all' || ui.matrixRows === kind);
+  const bar = h('div', { class: 'pending cut', hidden: true });
+  const drawBar = () => {
+    bar.hidden = !ui.pending.size;
+    bar.replaceChildren(`${plural(ui.pending.size, 'pending change')}`, h('span', { style: 'flex:1' }),
+      btn('Review', () => {
+        const byItem = new Map();
+        for (const [key, add] of ui.pending) {
+          const [uid, skill] = key.split('|');
+          if (!byItem.has(uid)) byItem.set(uid, { add: [], remove: [] });
+          byItem.get(uid)[add ? 'add' : 'remove'].push(skill);
+        }
+        const ops = [];
+        for (const [uid, change] of byItem) {
+          if (change.add.length) ops.push({ type: 'item.addSkills', uid, skills: change.add });
+          if (change.remove.length) ops.push({ type: 'item.removeSkills', uid, skills: change.remove });
+        }
+        propose({ type: 'batch', ops }, `Apply ${plural(ui.pending.size, 'matrix change')}`);
+      }, 'primary small'),
+      btn('Discard', () => { ui.pending.clear(); render(); }));
+  };
+  const paint = (cell, item, skill) => {
+    const key = `${item.uid}|${skill}`;
+    const has = item.skills.includes(skill);
+    cell.className = ui.pending.has(key) ? (ui.pending.get(key) ? 'add' : 'del') : has ? 'on' : '';
+    cell.title = `${item.name} × ${skill}${ui.pending.has(key) ? (ui.pending.get(key) ? ' (will be added)' : ' (will be removed)') : has ? '' : ' (not linked)'}`;
+  };
+  const rows = [];
+  for (const kind of kinds) {
+    const list = S.items.filter(item => item.kind === kind);
+    rows.push(h('tr', { class: 'kind' }, h('th', {}, `${KINDS[kind]} (${list.length})`), h('th', { colspan: skills.length })));
+    for (const item of list) {
+      rows.push(h('tr', {}, h('th', { title: item.name }, link(item.name, () => openItem(item.uid))), skills.map(skill => {
+        const cell = h('td', { onclick: () => {
+          const key = `${item.uid}|${skill}`;
+          if (ui.pending.has(key)) ui.pending.delete(key); else ui.pending.set(key, !item.skills.includes(skill));
+          paint(cell, item, skill); drawBar();
+        } });
+        paint(cell, item, skill);
+        return cell;
+      })));
+    }
+  }
+  const shown = S.items.filter(item => kinds.includes(item.kind));
+  const select = (key, options) => h('select', { onchange: event => { ui[key] = event.target.value; render(); } }, options.map(([value, label]) => h('option', { value, selected: ui[key] === value }, label)));
+  drawBar();
+  return h('div', { class: 'grid' },
+    h('div', { class: 'row' }, h('span', { class: 'eyebrow' }, 'Columns'),
+      select('matrixCols', [['top', 'Top 40 skills'], ...Object.keys(S.master.cats).map(key => [key, `${catLabel(key)} (${S.master.cats[key].length})`])]),
+      h('span', { class: 'eyebrow' }, 'Rows'), select('matrixRows', [['all', 'Everything'], ...Object.entries(KINDS)]),
+      h('span', { class: 'muted' }, 'Filled = the item uses the skill. Click a cell to queue adding or removing it; nothing is saved until you review.')),
+    h('div', { class: 'matrix-wrap' }, h('table', { class: 'matrix' },
+      h('thead', {}, h('tr', {}, h('th', { class: 'corner' }), skills.map(skill => h('th', {}, link(skill, () => openSkill(skill)))))),
+      h('tbody', {}, rows),
+      h('tfoot', {}, h('tr', {}, h('th', {}, 'uses in view'), skills.map(skill => h('td', {}, shown.filter(item => item.skills.includes(skill)).length)))))),
+    bar);
+}
+
+/* ---------- bulk edit ---------- */
+function parseBulk(text) {
+  const ops = [];
+  const lines = [];
+  for (const rawLine of text.split('\n')) {
+    const line = rawLine.trim();
+    if (!line || line.startsWith('#')) continue;
+    const colon = line.lastIndexOf(':');
+    if (colon < 1) { lines.push({ line, error: 'Expected “Item name: Skill, Skill”' }); continue; }
+    const wanted = line.slice(0, colon).trim().toLowerCase();
+    const exact = S.items.filter(item => item.name.toLowerCase() === wanted);
+    const loose = exact.length ? exact : S.items.filter(item => `${item.name} ${item.sub}`.toLowerCase().includes(wanted));
+    if (loose.length !== 1) {
+      lines.push({ line, error: loose.length ? `“${line.slice(0, colon)}” matches ${loose.length} items: ${loose.slice(0, 4).map(item => `${item.name} (${KIND_ONE[item.kind]}${item.sub ? `, ${item.sub}` : ''})`).join('; ')}. Be more specific.` : `No item matches “${line.slice(0, colon)}”.` });
+      continue;
+    }
+    const item = loose[0];
+    const parts = line.slice(colon + 1).split(',').map(part => part.trim()).filter(Boolean);
+    const add = [], remove = [], unknown = [], skipped = [];
+    for (let i = 0; i < parts.length;) {
+      let matched = null, span = 1, minus = false;
+      // skill names can contain commas ("Extract, Transform, Load (ETL)"), so try the longest join first
+      for (let length = Math.min(4, parts.length - i); length >= 1 && !matched; length--) {
+        let candidate = parts.slice(i, i + length).join(', ');
+        minus = candidate.startsWith('-');
+        if (minus || candidate.startsWith('+')) candidate = candidate.slice(1).trim();
+        matched = findSkill(candidate);
+        span = length;
+      }
+      if (!matched) { unknown.push(parts[i]); i++; continue; }
+      if (minus) (item.skills.includes(matched) ? remove : skipped).push(matched);
+      else (item.skills.includes(matched) ? skipped : add).push(matched);
+      i += span;
+    }
+    if (add.length) ops.push({ type: 'item.addSkills', uid: item.uid, skills: add });
+    if (remove.length) ops.push({ type: 'item.removeSkills', uid: item.uid, skills: remove });
+    lines.push({ line, item, add, remove, unknown, skipped });
+  }
+  return { ops, lines };
+}
+
+function viewBulk() {
+  const out = h('div');
+  const area = h('textarea', { rows: 12, value: ui.bulk, placeholder: 'Music Teacher: Organization, Mentorship\nPurplWav: Community Outreach, -Shell\n# lines starting with # are ignored' });
+  area.addEventListener('input', () => { ui.bulk = area.value; });
+  const check = () => {
+    const { ops, lines } = parseBulk(area.value);
+    const changes = ops.reduce((total, op) => total + op.skills.length, 0);
+    out.replaceChildren(h('div', { class: 'diff', style: 'margin-top:10px' }, lines.map(entry => h('section', {},
+      entry.error ? [h('div', { class: 'mono' }, entry.line), h('div', { style: 'color:var(--bad)' }, entry.error)] : [
+        h('h3', {}, `${KIND_ONE[entry.item.kind]}: ${entry.item.name}`),
+        entry.add.map(skill => h('span', { class: 'plus' }, skill)), entry.remove.map(skill => h('span', { class: 'minus' }, skill)),
+        entry.skipped.length ? h('div', { class: 'muted' }, `Already as requested: ${entry.skipped.join(', ')}`) : '',
+        entry.unknown.length ? h('div', { style: 'color:var(--bad)' }, `Not on the master list: ${entry.unknown.join(', ')}`) : '']))),
+      h('div', { class: 'row', style: 'margin-top:10px' }, btn(`Review ${plural(changes, 'change')}`, () => propose({ type: 'batch', ops }, 'Bulk edit', () => { ui.bulk = ''; }), 'primary'), changes ? '' : h('span', { class: 'muted' }, 'Nothing to apply yet.')));
+    out.querySelector('button.primary').disabled = !changes;
+  };
+  return h('div', { class: 'panel grid' }, h('h2', {}, 'Bulk edit'),
+    h('p', { class: 'muted', style: 'margin:0' }, 'One line per item: “Item name: Skill, Skill”. Put a minus in front of a skill to remove it. Item names match loosely, skills must be on the master list, and anything already in place is skipped.'),
+    area, h('div', { class: 'row' }, btn('Check', check, 'primary')), out);
+}
+
+/* ---------- cleanup ---------- */
+function viewCleanup() {
+  const skills = S.master.skills.filter(skill => uses(skill) >= 3);
+  const sets = new Map(skills.map(skill => [skill, new Set(USE.get(skill).items.map(item => item.uid))]));
+  const pairs = [];
+  for (let i = 0; i < skills.length; i++) {
+    for (let j = i + 1; j < skills.length; j++) {
+      const a = sets.get(skills[i]), b = sets.get(skills[j]);
+      let shared = 0;
+      for (const uid of a) if (b.has(uid)) shared++;
+      if (shared >= 3 && shared / Math.min(a.size, b.size) >= 0.9) pairs.push({ a: skills[i], b: skills[j], shared, score: shared / (a.size + b.size - shared) });
+    }
+  }
+  pairs.sort((x, y) => y.shared - x.shared || y.score - x.score);
+  const merge = (from, into) => btn(`Merge into ${into}`, () => propose({ type: 'skill.merge', from, into }, `Merge ${from} into ${into}`));
+  const overlap = h('div', { class: 'panel' }, h('h2', {}, 'Skills that almost always appear together'),
+    h('p', { class: 'muted' }, 'Pairs where nearly every item with one also has the other. A sign that one may be redundant.'),
+    pairs.length ? h('table', {}, h('thead', {}, h('tr', {}, ['Skill', 'Uses', 'Skill', 'Uses', 'Shared', ''].map(t => h('th', {}, t)))),
+      h('tbody', {}, pairs.slice(0, 50).map(pair => h('tr', {},
+        h('td', {}, link(pair.a, () => openSkill(pair.a))), h('td', { class: 'num' }, uses(pair.a)),
+        h('td', {}, link(pair.b, () => openSkill(pair.b))), h('td', { class: 'num' }, uses(pair.b)), h('td', { class: 'num' }, pair.shared),
+        h('td', {}, h('div', { class: 'row' }, merge(pair.a, pair.b), merge(pair.b, pair.a))))))) : h('p', {}, 'None found.'));
+  const listPanel = (title, list, extra) => h('div', { class: 'panel' }, h('h2', {}, `${title} (${list.length})`),
+    list.length ? h('div', { class: 'chips', style: 'margin-top:8px' }, list.map(skill => h('span', { class: 'chip' }, link(skill, () => openSkill(skill)), extra ? extra(skill) : ''))) : h('p', { class: 'muted' }, 'None.'));
+  const odd = S.master.skills.filter(skill => /\s[a-z]{4,}$/.test(skill) && !/ (auth)$/.test(skill));
+  return h('div', { class: 'grid' }, overlap,
+    listPanel('Unused master skills', S.health.unused, skill => h('button', { type: 'button', title: `Remove ${skill}`, onclick: () => propose({ type: 'skill.remove', name: skill }, `Remove ${skill}`) }, '×')),
+    listPanel('Used by only one item', S.master.skills.filter(skill => uses(skill) === 1)),
+    listPanel('Names with a lowercase last word', odd));
+}
+
+/* ---------- history ---------- */
+function viewHistory() {
+  const box = h('div', { class: 'panel' }, h('h2', {}, 'History'), h('p', { class: 'muted' }, 'Loading…'));
+  call('/api/backups').then(({ backups }) => {
+    box.replaceChildren(h('h2', {}, 'History'),
+      h('p', { class: 'muted' }, 'A snapshot of the database and the project pages is saved before every change (api/tools/admin/backups, the newest 40 are kept). Undo steps back one change at a time.'),
+      backups.length ? h('table', {}, h('thead', {}, h('tr', {}, ['When', 'Change', 'What it touched', ''].map(t => h('th', {}, t)))),
+        h('tbody', {}, backups.map((backup, index) => h('tr', {},
+          h('td', { class: 'mono' }, backup.at ? new Date(backup.at).toLocaleString() : backup.file), h('td', {}, backup.label), h('td', { class: 'muted' }, backup.summary),
+          h('td', {}, index === 0 ? btn('Undo this', undo) : ''))))) : h('p', {}, 'No changes made with this tool yet.'));
+  }).catch(oops);
+  return box;
+}
+
+/* ---------- shell ---------- */
+const VIEWS = { overview: viewOverview, skills: viewSkills, items: viewItems, matrix: viewMatrix, bulk: viewBulk, cleanup: viewCleanup, history: viewHistory };
+function render() {
+  const problems = ['strays', 'pageDrift', 'noPage', 'pageWithoutDoc', 'storeDrift', 'uncategorised', 'categoryOnly', 'duplicates', 'masterDuplicates'].reduce((total, key) => total + S.health[key].length, 0);
+  $('tabs').replaceChildren(...TABS.map(([key, label]) => h('button', { type: 'button', class: ui.tab === key ? 'on' : '', onclick: () => { ui.tab = key; render(); } },
+    key === 'overview' && problems ? `${label} (${problems})` : label)));
+  $('undo').disabled = !S.backups;
+  $('view').replaceChildren(VIEWS[ui.tab]());
+}
+
+$('undo').onclick = undo;
+$('reload').onclick = () => load().then(() => toast('Reloaded.')).catch(oops);
+$('modal').addEventListener('mousedown', event => { if (event.target === $('modal')) closeModal(); });
+document.addEventListener('keydown', event => { if (event.key === 'Escape' && !$('modal').hidden) closeModal(); });
+load().catch(error => { $('view').replaceChildren(h('p', { style: 'color:var(--bad)' }, error.message)); });
+</script>
+</body>
+</html>

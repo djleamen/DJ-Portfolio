@@ -21,11 +21,15 @@
         <li>Admin Interface: Django admin for data management</li>
         <li>User Session Tracking: Persistent conversational sessions</li>
         <li>CLI Tool: Command-line interface for batch processing</li>
+        <li>Azure Pipeline: Optional enterprise path using Azure AI Document Intelligence, Azure AI Search, and Azure OpenAI</li>
         <li>Scalable Architecture: Modular design for easy extension</li>
     </ul>
     
     <h2>Architecture</h2>
     <img src="../../assets/ragdocarch.png" alt="RAG Document Reader Architecture" class="project-image">
+
+    <h2>Demo Video</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/L57GOpgZ720" title="RAG Document Reader demo video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
     <h2>Skills Developed</h2>
     <div class="skills-container">
@@ -60,7 +64,7 @@ export default {
       const project = this.projects.find(p => p.id === '18');
       if (project && project.date) {
         const date = new Date(project.date);
-        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
       }
       return '';
     }
@@ -69,13 +73,17 @@ export default {
     return {
       projects: [],
       skills: [
-        "Python", "Django", "FastAPI", "Git", "APIs", "Debugging", "Natural Language Processing (NLP)", 
-        "Vector Databases", "CSS", "Pandas", "NumPy", "Large Language Models (LLM)", "Bootstrap",
-        "Generative AI", "Machine Learning", "Artificial Intelligence (AI)", "pip", 
-        "LangChain", "Uvicorn", "Docker", "UX/UI", "Data Structures & Algorithms", 
-        "Software Development", "Software Engineering", "Streamlit", "Testing", "ML/AI", 
-        "NLTK", "Retrieval-Augmented Generation (RAG)", "Attention to Detail", "Data Entry", 
-        "Algorithms", "Data Analysis", "Data Visualization", "Problem Solving"
+        "Python", "Django", "Microsoft Azure", "Git", "APIs", "Debugging",
+        "Natural Language Processing (NLP)", "Vector Databases", "CSS", "Pandas", "NumPy",
+        "Large Language Models (LLM)", "Bootstrap", "Generative AI", "Machine Learning",
+        "Artificial Intelligence (AI)", "pip", "LangChain", "Docker", "UI/UX",
+        "Data Structures & Algorithms", "Software Engineering", "Testing", "NLTK",
+        "Retrieval-Augmented Generation (RAG)", "Attention to Detail", "Data Entry",
+        "Data Analysis", "Data Visualization", "Problem Solving", "FAISS", "Pinecone",
+        "Embeddings", "Sentence Transformers", "Pydantic", "Scikit-learn", "HTML",
+        "Containerization", "CI/CD", "Shell", "Hugging Face", "Prompt Engineering", "SQLite",
+        "Cybersecurity", "Data Pipelines", "Cloud Computing", "Visual Studio Code",
+        "Version Control", "Adaptability", "Analytical Skills", "Presentation"
       ]
     };
   }

@@ -19,25 +19,24 @@
     </section>
     <h2>Features</h2>
     <ul>
-      <li>Detects songs from audio input.</li>
-      <li>Reiterates detected track to user.</li>
-    </ul>
-    <h2>Future Improvements</h2>
-    <ul>
-      <li>Implement scrobbling of detected tracks to Last.fm.</li>
-      <li>Add more detailed song information display.</li>
-      <li>Implement more robust error handling.</li>
+      <li>Sign in with your Google account, with no password required.</li>
+      <li>Connect your Last.fm account in the app through Last.fm OAuth.</li>
+      <li>Detects songs from audio input using ACRCloud.</li>
+      <li>Scrobbles detected tracks to Last.fm automatically.</li>
+      <li>Displays the detected track's information and album art.</li>
+      <li>Continuous listening mode for uninterrupted scrobbling.</li>
     </ul>
     <h2>Additional Information</h2>
     <h3>Backend</h3>
     <ul>
       <li>ACRCloud API</li>
       <li>Last.fm API</li>
-      <li>Express</li>
+      <li>Express, with rate limiting, sessions, and CSRF protection</li>
     </ul>
     <h3>Frontend</h3>
     <ul>
       <li>React</li>
+      <li>Google sign-in</li>
     </ul>
     <h3>Project Structure</h3>
     <ul>
@@ -60,6 +59,8 @@
       <h2>Screenshots</h2>
       <div class="screenshots-container">
         <img src="../../assets/scrozamweb.png" alt="Demo Screenshot" class="screenshot">
+        <img src="../../assets/scrozamweb-2.png" alt="Scrozam! showing a detected song and the recently caught tracks list" class="screenshot" loading="lazy">
+        <img src="../../assets/scrozam-logged.png" alt="Detected tracks scrobbled to Last.fm Recent Tracks" class="screenshot" loading="lazy">
       </div>
     </section>
   </ProjectPage>
@@ -85,7 +86,7 @@ export default {
       const project = this.projects.find(p => p.id === '2');
       if (project && project.date) {
         const date = new Date(project.date);
-        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
       }
       return '';
     }
@@ -94,10 +95,11 @@ export default {
     return {
       projects: [],
       skills: [
-        "React", "Express.js", "Python", "Shell", "JavaScript", 
-        "HTML", "Git", "APIs", "CSS", "Node.js", "npm", "pip",
-        "Software Development", "Software Engineering", "Web Development",
-        "Problem Solving", "Creativity", "Innovation", "Adaptability", "Resilience"
+        "React", "Express.js", "Python", "Shell", "JavaScript", "HTML", "Git", "APIs", "CSS",
+        "Node.js", "npm", "pip", "Software Engineering", "Web Development", "Google OAuth",
+        "Cybersecurity", "Testing", "Problem Solving", "Creativity", "Innovation",
+        "Adaptability", "Resilience", "ACRCloud", "CI/CD", "Audio Processing",
+        "Visual Studio Code", "Version Control"
       ]
     };
   }

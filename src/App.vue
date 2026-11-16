@@ -28,7 +28,10 @@
           </div>
         </div>
         <div class="footer-base">
-          <p>© 2026 DJ Leamen</p>
+          <p>
+            © 2026 DJ Leamen ·
+            <a href="https://github.com/djleamen/DJ-Portfolio" target="_blank" rel="noopener noreferrer" class="footer-source">This portfolio is open source <span aria-hidden="true">↗</span></a>
+          </p>
           <div class="webring" aria-label="OTU Webring navigation">
             <a :href="webringPrevHref" class="webring-nav bevel" title="Previous site" aria-label="Previous site">←</a>
             <a href="https://otu-ring.com" target="_blank" rel="noopener noreferrer" class="webring-center" title="OTU Webring">
@@ -132,6 +135,16 @@ body {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--body);
+}
+
+.footer-source {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer-source:hover {
+  color: var(--ink);
 }
 
 .footer-links {

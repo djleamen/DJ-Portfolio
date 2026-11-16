@@ -63,7 +63,7 @@ export default {
       const project = this.projects.find(p => p.id === '7');
       if (project && project.date) {
         const date = new Date(project.date);
-        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
       }
       return '';
     }
@@ -71,10 +71,13 @@ export default {
   data() {
     return {
       projects: [],
-      skills: ["WordPress", "Mailchimp", "Google Analytics", "SEO", "UX/UI",
-              "Software Development", "Web Development", "Problem Solving", "Creativity",
-              "Adaptability", "Time Management", "Networking", "Communication",
-               "Collaboration", "Visual Studio Code" ]
+      skills: [
+        "WordPress", "Mailchimp", "Google Analytics", "SEO", "UI/UX", "Software Engineering",
+        "Web Development", "Problem Solving", "Adaptability", "Time Management",
+        "Professional Networking", "Communication", "Collaboration", "Visual Studio Code",
+        "E-Learning", "Marketing", "Professional Development", "Research",
+        "Written Communication", "Reliability", "Requirement Gathering", "Accessibility"
+      ]
     };
   }
 };

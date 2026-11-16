@@ -13,7 +13,7 @@ export function useProjectData(projectId: string) {
   const formattedDate = computed(() => {
     if (project.value && project.value.date) {
       const date = new Date(project.value.date);
-      return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+      return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
     }
     return '';
   });

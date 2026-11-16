@@ -75,7 +75,7 @@ export default {
       const project = this.projects.find(p => p.id === '20');
       if (project && project.date) {
         const date = new Date(project.date);
-        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
       }
       return '';
     }
@@ -85,9 +85,10 @@ export default {
       projects: [],
       skills: [
         "Python", "Git", "Debugging", "Artificial Intelligence (AI)", "Testing",
-        "Data Structures & Algorithms", "Data Entry", "Algorithms", "Data Analysis", 
-        "Problem Solving", "ML/AI", "Machine Learning", "TTS/STT", "Natural Language Processing (NLP)",
-        "Visual Studio Code", "APIs", "pip", "Programming Languages"
+        "Data Structures & Algorithms", "Data Entry", "Data Analysis", "Problem Solving",
+        "Machine Learning", "TTS/STT", "Natural Language Processing (NLP)", "Visual Studio Code",
+        "APIs", "pip", "Programming Languages", "Audio Processing", "CI/CD", "PyTorch",
+        "Version Control"
       ]
     };
   }

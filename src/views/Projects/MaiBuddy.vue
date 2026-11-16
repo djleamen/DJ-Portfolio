@@ -4,39 +4,50 @@
     <p class="project-date">{{ formattedDate }}</p>
 
     <p>
-      Mai Buddy is a highly customizable, personal AI agent that runs as a desktop application. 
-      It features GPT integration, ElevenLabs voice synthesis, and dozens of MCP 
-      (Model Context Protocol) connections for extending functionality.
+      Mai Buddy is a customizable, personal AI agent that runs as a desktop application.
+      It is powered by Anthropic Claude, lives in the menu bar, and comes with built-in
+      tools that let the assistant read files, run commands, and look things up on GitHub
+      on your behalf.
+    </p>
+    <p>
+      The first version was an Electron app. Version 2 is a rewrite in Python on pywebview,
+      which is what this page describes.
     </p>
 
     <h2>How It Works</h2>
     
     <ul>
-        <li>Users can interact with Mai Buddy via text or voice commands</li>
-        <li>Supports multiple AI models including GPT-4 and GPT-3.5 Turbo</li>
-        <li>Voice activation with ElevenLabs for text-to-speech capabilities</li>
-        <li>Integrates with various services through MCP connections</li>
-        <li>Runs in the system tray for easy access</li>
+        <li>You chat with Mai Buddy in a small, always-on-top window</li>
+        <li>A global hotkey (Cmd+Shift+M) or the menu bar icon shows and hides it</li>
+        <li>Claude answers, and can call the built-in tools on its own when a task needs them</li>
+        <li>Shell commands and file writes always ask for your approval in a native dialog first</li>
+        <li>Conversation history is saved locally and restored on the next launch</li>
     </ul>
     
     <h2>Key Features</h2>
     <ul>
-        <li>Highly customizable AI agent</li>
-        <li>Supports multiple AI models</li>
-        <li>Voice interaction capabilities</li>
-        <li>Extensive integration options</li>
-        <li>Lightweight and efficient</li>
+        <li>Anthropic Claude chat, with the model configurable in settings</li>
+        <li>Built-in MCP-style tools for the filesystem, the shell, and GitHub</li>
+        <li>Approval prompts, so text the assistant reads cannot trigger a command by itself</li>
+        <li>File writes restricted to your home directory</li>
+        <li>API keys stored in the macOS keychain</li>
+        <li>Markdown-rendered, sanitized responses</li>
+        <li>Frameless, transparent window with a draggable title bar</li>
     </ul>
+
+    <h2>Screenshots</h2>
+    <div class="screenshots-container">
+      <img src="@/assets/mai-buddy.png" alt="Mai Buddy desktop assistant welcome screen" class="screenshot" loading="lazy" />
+    </div>
     
     <h2>Technologies</h2>
     <ul>
-        <li>React</li>
-        <li>Node.js</li>
-        <li>Electron</li>
-        <li>Express.js</li>
-        <li>WebSocket</li>
-        <li>OpenAI API</li>
-        <li>ElevenLabs API</li>
+        <li>Python</li>
+        <li>pywebview</li>
+        <li>Anthropic API (Claude)</li>
+        <li>pystray and pynput for the menu bar icon and global hotkey</li>
+        <li>keyring for secure secret storage</li>
+        <li>HTML, CSS, and JavaScript for the chat interface</li>
     </ul>
 
     <h2>Skills Developed</h2>
@@ -44,15 +55,6 @@
       <div class="skill-bubble" v-for="skill in skills.slice(0, 20)" :key="skill">{{ skill }}</div>
       <div class="skill-bubble more-skills" v-if="skills.length > 20">+{{ skills.length - 20 }} more</div>
     </div>
-
-    <h2>Roadmap</h2>
-    <ul>
-        <li>Add support for additional AI models</li>
-        <li>Enhance voice interaction capabilities</li>
-        <li>Expand MCP connection options</li>
-        <li>Improve user interface and experience</li>
-        <li>Implement plugin system for custom extensions</li>
-    </ul>
 
     <h2>Project Link</h2>
     <a href="https://github.com/djleamen/mai-buddy" target="_blank" rel="noopener noreferrer">
@@ -81,7 +83,7 @@ export default {
       const project = this.projects.find(p => p.id === '22');
       if (project && project.date) {
         const date = new Date(project.date);
-        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
       }
       return '';
     }
@@ -90,15 +92,14 @@ export default {
     return {
       projects: [],
       skills: [
-        "React", "Node.js", "Electron", "Express.js", "JavaScript", "HTML", "CSS", 
-        "Git", "npm", "APIs", "Software Development", 
+        "Python", "pywebview", "JavaScript", "HTML", "CSS", "Git", "pip", "APIs",
         "Software Engineering", "Problem Solving", "Data Structures & Algorithms",
-        "Artificial Intelligence (AI)", "Machine Learning",
-        "Natural Language Processing (NLP)", "Generative AI", "TTS/STT",
-        "Large Language Models (LLM)", "ML/AI", "Prompt Engineering", "Visual Studio Code",
-        "AI Ethics", "Information Technology", "Testing", "Debugging", 
-        "Programming Languages", "Problem Solving", "Creativity",
-        "Innovation", "Written Communication"
+        "Artificial Intelligence (AI)", "Generative AI", "Large Language Models (LLM)",
+        "Agentic Frameworks", "Prompt Engineering", "Natural Language Processing (NLP)",
+        "Cybersecurity", "Defensive Programming", "Visual Studio Code", "AI Ethics",
+        "Information Technology", "Testing", "Debugging", "Programming Languages", "Creativity",
+        "Innovation", "Written Communication", "Shell", "CI/CD", "Multi-threading",
+        "Event-driven Programming", "Version Control", "Adaptability", "Data Entry"
       ]
     };
   }

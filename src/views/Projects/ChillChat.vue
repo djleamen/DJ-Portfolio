@@ -32,8 +32,8 @@
           <img src="../../assets/cc-threads.png" alt="Screenshot of Threads" class="screenshot">
           <img src="../../assets/cc-chat.png" alt="Screenshot of Chat" class="screenshot">
       </div>
-      /* fix this line
       <p>See the full demo here: <a href="https://www.youtube.com/watch?v=ccrG1b7ZdB0" target="_blank">Youtube</a></p>
+      <p>View the code here: <a href="https://github.com/djleamen/old-snippets/tree/main/java/academia/uni-postsecondary/softwaresystems/ChillChat" target="_blank" rel="noopener noreferrer">GitHub</a></p>
     </section>
     <p>
         <i>This project was originally submitted as coursework for CSCI2020U Software Systems Development & 
@@ -62,7 +62,7 @@ export default {
       const project = this.projects.find(p => p.id === '16');
       if (project && project.date) {
         const date = new Date(project.date);
-        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
       }
       return '';
     }
@@ -70,8 +70,12 @@ export default {
   data() {
     return {
       projects: [],
-      skills: ["Java", "Swing", "Software Development", "Software Engineering", "Git", "Visual Studio Code", "Shell", "Agile", "Teamwork",
-                "Problem Solving", "Time Management", "Communication", "Collaboration", "Creativity"]
+      skills: [
+        "Java", "Swing", "Software Engineering", "Git", "Visual Studio Code", "Shell", "Agile",
+        "Teamwork", "Problem Solving", "Time Management", "Communication", "Collaboration",
+        "Creativity", "Multi-threading", "Network Programming", "Concurrency", "Version Control",
+        "Written Communication", "Resilience", "Data Entry", "Conflict Resolution"
+      ]
     };
   }
 };

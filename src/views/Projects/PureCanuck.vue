@@ -52,7 +52,7 @@ export default {
       const project = this.projects.find(p => p.id === '8');
       if (project && project.date) {
         const date = new Date(project.date);
-        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
       }
       return '';
     }
@@ -60,14 +60,20 @@ export default {
   data() {
     return {
       projects: [],
-      skills: ["Liquid", "HTML", "CSS", "JavaScript", "Web Development", "Software Development", "Shopify",
-              "Problem Solving", "Creativity", "Adaptability", "Requirement Gathering",
-             "Communication", "Collaboration", "Graphic Design", "SEO", "Attention to Detail"]
+      skills: [
+        "Liquid", "HTML", "CSS", "JavaScript", "Web Development", "Software Engineering",
+        "Shopify", "Problem Solving", "Creativity", "Adaptability", "Requirement Gathering",
+        "Communication", "Collaboration", "Graphic Design", "SEO", "Attention to Detail",
+        "Agile", "Scrum", "Kanban", "Professional Development", "Time Management", "Teaching",
+        "Reliability", "Mentorship", "Marketing", "Professional Networking", "Management"
+      ]
     };
   }
 };
 </script>
 
 <style scoped>
-/* Project-specific styles only */
+.logo {
+  background-color: #fff;
+}
 </style>

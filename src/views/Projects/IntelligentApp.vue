@@ -94,7 +94,7 @@ export default {
       const project = this.projects.find(p => p.id === '26');
       if (project && project.date) {
         const date = new Date(project.date);
-        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
       }
       return '';
     }
@@ -102,18 +102,22 @@ export default {
   data() {
     return {
       projects: [],
-      skills: ["Python", "JavaScript", "Microsoft Azure", "Salesforce",
-      "JotForm", "Generative AI", "Natural Language Processing (NLP)",
-      "Large Language Models (LLM)", "Machine Learning", "Artificial Intelligence (AI)",
-      "Computer Vision", "AI Ethics", "Prompt Engineering", "Accessibility",
-      "Cloud Computing", "APIs", "Extract, Transform, Load (ETL)", "Git",
-      "Hugging Face", "Software Development", "Software Engineering",
-      "Web Development", "Mobile Development", "Database Management", "Testing",
-      "Debugging", "Version Control", "Agile", "Cybersecurity", "Attention to Detail",
-      "Problem Solving", "Creativity", "Adaptability", "Requirement Gathering",
-      "Communication", "Collaboration", "Teamwork", "Leadership", "Research",
-      "Decision Making", "Data Analysis", "Data Visualization", "Algorithms",
-      "Professional Development", "Advocacy","Information Technology"
+      skills: [
+        "Python", "JavaScript", "Microsoft Azure", "Salesforce", "Generative AI",
+        "Natural Language Processing (NLP)", "Large Language Models (LLM)", "Machine Learning",
+        "Artificial Intelligence (AI)", "Computer Vision", "AI Ethics", "Prompt Engineering",
+        "Accessibility", "Cloud Computing", "APIs", "Extract, Transform, Load (ETL)", "Git",
+        "Hugging Face", "Software Engineering", "Web Development", "Mobile Development",
+        "Database Management", "Testing", "Debugging", "Version Control", "Agile",
+        "Cybersecurity", "Attention to Detail", "Problem Solving", "Creativity", "Adaptability",
+        "Requirement Gathering", "Communication", "Collaboration", "Teamwork", "Leadership",
+        "Research", "Decision Making", "Data Analysis", "Data Visualization",
+        "Data Structures & Algorithms", "Professional Development", "Advocacy",
+        "Information Technology", "Serverless", "Node.js", "Express.js", "HTML", "CSS", "CI/CD",
+        "Scrum", "Critical Thinking", "Analytical Skills", "Time Management",
+        "Written Communication", "Innovation", "Presentation", "Public Speaking", "Resilience",
+        "Professional Networking", "Marketing", "Data Entry", "Conflict Resolution",
+        "Organization", "Reliability", "Mental Health Advocacy"
       ]
     };
   }

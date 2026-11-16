@@ -67,7 +67,7 @@ export default {
       const project = this.projects.find(p => p.id === '23');
       if (project && project.date) {
         const date = new Date(project.date);
-        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
       }
       return '';
     }
@@ -75,12 +75,17 @@ export default {
   data() {
     return {
       projects: [],
-      skills: ["React", "JavaScript", "APIs", "TypeScript", "CSS", "HTML", "Git", "Problem Solving", "Docker",
-              "Data Analysis", "Software Development", "Software Engineering", "Version Control",
-              "AWS", "Cloud Computing", "Node.js", "npm", "Critical Thinking", "Creativity", "Adaptability",
-              "Time Management", "Decision Making", "Networking", "Graphic Design", "Attention to Detail",
-              "Presentation", "Writing", "Research", "Collaboration", "Communication", "Requirement Gathering",
-              "Testing", "Debugging", "UI/UX", "Web Development", "Database Management"]
+      skills: [
+        "React", "JavaScript", "APIs", "TypeScript", "CSS", "HTML", "Git", "Problem Solving",
+        "Docker", "Data Analysis", "Software Engineering", "Version Control", "AWS",
+        "Cloud Computing", "Node.js", "npm", "Critical Thinking", "Creativity", "Adaptability",
+        "Time Management", "Decision Making", "Professional Networking", "Graphic Design",
+        "Attention to Detail", "Presentation", "Written Communication", "Research",
+        "Collaboration", "Communication", "Requirement Gathering", "Testing", "Debugging",
+        "UI/UX", "Web Development", "Database Management", "Serverless", "Microservices",
+        "Visual Studio Code", "Agile", "Scrum", "Kanban", "Analytical Skills",
+        "Professional Development"
+      ]
     };
   }
 };

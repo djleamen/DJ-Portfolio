@@ -31,6 +31,18 @@
         <li><a href="https://github.com/djleamen/better-visualizer" target="_blank" rel="noopener noreferrer">Better Visualizer Repo</a></li>
     </ul>
     
+    <h2>Screenshots</h2>
+    <div class="screenshots-container">
+      <figure>
+        <img src="@/assets/kickstart-my-heart-vis.png" alt="Better Visualizer playing Kickstart My Heart by Motley Crue" class="screenshot" loading="lazy" />
+        <figcaption>Kickstart My Heart - Motley Crue</figcaption>
+      </figure>
+      <figure>
+        <img src="@/assets/escapism-vis.png" alt="Better Visualizer playing Escapism by Raye" class="screenshot" loading="lazy" />
+        <figcaption>Escapism - Raye</figcaption>
+      </figure>
+    </div>
+
     <h2>Skills Developed</h2>
     <div class="skills-container">
       <div class="skill-bubble" v-for="skill in skills" :key="skill">{{ skill }}</div>
@@ -58,7 +70,7 @@ export default {
       const project = this.projects.find(p => p.id === '31');
       if (project && project.date) {
         const date = new Date(project.date);
-        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
       }
       return '';
     }
@@ -67,19 +79,26 @@ export default {
     return {
       projects: [],
       skills: [
-    "JavaScript", "HTML", "CSS", "Three.js", "WebGL", "npm", "YAML",
-    "CI/CD", "DevOps", "Web Development", "APIs", "Physics", "Mathematics",
-    "Algorithms", "Data Structures & Algorithms", "Memory Management",
-    "Performance Tuning", "Software Development", "Software Engineering",
-    "Software Architecture", "UX/UI", "Defensive Programming",
-    "Git", "Version Control", "Meyda", "Audio Processing", 
-    "Digital Signal Processing (DSP)", "Real-time Systems", "Event-driven Programming"
-    ]
+        "JavaScript", "HTML", "CSS", "Three.js", "WebGL", "npm", "YAML", "CI/CD", "DevOps",
+        "Web Development", "APIs", "Physics", "Mathematics", "Data Structures & Algorithms",
+        "Memory Management", "Performance Tuning", "Software Engineering",
+        "Software Architecture", "UI/UX", "Defensive Programming", "Git", "Version Control",
+        "Meyda", "Audio Processing", "Digital Signal Processing (DSP)", "Real-time Systems",
+        "Event-driven Programming", "Vite", "3D Graphics", "Visual Studio Code", "Creativity",
+        "Data Entry"
+      ]
     };
   }
 };
 </script>
 
 <style scoped>
-/* Project-specific styles only */
+.screenshots-container figure {
+  width: min(980px, 100%);
+  margin: 0;
+}
+
+figcaption {
+  margin-top: 8px;
+}
 </style>

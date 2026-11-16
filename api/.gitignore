@@ -8,3 +8,4 @@ __pycache__
 bin
 obj
 .DS_Store
+tools/admin/backups

@@ -28,7 +28,7 @@
     <ul>
         <li>React.js for dynamic user interface</li>
         <li>Material-UI for modern design components</li>
-        <li>Node.js and Express.js for backend services</li>
+        <li>Vite for development and builds</li>
         <li>RESTful APIs for data retrieval</li>
         <li>Axios for API requests</li>
         <li>Git for version control</li>
@@ -36,6 +36,9 @@
         <li>npm for package management</li>
     </ul>
     
+    <h2>Demo Video</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/duLd_IL_6u4" title="StatsJam demo video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
     <h2>Skills Developed</h2>
     <div class="skills-container">
       <div class="skill-bubble" v-for="skill in skills.slice(0, 20)" :key="skill">{{ skill }}</div>
@@ -69,7 +72,7 @@ export default {
       const project = this.projects.find(p => p.id === '17');
       if (project && project.date) {
         const date = new Date(project.date);
-        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
       }
       return '';
     }
@@ -78,9 +81,9 @@ export default {
     return {
       projects: [],
       skills: [
-        "React", "Node.js", "Express.js", "JavaScript", "HTML", "CSS", 
-        "TypeScript", "Git", "APIs", "Data Visualization", "Software Development", 
-        "Web Development", "Problem Solving", "Creativity"
+        "React", "Node.js", "Vite", "JavaScript", "HTML", "CSS", "Git", "APIs",
+        "Data Visualization", "Software Engineering", "Web Development", "Problem Solving",
+        "npm", "UI/UX", "CI/CD", "Visual Studio Code", "Version Control", "Organization"
       ]
     };
   }

@@ -85,7 +85,7 @@ export default {
       const project = this.projects.find(p => p.id === '19');
       if (project && project.date) {
         const date = new Date(project.date);
-        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
       }
       return '';
     }
@@ -94,13 +94,16 @@ export default {
     return {
       projects: [],
       skills: [
-        "Python", "FastAPI", "Git", "APIs", "Debugging", "pip", "Machine Learning", 
-        "Natural Language Processing (NLP)", "Deep Learning", "Large Language Models (LLM)", 
-        "Generative AI", "Artificial Intelligence (AI)", "ML/AI", "NLTK", "Seaborn", 
-        "Data Structures & Algorithms", "Software Development", "Software Engineering", 
-        "Creativity", "NumPy", "scikit-learn", "Pandas", "CSS", "Streamlit", 
-        "Visual Studio Code", "Attention to Detail", "Data Entry", "Matplotlib", 
-        "Algorithms", "Data Analysis", "Data Visualization", "UX/UI", "Programming Languages", "Testing"
+        "Python", "Git", "APIs", "Debugging", "pip", "Machine Learning",
+        "Natural Language Processing (NLP)", "Deep Learning", "Large Language Models (LLM)",
+        "Generative AI", "Artificial Intelligence (AI)", "NLTK", "Seaborn",
+        "Data Structures & Algorithms", "Software Engineering", "Creativity", "NumPy",
+        "Scikit-learn", "Pandas", "CSS", "Streamlit", "Visual Studio Code",
+        "Attention to Detail", "Data Entry", "Matplotlib", "Data Analysis", "Data Visualization",
+        "UI/UX", "Programming Languages", "Testing", "TextBlob", "Plotly", "joblib",
+        "Sentiment Analysis", "Recommendation Systems", "Clustering", "Unsupervised Learning",
+        "Supervised Learning", "Random Forest", "Data Preprocessing", "Prompt Engineering",
+        "Shell", "Version Control", "Innovation"
       ]
     };
   }
